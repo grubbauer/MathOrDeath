@@ -1,6 +1,6 @@
-Grubbauer Free License
+Raphael Grubbauer's Free License
 ======================
-
+## Version 1.0.0
 ## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](raphael.grubbauer@hotmail.com)
 
 This piece of software is provided "as-is", without any kind of implied or express warranty. In no event 
