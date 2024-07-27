@@ -1,5 +1,5 @@
-Raphael Grubbauer's Free License
-======================
+# Raphael Grubbauer's Free License
+
 ## Version 1.0.0
 ## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](raphael.grubbauer@hotmail.com)
 
