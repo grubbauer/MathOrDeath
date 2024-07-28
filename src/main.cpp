@@ -23,6 +23,9 @@ int main(int argc, char *argv[]) {
                 stop = true;
             }
         }
+        SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(gRenderer);
+        SDL_RenderPresent(gRenderer);
     }
 
     quit();
