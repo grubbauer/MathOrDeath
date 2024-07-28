@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v.0.0.1-4
+- Expanded code
+  - Made inside of window white
 
 ## v.0.0.1-3
 - Expanded the code
