@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 
 void initialise() {
     SDL_Init(SDL_INIT_VIDEO);
-    gWindow = SDL_CreateWindow("MathOrDeath v.0.0.1-3", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
+    gWindow = SDL_CreateWindow("MathOrDeath v.0.0.1-4", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
