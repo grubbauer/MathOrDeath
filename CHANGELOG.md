@@ -1,8 +1,15 @@
 # CHANGELOG
 
+
+## v.0.0.1-5
+- Added "SDL_image" library
+- Expanded code
+  - Added rendering class
+  - Displays test image
+
 ## v.0.0.1-4
 - Expanded code
-  - Made inside of window white
+  - Made content of window white
 
 ## v.0.0.1-3
 - Expanded the code
