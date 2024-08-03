@@ -127,7 +127,7 @@ void quit() {
 
     /**
      *  Special attention: If IMG_Quit does NOT work when working with CMake, change #include "close_code.h" on line 2191 to 
-     *  #include <close_code.h>. This will typically resolve the issue.
+     *  #include <close_code.h>. This will typically resolve the issue. 
     */  
     IMG_Quit();
     SDL_Quit();
