@@ -1,0 +1,7 @@
+!- Lookout.0.0.1;
+
+*** Lookout;
+
+name = "Background Nr.0001";
+version = "0.0.1_test";
+description = "Main testing backround for version v.0.0.1-5 and forward until later version. See Changelog to see if and when removed."    
