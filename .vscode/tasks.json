@@ -42,6 +42,13 @@
                 "isDefault": true
             },
             "detail": "Build task for Clang with SDL2."
+        },
+        {
+            "label": "Run Executable",
+            "type": "shell",
+            "command": "${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-5.exe",
+            "dependsOn": "C/C++: clang-cl.exe build active file",
+            "problemMatcher": []
         }
     ]
 }
