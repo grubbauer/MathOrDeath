@@ -1,0 +1,30 @@
+# How to compile
+
+## Necessities
+
+### Windows
+
+- Clang-cl Compiler
+- SDL2
+- SDL2-mixer
+
+To compile the code, you will have to download the clang-cl compiler for Windows. After downloading the
+compiler, you need to install it and add it to the Windows Path Enviroment Variable.
+
+After that you need to create a directory inside the project folder titled "include" and then inside the 
+"include" directory, you will need to create another directory titled "SDL2". Now, you will need to 
+download the VC-SDL2 package from [this](https://github.com/libsdl-org/SDL/releases/download/release-2.30.6/SDL2-devel-2.30.6-VC.zip) link. 
+Unzip the contents and move all files inside the "SDL2-x.xx.x/include" directory of the zip file inside the
+"include/SDL2" you've created. After that create a new directory inside your workspace titles "lib" and 
+again inside this directory create another directory called "x64". Now copy all files inside the 
+"SDL2-x.xx.x/lib/x64/" of the zip file inside of the "lib/x64/" directory.
+
+Now you need to download the VC-SDL2-image package from [here](https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.2/SDL2_image-devel-2.8.2-VC.zip). You need to, again, move all files 
+from the "include" directory inside of the zip file to the "include/SDL2" directory you provided and do
+the same with the files within the "lib/x64" directory.
+
+Now you are ready to compile the files with this command: 
+> "C:\\Program Files\\LLVM\\bin\\clang-cl.exe" -I${workspaceFolder}/include ${file} -o ${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-5.exe -g -fcolor-diagnostics -fansi-escape-codes /link /LIBPATH:${workspaceFolder}/lib/x64 SDL2.lib SDL2main.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winmm.lib imm32.lib ole32.lib oleaut32.lib version.lib uuid.lib comdlg32.lib advapi32.lib shell32.lib /SUBSYSTEM:WINDOWS
+
+The last step is that you need to put the "res" folder inside of the build folder. The programm can now
+be executed.
