@@ -8,7 +8,7 @@
             "args": [
                 "-I${workspaceFolder}/include",
                 "${file}",
-                "-o", "${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-5.exe",
+                "-o", "${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-6.exe",
                 "-g",
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
