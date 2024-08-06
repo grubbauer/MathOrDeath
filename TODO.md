@@ -1,3 +1,3 @@
 # TODO
 
-- Sound test
+- Sound test (preferablly with ogg or wav)
