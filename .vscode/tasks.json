@@ -2,18 +2,19 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: clang-cl.exe build active file",
+            "label": "Build C++ script",
+            "type": "shell",
             "command": "clang-cl.exe",
             "args": [
                 "-I${workspaceFolder}/include",
-                "${file}",
-                "-o", "${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-6.exe",
+                "${workspaceFolder}/src/main.cpp",
+                "-o",
+                "${workspaceFolder}/build/MathOrDeath_v_0_0_1-6.exe",
                 "-g",
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
                 "/link",
-                "/LIBPATH:${workspaceFolder}/lib/x64",
+                "/LIBPATH:${workspaceFolder}/lib",
                 "SDL2.lib",
                 "SDL2main.lib",
                 "SDL2_image.lib",
@@ -32,23 +33,33 @@
                 "shell32.lib",
                 "/SUBSYSTEM:WINDOWS"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Build task for Clang with SDL2."
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
         },
         {
-            "label": "Run Executable",
+            "label": "Clean",
             "type": "shell",
-            "command": "${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-5.exe",
-            "dependsOn": "C/C++: clang-cl.exe build active file",
+            "command": "del",
+            "args": [
+                "/Q",
+                "${workspaceFolder}/build/MathOrDeath_v_0_0_1-6.exe"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
             "problemMatcher": []
         }
     ]
