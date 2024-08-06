@@ -17,6 +17,7 @@
                 "SDL2.lib",
                 "SDL2main.lib",
                 "SDL2_image.lib",
+                "SDL2_mixer.lib",
                 "kernel32.lib",
                 "user32.lib",
                 "gdi32.lib",
