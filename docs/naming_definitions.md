@@ -10,4 +10,4 @@ Members
 
 ## sXXXXX
 
-Soundeffects and music
+Soundeffects and musical objects
