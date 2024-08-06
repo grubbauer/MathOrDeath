@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <string>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,6 +11,8 @@ const int SCR_HEIGHT = 480;
 
 SDL_Window* gWindow;
 SDL_Renderer* gRenderer;
+
+Mix_Music* sMusic = NULL;   
 
 void initialise();
 void loadAssets();
@@ -96,10 +99,16 @@ int main(int argc, char *argv[]) {
                 stop = true;
             }
         }
+        // Graphical rendering
         SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
         SDL_RenderClear(gRenderer);
         gTestBackground.render(0,0);
         SDL_RenderPresent(gRenderer);
+
+        // Sounds
+        if (Mix_PlayingMusic() == 0) {
+            Mix_PlayMusic(sMusic, -1);
+        }
     }
 
     quit();
@@ -107,20 +116,25 @@ int main(int argc, char *argv[]) {
 }
 
 void initialise() {
-    SDL_Init(SDL_INIT_VIDEO); // Currently only SDL_VIDEO is needed
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     IMG_Init(IMG_INIT_PNG); // Currently only the png format is needed
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
     gWindow = SDL_CreateWindow("MathOrDeath v.0.0.1-5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Accelerated with VSync activated
 }
 
 void loadAssets() {
     gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
+    sMusic = Mix_LoadMUS("src/res/sfx/music/test.wav");
 }
-
+    	
 void quit() {
 
     // Graphical elements
     gTestBackground.free();
+
+    // Sounds
+    Mix_FreeMusic(sMusic);
 
     SDL_DestroyRenderer(gRenderer);
     SDL_DestroyWindow(gWindow);
