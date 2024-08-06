@@ -9,7 +9,7 @@
                 "-I${workspaceFolder}/include",
                 "${workspaceFolder}/src/main.cpp",
                 "-o",
-                "${workspaceFolder}/build/MathOrDeath_v_0_0_1-6.exe",
+                "${workspaceFolder}/build/MathOrDeath_v_0_0_1-7.exe",
                 "-g",
                 "-fcolor-diagnostics",
                 "-fansi-escape-codes",
