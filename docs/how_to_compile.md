@@ -28,6 +28,12 @@ You need to, again, move all files from the "include" directory inside of the zi
 file to the "include/SDL2" directory you provided and do the same with the files
 within the "lib/x64" directory.
 
+The VC-SDL-mixer package is now required. You can download the package from
+[here](https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.0/SDL2_mixer-devel-2.8.0-VC.zip).
+Again, you need to move all files from the "include" directory of the zip file
+to the "include/SDL2" directory you provided. Do the same with the files
+inside the "lib/x64" directory.
+
 Now you are ready to compile the files with this command:
 
 ```shell
@@ -39,5 +45,8 @@ imm32.lib ole32.lib oleaut32.lib version.lib uuid.lib comdlg32.lib advapi32.lib
 shell32.lib /SUBSYSTEM:WINDOWS
 ```
 
-The last step is that you need to put the "res" folder inside of the build folder.
+The last step is to put the "res" folder inside the build directory and to place
+the *SDL2.dll*, *SDL2main.lib*, *SDL2_image.dll* and *SDL2_mixer.dll* files
+inside the build directory.
+
 The program can now be executed.
