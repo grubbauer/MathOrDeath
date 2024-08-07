@@ -1,20 +1,14 @@
-# Currently, this makefile only supports windows clang builds
-# But in the near future it will support gcc linux builds
+CC := clang++.exe
+C_CPP_FILES := src/main.cpp
+RESOURCE_DIR := src/res
+INCLUDE_DIR := include
+LIBRARY_DIR := lib/x64
+OUTPUT_DIR := build
+OUTPUT_FILE := MathOrDeath_v.0.0.1-8.exe
+LIBRARIES := -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lShell32
 
-# Variables
-CXX := "clang-cl.exe"
-INCLUDE_DIR := $(workspaceFolder)/include
-OUTPUT_DIR := $(workspaceFolder)/build
-OUTPUT_FILE := MathOrDeath_v_0_0_1-7.exe
-LIB_DIR := $(workspaceFolder)/lib
-LIBS := SDL2.lib SDL2main.lib SDL2_image.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winmm.lib imm32.lib ole32.lib oleaut32.lib version.lib uuid.lib comdlg32.lib advapi32.lib shell32.lib
-
-# Build rule
-all: $(OUTPUT_DIR)/$(OUTPUT_FILE)
-
-$(OUTPUT_DIR)/$(OUTPUT_FILE): $(file)
-	$(CXX) -I$(INCLUDE_DIR) $(file) -o $(OUTPUT_DIR)/$(OUTPUT_FILE) -g -fcolor-diagnostics -fansi-escape-codes /link /LIBPATH:$(LIB_DIR) $(LIBS) /SUBSYSTEM:WINDOWS
-
-# Clean rules
-clean:
-	del /Q $(OUTPUT_DIR)\$(OUTPUT_FILE)
+all:
+	@if not exist "$(OUTPUT_DIR)" mkdir "$(OUTPUT_DIR)"
+	$(CC) $(C_CPP_FILES) -o $(OUTPUT_DIR)/$(OUTPUT_FILE) -I$(INCLUDE_DIR) -L$(LIBRARY_DIR) $(LIBRARIES) -Xlinker /SUBSYSTEM:WINDOWS -Xlinker /ENTRY:mainCRTStartup
+	copy "$(LIBRARY_DIR)\*.dll" "$(OUTPUT_DIR)\"
+	xcopy /e /y "$(RESOURCE_DIR)" "$(OUTPUT_DIR)\res\"
