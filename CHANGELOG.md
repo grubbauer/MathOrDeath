@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v.0.0.1-8
+
+- Removed *.vscode/tasks.json*
+- Removed *.vscode/launch.json*
+- Updated *Makefile*
+  - Completely revamped Makescript
+- Updated *main.cpp*
+  - Fixed typo
+
 ## v.0.0.1-7
 
 - Updated *CHANGELOG.md*'s format
