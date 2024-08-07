@@ -119,7 +119,7 @@ void initialise() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     IMG_Init(IMG_INIT_PNG); // Currently only the png format is needed
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-    gWindow = SDL_CreateWindow("MathOrDeath v.0.0.1-5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
+    gWindow = SDL_CreateWindow("MathOrDeath v.0.0.1-8", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Accelerated with VSync activated
 }
 
