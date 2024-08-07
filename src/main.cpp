@@ -86,7 +86,7 @@ int cTexture::getHeight() {
     return mHeight;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     initialise();
     loadAssets();
 
@@ -125,7 +125,7 @@ void initialise() {
 
 void loadAssets() {
     gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
-    sMusic = Mix_LoadMUS("src/res/sfx/music/test.wav");
+    sMusic = Mix_LoadMUS("res/sfx/music/test.wav");
 }
     	
 void quit() {
