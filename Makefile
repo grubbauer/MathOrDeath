@@ -4,7 +4,7 @@ RESOURCE_DIR := src/res
 INCLUDE_DIR := include
 LIBRARY_DIR := lib/x64
 OUTPUT_DIR := build
-OUTPUT_FILE := MathOrDeath_v.0.0.1-8.exe
+OUTPUT_FILE := MathOrDeath_v.0.0.1-9.exe
 LIBRARIES := -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lShell32
 
 all:
