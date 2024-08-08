@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v.0.0.1-11
+
+### Updated
+
+- *Makefile*
+  - Added version variable
+- *main.cpp*
+  - Added version variable
+
 ## v.0.0.1-10
 
 ### Updated
