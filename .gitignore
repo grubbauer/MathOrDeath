@@ -2,3 +2,4 @@ build/
 lib/
 include/
 .markdownlint.json
+TODO.md
