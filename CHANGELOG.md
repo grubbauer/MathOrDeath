@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v.0.0.1-10
+
+### Updated
+
+- *Makefile*
+  - Added clean rule
+
 ## v.0.0.1-9
 
 ### Added
