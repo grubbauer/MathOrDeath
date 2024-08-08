@@ -1,9 +1,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
-#include <string>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
+
+/*
+TODO:
+    Random number generator
+*/
 
 // General global variables
 const int SCR_WIDTH = 640;
