@@ -1,10 +1,12 @@
+VERSION = v.0.0.1-11
+
 CC := clang++.exe
 C_CPP_FILES := src/main.cpp
 RESOURCE_DIR := src/res
 INCLUDE_DIR := include
 LIBRARY_DIR := lib/x64
 OUTPUT_DIR := build/windows-x64
-OUTPUT_FILE := MathOrDeath_v.0.0.1-9.exe
+OUTPUT_FILE := MathOrDeath_$(VERSION).exe
 LIBRARIES := -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lShell32
 
 all:
