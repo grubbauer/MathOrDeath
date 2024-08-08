@@ -34,19 +34,15 @@ Again, you need to move all files from the "include" directory of the zip file
 to the "include/SDL2" directory you provided. Do the same with the files
 inside the "lib/x64" directory.
 
-Now you are ready to compile the files with this command:
+## Compiling
+
+### Windows
+
+Now you are ready to compile the files with the provided Makefile. Just run the
+following command:
 
 ```shell
-clang-cl.exe -I${workspaceFolder}/include ${file} -o 
-${workspaceFolder}\\build\\MathOrDeath_v_0_0_1-5.exe -g -fcolor-diagnostics 
--fansi-escape-codes /link /LIBPATH:${workspaceFolder}/lib/x64 SDL2.lib 
-SDL2main.lib SDL2_image.lib kernel32.lib user32.lib gdi32.lib winmm.lib 
-imm32.lib ole32.lib oleaut32.lib version.lib uuid.lib comdlg32.lib advapi32.lib 
-shell32.lib /SUBSYSTEM:WINDOWS
+make all
 ```
-
-The last step is to put the "res" folder inside the build directory and to place
-the *SDL2.dll*, *SDL2main.lib*, *SDL2_image.dll* and *SDL2_mixer.dll* files
-inside the build directory.
 
 The program can now be executed.
