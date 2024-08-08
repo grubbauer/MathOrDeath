@@ -125,7 +125,7 @@ void initialise() {
 
 void loadAssets() {
     gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
-    sMusic = Mix_LoadMUS("res/sfx/music/test.wav");
+    sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 }
     	
 void quit() {
