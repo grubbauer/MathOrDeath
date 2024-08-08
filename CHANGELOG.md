@@ -12,10 +12,16 @@
   - Updated instructions on how to compile with Makefile
 - *CHANGELOG.md*
   - Completely revamped format
+- *src/main.cpp*
+  - Added ogg file playability
+- *.gitignore*
+  - .markdownlint.json is now ignored
+  - TODO.md is now ignored
 
 ### Deleted
 
 - *src/res/sfx/music/test.wav*
+- *TODO.md*
 
 ## v.0.0.1-8
 
