@@ -8,8 +8,6 @@ This piece of software is provided "as-is", without any kind of implied or
 express warranty. In no event shall the author(s) of this software be held
 liable for any damages arising from the use of this software.
 
-This is a single line of text that contains exactly eighty characters in length.
-
 Anyone is granted permission to use this software for any purpose, and to alter,
 sell, and redistribute it, provided that the following conditions are met:
 
