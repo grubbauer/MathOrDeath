@@ -1,4 +1,4 @@
-VERSION = v.0.0.1-11
+VERSION = v.0.0.1-12
 
 CC := clang++.exe
 C_CPP_FILES := src/main.cpp
