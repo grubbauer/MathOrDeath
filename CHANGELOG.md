@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v.0.0.1-12
+
+### Updated
+
+- *docs/c_cpp_properties.json*
+  - Changed intelliSenseMode
+
 ## v.0.0.1-11
 
 ### Updated
