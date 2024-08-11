@@ -6,6 +6,12 @@
 
 - *docs/c_cpp_properties.json*
   - Changed intelliSenseMode
+- */*
+  - Changed all line breaks from CRLF to LF
+- *Makefile*
+  - Updated version number
+- *src/main.cpp*
+  - Updated version number
 
 ## v.0.0.1-11
 
