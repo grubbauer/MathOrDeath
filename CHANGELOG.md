@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v.0.0.1-13
+
+### Added
+
+- *src/random.cpp*
+- *include/random.h*
+- *.vscode/settings.json*
+
+### Updated
+
+- *src/main.cpp*
+  - Added test logic for random number generation
+- *docs/how_to_compile.md*
+  - Updated instructions on how to compile
+- *.gitignore*
+  - Directory "include" is now longer ignored
+- *Makefile*
+  - Now compiling with Windows librarys
+
 ## v.0.0.1-12
 
 ### Updated
