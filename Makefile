@@ -9,9 +9,16 @@ OUTPUT_DIR := build/windows-x64
 OUTPUT_FILE := MathOrDeath_$(VERSION).exe
 LIBRARIES := -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lShell32
 
+# Windows librarys
+WINDOWS_INCLUDE_SHARED = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared"
+WINDOWS_INCLUDE_UCRT = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\ucrt"
+WINDOWS_INCLUDE_WINRT = "C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\winrt"
+WINDOWS_LIB_UCRT = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\ucrt\x64"
+WINDOWS_LIB_UM = "C:\Program Files (x86)\Windows Kits\10\Lib\10.0.26100.0\um\x64"
+
 all:
 	@if not exist "$(OUTPUT_DIR)" mkdir "$(OUTPUT_DIR)"
-	$(CC) $(C_CPP_FILES) -o $(OUTPUT_DIR)/$(OUTPUT_FILE) -I$(INCLUDE_DIR) -L$(LIBRARY_DIR) $(LIBRARIES) -Xlinker /SUBSYSTEM:WINDOWS -Xlinker /ENTRY:mainCRTStartup
+	$(CC) $(C_CPP_FILES) -o $(OUTPUT_DIR)/$(OUTPUT_FILE) -I$(INCLUDE_DIR) -I$(WINDOWS_INCLUDE_SHARED) -I$(WINDOWS_INCLUDE_UCRT) -I$(WINDOWS_INCLUDE_WINRT) -L$(LIBRARY_DIR) $(LIBRARIES) -Xlinker /SUBSYSTEM:WINDOWS -Xlinker /ENTRY:mainCRTStartup
 	copy "$(LIBRARY_DIR)\*.dll" "$(OUTPUT_DIR)\"
 	xcopy /e /y "$(RESOURCE_DIR)" "$(OUTPUT_DIR)\res\"
 
