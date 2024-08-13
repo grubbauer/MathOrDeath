@@ -1,14 +1,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
+#include "random.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-
-/*
-TODO:
-    Random number generator
-*/
+#include <iostream>
 
 // General global variables
 const int SCR_WIDTH = 640;
@@ -19,6 +16,8 @@ SDL_Window* gWindow;
 SDL_Renderer* gRenderer;
 
 Mix_Music* sMusic = NULL;   
+
+int testRand = randNum(20,60);
 
 void initialise();
 void loadAssets();
@@ -99,6 +98,8 @@ int main(int argc, char* argv[]) {
     bool stop = false;
     SDL_Event e;
 
+    printf("%i",randNum);
+
     while (!stop) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
@@ -145,7 +146,7 @@ void quit() {
     SDL_DestroyRenderer(gRenderer);
     SDL_DestroyWindow(gWindow);
 
-    /**
+    /*
      *  Special attention: If IMG_Quit does NOT work when working with CMake, change #include "close_code.h" on line 2191 to 
      *  #include <close_code.h>. This will typically resolve the issue. 
     */  
