@@ -8,9 +8,14 @@
 - SDL2
 - SDL2-mixer
 
-To compile the code, you will have to download the clang-cl compiler for Windows.
-After downloading the compiler, you need to install it and add it to the Windows
-Path Environment Variable.
+To compile the code, you will have to download the Clang Compiler Collection for
+Windows. After downloading the compiler, you need to install it and add it to the
+Windows Path Environment Variable.
+
+Now you need to download the Windows SDK kit. The Windows SDK kit can be
+downloaded from [here](https://go.microsoft.com/fwlink/?linkid=2272610). The
+programm is necessary, because it installs packages neccesary for the compiler.
+
 
 After that, you need to create a directory inside the project folder titled
 "include" and then inside the "include" directory, you will need to create another
