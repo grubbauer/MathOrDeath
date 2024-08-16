@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## v.0.0.1-15
+
+## Added
+
+- *TODO.md*
+- *src\res\img\misc\background-0002.png*
+  - Test background
+
+## Updated
+
+- *Makefile*
+  - Added debug option
+  - Updated format
+- *TODO.md*
+  - Updated status
+- *src/main.cpp*
+  - Added random operator logic
+  - Made window full-screen
+
 ## v.0.0.1-14
 
 ### Updated
