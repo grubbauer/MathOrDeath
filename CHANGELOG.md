@@ -11,6 +11,11 @@
 - *Changelog*
   - Fixed formatting issue
 
+### Renamed
+
+- *src\res\img\misc\background-0002.png*
+  - Renamed to "src\res\img\misc\background-0001.png"
+
 ## v.0.0.1-15
 
 ### Added
