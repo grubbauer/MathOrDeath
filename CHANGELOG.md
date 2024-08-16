@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v.0.0.1-14
+
+### Updated
+
+- *.vscode/c_cpp_properties.json*
+  - Intellisense now uses MYSYS2 MinGW Clang++
+- *.vscode/settings.json*
+  - Removed unneccesary fuction
+- *src/main.cpp*
+  - Changed main fuction to WinMain
+- *.gitignore*
+  - Now ignoring "bin/"
+- *docs/how_to_compile.md*
+  - Updated instructions on how to compile with MYSYS2 Clang++
+- *Makefile*
+  - Updated Makefile to compile with MYSYS2 Clang++
+
 ## v.0.0.1-13
 
 ### Added
