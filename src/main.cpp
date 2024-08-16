@@ -17,12 +17,12 @@ SDL_Renderer* gRenderer;
 
 Mix_Music* sMusic = NULL;   
 
-int testRand;
+int Operator;
 
 void initialise();
 void loadAssets();
+int getRandOperator();
 void quit();
-void testOperator(int num);
 
 // Texture class
 class cTexture {
@@ -107,34 +107,29 @@ int WinMain(int argc, char* argv[]) {
                 stop = true;
             }
         }
+
+        // Game logic
+        Operator = randNum(1,4);
+        switch (Operator) {
+            case 1:
+                printf("+");
+                break;
+            case 2:
+                printf("-");
+                break;
+            case 3:
+                printf("*");
+                break;
+            case 4:
+                printf("/");
+                break;
+            }
+
         // Graphical rendering
         SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
         SDL_RenderClear(gRenderer);
         gTestBackground.render(0,0);
         SDL_RenderPresent(gRenderer);
-
-        int foo;
-        scanf("%i", &foo);
-        if (foo != 0) {
-            int testRand = randNum(1,4);
-            switch(testRand) {
-                case 1:
-                    printf("Addition");
-                    break;
-                case 2:
-                    printf("Subtraction");
-                    break;
-                case 3:
-                    printf("Multiplication");
-                    break;
-                case 4:
-                    printf("Division");
-                    break;
-            }
-        } else if (foo == 22) {
-            return 0;
-        }
-        
 
         // Sounds
         if (Mix_PlayingMusic() == 0) {
@@ -152,13 +147,14 @@ void initialise() {
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
     gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Accelerated with VSync activated
+    SDL_SetWindowFullscreen(gWindow,SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 
 void loadAssets() {
     gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
     sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 }
-    	
+
 void quit() {
 
     // Graphical elements
@@ -177,5 +173,5 @@ void quit() {
     IMG_Quit();
     SDL_Quit();
 
-    testRand = NULL;
+    Operator = NULL;
 }
