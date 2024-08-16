@@ -19,6 +19,12 @@
   - Added random operator logic
   - Made window full-screen
 
+### Removed
+
+- *TODO.md*
+- *src\res\img\misc\background-0001.png*
+  - Removed due to irrelevance
+
 ## v.0.0.1-14
 
 ### Updated
