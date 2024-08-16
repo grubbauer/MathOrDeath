@@ -1,0 +1,4 @@
+# TODO
+
+- Random operator
+- Fullscreen
