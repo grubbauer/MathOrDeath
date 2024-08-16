@@ -10,7 +10,7 @@
 // General global variables
 const int SCR_WIDTH = 640;
 const int SCR_HEIGHT = 480;
-const std::string VERSION = "v.0.0.1-14";
+const std::string VERSION = "v.0.0.1-15";
 
 SDL_Window* gWindow;
 SDL_Renderer* gRenderer;
