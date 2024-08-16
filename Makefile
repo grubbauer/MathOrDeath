@@ -8,7 +8,7 @@ LIB_DIR := lib
 LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer
 BUILD_DIR := build\windows-x64
 
-all: windows-x64
+all: clean windows-x64
 
 windows-x64:
 	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
@@ -18,4 +18,4 @@ windows-x64:
 	del $(BUILD_DIR)\sdl2-config
 
 clean:
-	rmdir build /s /q
+	@if exist "$(BUILD_DIR)\.." rmdir /s /q "$(BUILD_DIR)\.."

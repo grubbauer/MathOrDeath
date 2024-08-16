@@ -56,3 +56,11 @@ mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/include/SDL2/* MathOrDeath/SDL2/include/
 mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/lib/* MathOrDeath
 mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/bin/* MathOrDeath
 ```
+
+Now, just navigate to your project root and execute this command
+
+```shell
+mingw32-make
+```
+
+The programm can now be executed.
