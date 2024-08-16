@@ -1,14 +1,25 @@
 # CHANGELOG
 
+## v.0.0.1-16
+
+### Updated
+
+- *Makefile*
+  - Updated version number
+- *src/main.cpp*
+  - Updated version number
+- *Changelog*
+  - Fixed formatting issue
+
 ## v.0.0.1-15
 
-## Added
+### Added
 
 - *TODO.md*
 - *src\res\img\misc\background-0002.png*
   - Test background
 
-## Updated
+### Updated
 
 - *Makefile*
   - Added debug option
