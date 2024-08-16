@@ -113,21 +113,28 @@ int WinMain(int argc, char* argv[]) {
         gTestBackground.render(0,0);
         SDL_RenderPresent(gRenderer);
 
-        int testRand = randNum(1,4);
-        switch(testRand) {
-            case 1:
-                printf("Addition");
-                break;
-            case 2:
-                printf("Subtraction");
-                break;
-            case 3:
-                printf("Multiplication");
-                break;
-            case 4:
-                printf("Division");
-                break;
+        int foo;
+        scanf("%i", &foo);
+        if (foo != 0) {
+            int testRand = randNum(1,4);
+            switch(testRand) {
+                case 1:
+                    printf("Addition");
+                    break;
+                case 2:
+                    printf("Subtraction");
+                    break;
+                case 3:
+                    printf("Multiplication");
+                    break;
+                case 4:
+                    printf("Division");
+                    break;
+            }
+        } else if (foo == 22) {
+            return 0;
         }
+        
 
         // Sounds
         if (Mix_PlayingMusic() == 0) {
