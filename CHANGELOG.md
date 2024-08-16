@@ -16,6 +16,8 @@
   - Updated instructions on how to compile with MYSYS2 Clang++
 - *Makefile*
   - Updated Makefile to compile with MYSYS2 Clang++
+- *README.md*
+  - Updated README
 
 ## v.0.0.1-13
 
