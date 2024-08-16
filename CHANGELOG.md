@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v.0.0.1-15
+
+## Added
+
+- *TODO.md*
+
+## Updated
+
+- *Makefile*
+  - Added debug option
+- *src/main.cpp*
+  - Added random operator logic
+
 ## v.0.0.1-14
 
 ### Updated
