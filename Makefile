@@ -15,6 +15,7 @@ windows-x64:
 	$(CC) -mwindows $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
 	copy "bin\*" $(BUILD_DIR)
 	xcopy "src\res" "$(BUILD_DIR)\res" /E /I /H /C /Y
+	del $(BUILD_DIR)\sdl2-config
 
 clean:
 	rmdir build /s /q
