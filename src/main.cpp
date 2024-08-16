@@ -17,11 +17,12 @@ SDL_Renderer* gRenderer;
 
 Mix_Music* sMusic = NULL;   
 
-int testRand = randNum(20,60);
+int testRand;
 
 void initialise();
 void loadAssets();
 void quit();
+void testOperator(int num);
 
 // Texture class
 class cTexture {
@@ -98,6 +99,7 @@ int WinMain(int argc, char* argv[]) {
     bool stop = false;
     SDL_Event e;
 
+    
 
     while (!stop) {
         while (SDL_PollEvent(&e) != 0) {
@@ -110,6 +112,22 @@ int WinMain(int argc, char* argv[]) {
         SDL_RenderClear(gRenderer);
         gTestBackground.render(0,0);
         SDL_RenderPresent(gRenderer);
+
+        int testRand = randNum(1,4);
+        switch(testRand) {
+            case 1:
+                printf("Addition");
+                break;
+            case 2:
+                printf("Subtraction");
+                break;
+            case 3:
+                printf("Multiplication");
+                break;
+            case 4:
+                printf("Division");
+                break;
+        }
 
         // Sounds
         if (Mix_PlayingMusic() == 0) {
@@ -151,4 +169,6 @@ void quit() {
     */  
     IMG_Quit();
     SDL_Quit();
+
+    testRand = NULL;
 }
