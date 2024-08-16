@@ -19,3 +19,13 @@ windows-x64:
 
 clean:
 	@if exist "$(BUILD_DIR)\.." rmdir /s /q "$(BUILD_DIR)\.."
+
+debug: clean debug-1
+
+debug-1: 
+	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
+	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
+	copy "bin\*" $(BUILD_DIR)
+	xcopy "src\res" "$(BUILD_DIR)\res" /E /I /H /C /Y
+	del $(BUILD_DIR)\sdl2-config
+	cd $(BUILD_DIR) && .\MathOrDeath_$(VERSION).exe
