@@ -1,4 +1,5 @@
 build/
 lib/
+bin/
 include/SDL2
 .markdownlint.json
