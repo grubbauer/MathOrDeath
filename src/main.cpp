@@ -91,14 +91,13 @@ int cTexture::getHeight() {
     return mHeight;
 }
 
-int main(int argc, char* argv[]) {
+int WinMain(int argc, char* argv[]) {
     initialise();
     loadAssets();
 
     bool stop = false;
     SDL_Event e;
 
-    printf("%i",randNum);
 
     while (!stop) {
         while (SDL_PollEvent(&e) != 0) {
