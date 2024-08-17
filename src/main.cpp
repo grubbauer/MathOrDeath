@@ -101,10 +101,16 @@ int WinMain(int argc, char* argv[]) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 stop = true;
+            } else if (e.type == SDL_KEYDOWN) {
+                SDL_Keycode pressedKeyRaw = e.key.keysym.sym; // I have absulutly no idea what this does but it kinda works (?)
+                const char* pressedKey = SDL_GetKeyName(pressedKeyRaw);
+
+                printf("Key pressed: %s\n", pressedKey);
             }
         }
 
         // Game logic
+        /*
         Operator = randNum(1,4);
         switch (Operator) {
             case 1:
@@ -120,6 +126,7 @@ int WinMain(int argc, char* argv[]) {
                 printf("/");
                 break;
         }
+        */
         // Graphical rendering
         SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
         SDL_RenderClear(gRenderer);
