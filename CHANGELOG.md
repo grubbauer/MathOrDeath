@@ -20,6 +20,8 @@
   - Made resizing of textures possible
   - Set texture rendering mode to linear
   - Added key input system
+- *src/res/img/background/test-0001.png*
+  - Removed metadata
 
 ### Renamed
 
