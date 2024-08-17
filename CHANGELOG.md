@@ -13,12 +13,13 @@
   - Updated version number
 - *Changelog*
   - Fixed formatting issue
+- *TODO.md*
+  - Updated status
 - *src/main.cpp*
   - Updated version number
   - Made resizing of textures possible
   - Set texture rendering mode to linear
-- *TODO.md*
-  - Updated status
+  - Added key input system
 
 ### Renamed
 
