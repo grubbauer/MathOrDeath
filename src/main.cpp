@@ -154,10 +154,11 @@ void initialise() {
     gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Accelerated with VSync activated
     SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
 
 void loadAssets() {
-    gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
+    gTestBackground.loadFromFile("res/img/background/test-0001.png");   
     sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 }
 
@@ -182,9 +183,3 @@ void quit() {
 
     Operator = NULL;
 }
-
-/*
- * Now just a quick problem:
- * The image is now COMPLETELY pixelated, so we need to make litteraly ALL
- * files 4K - 8K (which will completely f-up the entire space).
-*/
