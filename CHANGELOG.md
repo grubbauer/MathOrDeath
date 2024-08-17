@@ -2,30 +2,39 @@
 
 ## v.0.0.1-16
 
-## Added
+### Added
 
 - *TODO.md*
+- *src/res/img/background/test-0001.png*
 
 ### Updated
 
 - *Makefile*
   - Updated version number
-- *src/main.cpp*
-  - Updated version number
 - *Changelog*
   - Fixed formatting issue
+- *src/main.cpp*
+  - Updated version number
+  - Made resizing of textures possible
+  - Set texture rendering mode to linear
+- *TODO.md*
+  - Updated status
 
 ### Renamed
 
-- *src\res\img\misc\background-0002.png*
-  - Renamed to "src\res\img\misc\background-0001.png"
+- *src/res/img/misc/background-0002.png*
+  - Renamed to "src/res/img/misc/background-0001.png"
+
+### Removed
+
+- *src/res/img/misc/background-0001.png*
 
 ## v.0.0.1-15
 
 ### Added
 
 - *TODO.md*
-- *src\res\img\misc\background-0002.png*
+- *src/res/img/misc/background-0002.png*
   - Test background
 
 ### Updated
@@ -42,7 +51,7 @@
 ### Removed
 
 - *TODO.md*
-- *src\res\img\misc\background-0001.png*
+- *src/res/img/misc/background-0001.png*
   - Removed due to irrelevance
 
 ## v.0.0.1-14
