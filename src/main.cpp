@@ -7,15 +7,17 @@
 #include <string>
 #include <iostream>
 
+// Window variables
+int SCR_WIDTH = 0;
+int SCR_HEIGHT = 0;
+
 // General global variables
-const int SCR_WIDTH = 640;
-const int SCR_HEIGHT = 480;
 const std::string VERSION = "v.0.0.1-16";
 
-SDL_Window* gWindow;
-SDL_Renderer* gRenderer;
+SDL_Window* gWindow = NULL;
+SDL_Renderer* gRenderer = NULL;
 
-Mix_Music* sMusic = NULL;   
+Mix_Music* sMusic = NULL;
 
 int Operator;
 
@@ -28,11 +30,11 @@ void quit();
 class cTexture {
 public:
     cTexture(); // Constructor
-    ~cTexture(); // Destructer
+    ~cTexture(); // Destructor
     
     void loadFromFile(std::string path);
     void free();
-    void render(int x, int y, SDL_Rect* clip = NULL);
+    void render(int x, int y, int w, int h);
 
     int getWidth();
     int getHeight();
@@ -75,13 +77,9 @@ void cTexture::free() {
     }
 }
 
-void cTexture::render(int x, int y, SDL_Rect* clip) {
-    SDL_Rect renderAreaRect = { x, y, mWidth, mHeight };
-    if (clip != NULL) {
-        renderAreaRect.w = clip->w;
-        renderAreaRect.h = clip->h;
-    }
-    SDL_RenderCopy(gRenderer, mTexture, clip, &renderAreaRect);
+void cTexture::render(int x, int y, int w, int h) {
+    SDL_Rect renderQuad = { x, y, w, h };
+    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
 }
 
 int cTexture::getWidth() {
@@ -98,8 +96,6 @@ int WinMain(int argc, char* argv[]) {
 
     bool stop = false;
     SDL_Event e;
-
-    
 
     while (!stop) {
         while (SDL_PollEvent(&e) != 0) {
@@ -123,12 +119,11 @@ int WinMain(int argc, char* argv[]) {
             case 4:
                 printf("/");
                 break;
-            }
-
+        }
         // Graphical rendering
         SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
         SDL_RenderClear(gRenderer);
-        gTestBackground.render(0,0);
+        gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
         SDL_RenderPresent(gRenderer);
 
         // Sounds
@@ -145,24 +140,35 @@ void initialise() {
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     IMG_Init(IMG_INIT_PNG); // Currently only the png format is needed
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+    // Get the current display mode of the primary display
+    SDL_DisplayMode display_mode;
+    if (SDL_GetCurrentDisplayMode(0, &display_mode) != 0) {
+        std::cerr << "SDL_GetCurrentDisplayMode failed: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    SCR_WIDTH = display_mode.w;
+    SCR_HEIGHT = display_mode.h;
+
     gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
     gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC); // Accelerated with VSync activated
-    SDL_SetWindowFullscreen(gWindow,SDL_WINDOW_FULLSCREEN_DESKTOP);
+    SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 
 void loadAssets() {
-    gTestBackground.loadFromFile("res/img/misc/background-0002.png");   
+    gTestBackground.loadFromFile("res/img/misc/background-0001.png");   
     sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 }
 
 void quit() {
-
     // Graphical elements
     gTestBackground.free();
 
     // Sounds
     Mix_FreeMusic(sMusic);
 
+    // SDL Elements
     SDL_DestroyRenderer(gRenderer);
     SDL_DestroyWindow(gWindow);
 
@@ -171,6 +177,7 @@ void quit() {
      *  #include <close_code.h>. This will typically resolve the issue. 
     */  
     IMG_Quit();
+    Mix_Quit();
     SDL_Quit();
 
     Operator = NULL;
