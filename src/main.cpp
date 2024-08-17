@@ -182,3 +182,9 @@ void quit() {
 
     Operator = NULL;
 }
+
+/*
+ * Now just a quick problem:
+ * The image is now COMPLETELY pixelated, so we need to make litteraly ALL
+ * files 4K - 8K (which will completely f-up the entire space).
+*/
