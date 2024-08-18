@@ -4,8 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <cmath>
 
+#include <cmath>
 #include <iostream>
 #include <string>
 
@@ -23,7 +23,7 @@ SDL_Renderer *gRenderer = NULL;
 
 Mix_Music *sMusic = NULL;
 
-TTF_Font* fFont;
+TTF_Font *fFont;
 
 int Operator;
 
@@ -78,12 +78,12 @@ void cTexture::loadFromFile(std::string path) {
 void cTexture::loadFromText(std::string text, SDL_Color color) {
   free();
 
-  SDL_Surface* textSurface = TTF_RenderText_Solid(fFont, text.c_str(), color);
+  SDL_Surface *textSurface = TTF_RenderText_Solid(fFont, text.c_str(), color);
   mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
   mWidth = textSurface->w;
   mHeight = textSurface->h;
 
-  SDL_FreeSurface(textSurface); 
+  SDL_FreeSurface(textSurface);
 }
 
 void cTexture::free() {
@@ -147,7 +147,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.render(0,0, 100, 100);
+    gFontTexture.render(0, 0, 100, 100);
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -169,7 +169,7 @@ void initialise() {
   // Get the current display mode of the primary display
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
-  
+
   SCR_WIDTH = display_mode.w;
   SCR_HEIGHT = display_mode.h;
 
@@ -193,7 +193,7 @@ void loadAssets() {
 
   // Fonts
   fFont = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", 20);
-  gFontTexture.loadFromText("Test", {0,0,0});
+  gFontTexture.loadFromText("Test", {0, 0, 0});
 }
 
 void quit() {
