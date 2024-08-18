@@ -15,13 +15,18 @@
   - Fixed formatting issue
 - *TODO.md*
   - Updated status
+- *src/res/img/background/test-0001.png*
+  - Removed metadata
+- *src/random.cpp*
+  - Updated format
 - *src/main.cpp*
   - Updated version number
   - Made resizing of textures possible
   - Set texture rendering mode to linear
   - Added key input system
-- *src/res/img/background/test-0001.png*
-  - Removed metadata
+  - Updated format
+- *.gitignore*
+  - Now ignoring .clang-format and tmp files
 
 ### Renamed
 
