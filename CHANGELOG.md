@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.2
+
+## Updated
+
+- Updated naming scheme
+  - v.x.x.x -> x.x.x
+
 ## v.0.0.1-16
 
 ### Added
