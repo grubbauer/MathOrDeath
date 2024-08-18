@@ -1,4 +1,4 @@
 # TODO
 
 - [x] Resize background photo
-- [ ] Implement typing system
+- [x] Implement typing system
