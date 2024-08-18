@@ -1,8 +1,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <cmath>
 
 #include <iostream>
 #include <string>
@@ -21,6 +23,8 @@ SDL_Renderer *gRenderer = NULL;
 
 Mix_Music *sMusic = NULL;
 
+TTF_Font* fFont;
+
 int Operator;
 
 void initialise();
@@ -35,6 +39,7 @@ class cTexture {
   ~cTexture();  // Destructor
 
   void loadFromFile(std::string path);
+  void loadFromText(std::string text, SDL_Color color);
   void free();
   void render(int x, int y, int w, int h);
 
@@ -49,6 +54,7 @@ class cTexture {
 
 // Class objects
 cTexture gTestBackground;
+cTexture gFontTexture;
 
 cTexture::cTexture() {
   mTexture = NULL;
@@ -67,6 +73,17 @@ void cTexture::loadFromFile(std::string path) {
     mHeight = oldSurface->h;
     SDL_FreeSurface(oldSurface);
   }
+}
+
+void cTexture::loadFromText(std::string text, SDL_Color color) {
+  free();
+
+  SDL_Surface* textSurface = TTF_RenderText_Solid(fFont, text.c_str(), color);
+  mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
+  mWidth = textSurface->w;
+  mHeight = textSurface->h;
+
+  SDL_FreeSurface(textSurface); 
 }
 
 void cTexture::free() {
@@ -130,6 +147,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+    gFontTexture.render(0,0, 100, 100);
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -146,15 +164,12 @@ void initialise() {
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+  TTF_Init();
 
   // Get the current display mode of the primary display
   SDL_DisplayMode display_mode;
-  if (SDL_GetCurrentDisplayMode(0, &display_mode) != 0) {
-    std::cerr << "SDL_GetCurrentDisplayMode failed: " << SDL_GetError()
-              << std::endl;
-    exit(1);
-  }
-
+  SDL_GetCurrentDisplayMode(0, &display_mode);
+  
   SCR_WIDTH = display_mode.w;
   SCR_HEIGHT = display_mode.h;
 
@@ -170,8 +185,15 @@ void initialise() {
 }
 
 void loadAssets() {
+  // Graphical elements
   gTestBackground.loadFromFile("res/img/background/test-0001.png");
+
+  // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
+
+  // Fonts
+  fFont = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", 20);
+  gFontTexture.loadFromText("Test", {0,0,0});
 }
 
 void quit() {
