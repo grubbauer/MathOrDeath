@@ -5,7 +5,7 @@ SOURCE := src/main.cpp src/random.cpp
 RESOURCE_DIR := src\res
 INCLUDE_DIR := include
 LIB_DIR := lib
-LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer
+LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 BUILD_DIR := build\windows-x64
 
 all: clean windows-x64
