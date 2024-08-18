@@ -9,26 +9,32 @@
 
 ### Updated
 
-- *Makefile*
-  - Updated version number
 - *Changelog*
   - Fixed formatting issue
-- *TODO.md*
-  - Updated status
 - *src/res/img/background/test-0001.png*
   - Removed metadata
 - *src/random.cpp*
   - Updated format
+- *.gitignore*
+  - Now ignoring .clang-format and tmp files
+  - Now ignoring .ttf and .otf files
+- *Makefile*
+  - Updated version number
+  - Added SDL_ttf library compilation
+- *.vscode/settings.json*
+  - Updated associations x2
+- *docs/how_to_compile.md*
+  - Updated instructions on how to compile
+- *docs/naming_definitions.md*
+  - Updated naming definitions
 - *src/main.cpp*
   - Updated version number
   - Made resizing of textures possible
   - Set texture rendering mode to linear
   - Added key input system
-  - Updated format
-- *.gitignore*
-  - Now ignoring .clang-format and tmp files
-- *.vscode/settings.json*
-  - Updated associations
+  - Updated format x2
+  - Made window fullscreen
+  - Added font support
 
 ### Renamed
 
@@ -38,6 +44,7 @@
 ### Removed
 
 - *src/res/img/misc/background-0001.png*
+- *TODO.md*
 
 ## v.0.0.1-15
 
