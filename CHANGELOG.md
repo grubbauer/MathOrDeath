@@ -27,6 +27,8 @@
   - Updated format
 - *.gitignore*
   - Now ignoring .clang-format and tmp files
+- *.vscode/settings.json*
+  - Updated associations
 
 ### Renamed
 
