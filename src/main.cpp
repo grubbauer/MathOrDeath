@@ -121,8 +121,10 @@ int WinMain(int argc, char *argv[]) {
         SDL_Keycode pressedKeyRaw =
             e.key.keysym.sym;  // I have absolutly no idea what this
                                // does but it kinda works (?)
+        if (pressedKeyRaw >= SDLK_0  && pressedKeyRaw <= SDLK_9) {
         pressedKey = SDL_GetKeyName(pressedKeyRaw);
-
+        }
+        
         printf("Key pressed: %s\n", pressedKey);
       }
     }
