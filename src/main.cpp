@@ -110,6 +110,8 @@ int WinMain(int argc, char *argv[]) {
 
   bool stop = false;
   SDL_Event e;
+  const char *pressedKey;
+
 
   while (!stop) {
     while (SDL_PollEvent(&e) != 0) {
@@ -117,9 +119,9 @@ int WinMain(int argc, char *argv[]) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
         SDL_Keycode pressedKeyRaw =
-            e.key.keysym.sym;  // I have absulutly no idea what this
+            e.key.keysym.sym;  // I have absolutly no idea what this
                                // does but it kinda works (?)
-        const char *pressedKey = SDL_GetKeyName(pressedKeyRaw);
+        pressedKey = SDL_GetKeyName(pressedKeyRaw);
 
         printf("Key pressed: %s\n", pressedKey);
       }
@@ -147,6 +149,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+    gFontTexture.loadFromText(pressedKey, {255,255,255});
     gFontTexture.render(0, 0, 100, 100);
     SDL_RenderPresent(gRenderer);
 
@@ -193,7 +196,7 @@ void loadAssets() {
 
   // Fonts
   fFont = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", 20);
-  gFontTexture.loadFromText("Test", {0, 0, 0});
+  gFontTexture.loadFromText("Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte", {0, 0, 0});
 }
 
 void quit() {
