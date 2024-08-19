@@ -10,6 +10,8 @@
 
 - Updated naming scheme
   - v.x.x.x -> x.x.x
+- *Makefile*
+  - Added logging
 
 ## v.0.0.1-16
 
