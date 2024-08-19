@@ -12,6 +12,8 @@
   - v.x.x.x -> x.x.x
 - *Makefile*
   - Added logging
+- *src/main.cpp*
+  - Keyboard inputs are now displayed on the screen
 
 ## v.0.0.1-16
 
