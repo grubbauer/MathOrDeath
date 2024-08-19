@@ -12,10 +12,11 @@
   - v.x.x.x -> x.x.x
 - *Makefile*
   - Added logging
-- *src/main.cpp*
-  - Keyboard inputs are now displayed on the screen
 - *TODO.md*
   - Updated TODO list
+- *src/main.cpp*
+  - Keyboard inputs are now displayed on the screen
+  - Every character except numbers are now rejected
 
 ## v.0.0.1-16
 
