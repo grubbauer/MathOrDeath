@@ -17,6 +17,7 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 const std::string VERSION = "v.0.0.1-16";
+std:: string inputedString;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -112,7 +113,6 @@ int WinMain(int argc, char *argv[]) {
   SDL_Event e;
   const char *pressedKey;
 
-
   while (!stop) {
     while (SDL_PollEvent(&e) != 0) {
       if (e.type == SDL_QUIT) {
@@ -121,10 +121,12 @@ int WinMain(int argc, char *argv[]) {
         SDL_Keycode pressedKeyRaw =
             e.key.keysym.sym;  // I have absolutly no idea what this
                                // does but it kinda works (?)
-        if (pressedKeyRaw >= SDLK_0  && pressedKeyRaw <= SDLK_9) {
-        pressedKey = SDL_GetKeyName(pressedKeyRaw);
+        if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
+          pressedKey = SDL_GetKeyName(pressedKeyRaw);
+          inputedString += pressedKey;  // Accumulate the number as a string
+          printf("Current number: %s\n", inputedString.c_str());
         }
-        
+
         printf("Key pressed: %s\n", pressedKey);
       }
     }
@@ -151,7 +153,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.loadFromText(pressedKey, {255,255,255});
+    gFontTexture.loadFromText(inputedString, {255, 255, 255});
     gFontTexture.render(0, 0, 100, 100);
     SDL_RenderPresent(gRenderer);
 
@@ -198,7 +200,9 @@ void loadAssets() {
 
   // Fonts
   fFont = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", 20);
-  gFontTexture.loadFromText("Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte", {0, 0, 0});
+  gFontTexture.loadFromText(
+      "Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte",
+      {0, 0, 0});
 }
 
 void quit() {
