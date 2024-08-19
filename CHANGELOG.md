@@ -14,6 +14,8 @@
   - Added logging
 - *src/main.cpp*
   - Keyboard inputs are now displayed on the screen
+- *TODO.md*
+  - Updated TODO list
 
 ## v.0.0.1-16
 
