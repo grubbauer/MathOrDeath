@@ -16,7 +16,9 @@
   - Updated TODO list
 - *src/main.cpp*
   - Keyboard inputs are now displayed on the screen
-  - Every character except numbers are now rejected
+  - All characters except numbers are now rejected
+  - Numbers entered are now being merged into a single string
+  - Removed an unnecessary function
 
 ## v.0.0.1-16
 
