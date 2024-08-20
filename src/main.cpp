@@ -17,7 +17,7 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 const std::string VERSION = "v.0.0.1-16";
-std:: string inputedString;
+std::string inputedString;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -124,7 +124,7 @@ int WinMain(int argc, char *argv[]) {
           inputedString += pressedKey;  // Accumulate the number as a string
 
           printf("Current number: %s\n", inputedString.c_str());
-          
+
           gFontTexture.loadFromText(inputedString, {255, 255, 255});
         }
 
@@ -154,7 +154,8 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.render(0, 0, gFontTexture.getWidth(), gFontTexture.getHeight());
+    gFontTexture.render(0, 0, gFontTexture.getWidth(),
+                        gFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
