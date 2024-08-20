@@ -30,7 +30,6 @@ int Operator;
 
 void initialise();
 void loadAssets();
-int getRandOperator();
 void quit();
 
 // Texture class
