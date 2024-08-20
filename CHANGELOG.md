@@ -1,6 +1,15 @@
 # CHANGELOG
 
-## 0.0.2
+## v0.2.1-alpha
+
+### Updated
+
+- *CHANGELOG.md*
+  - Updated format
+- *src/main.cpp*
+  - Removed unneccesary logging
+
+## v0.2.0-alpha
 
 ### Added
 
@@ -21,7 +30,7 @@
   - Added logging
   - Added an argument to the debug target
 
-## v.0.0.1-16
+## v0.1.16-alpha
 
 ### Added
 
@@ -67,7 +76,7 @@
 - *src/res/img/misc/background-0001.png*
 - *TODO.md*
 
-## v.0.0.1-15
+## v0.1.15-alpha
 
 ### Added
 
@@ -92,7 +101,7 @@
 - *src/res/img/misc/background-0001.png*
   - Removed due to irrelevance
 
-## v.0.0.1-14
+## v0.1.14-alpha
 
 ### Updated
 
@@ -111,7 +120,7 @@
 - *README.md*
   - Updated README
 
-## v.0.0.1-13
+## v0.1.13-alpha
 
 ### Added
 
@@ -130,7 +139,7 @@
 - *Makefile*
   - Now compiling with Windows librarys
 
-## v.0.0.1-12
+## v0.1.12-alpha
 
 ### Updated
 
@@ -143,7 +152,7 @@
 - *src/main.cpp*
   - Updated version number
 
-## v.0.0.1-11
+## v0.1.11-alpha
 
 ### Updated
 
@@ -152,14 +161,14 @@
 - *main.cpp*
   - Added version variable
 
-## v.0.0.1-10
+## v0.1.10-alpha
 
 ### Updated
 
 - *Makefile*
   - Added clean rule
 
-## v.0.0.1-9
+## v0.1.9-alpha
 
 ### Added
 
@@ -182,7 +191,7 @@
 - *src/res/sfx/music/test.wav*
 - *TODO.md*
 
-## v.0.0.1-8
+## v0.1.8-alpha
 
 ### Updated
 
@@ -196,7 +205,7 @@
 - *.vscode/tasks.json*
 - *.vscode/launch.json*
 
-## v.0.0.1-7
+## v0.1.7-alpha
 
 ### Updated
 
@@ -211,7 +220,7 @@
 -*Makefile*
   - Slight modifications
 
-## v.0.0.1-6
+## v0.1.6-alpha
 
 ### Updated
 
@@ -219,7 +228,7 @@
 - *LICENSE.md*
 - *README.md*
 
-## v.0.0.1-5
+## v0.1.5-alpha
 
 ### Added
 
