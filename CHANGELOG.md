@@ -8,8 +8,6 @@
 
 ### Updated
 
-- Updated naming scheme
-  - v.x.x.x -> x.x.x
 - *TODO.md*
   - Updated TODO list
 - *src/main.cpp*
