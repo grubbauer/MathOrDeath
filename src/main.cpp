@@ -117,13 +117,14 @@ int WinMain(int argc, char *argv[]) {
       if (e.type == SDL_QUIT) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
-        SDL_Keycode pressedKeyRaw =
-            e.key.keysym.sym;  // I have absolutly no idea what this
-                               // does but it kinda works (?)
+        SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
+
         if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
+
           printf("Current number: %s\n", inputedString.c_str());
+          
           gFontTexture.loadFromText(inputedString, {255, 255, 255});
         }
 
@@ -153,7 +154,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.render(0, 0, 100, 100);
+    gFontTexture.render(0, 0, gFontTexture.getWidth(), gFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
