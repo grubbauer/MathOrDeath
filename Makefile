@@ -11,6 +11,7 @@ BIN_DIR := bin
 BUILD_DIR := build\windows-x64
 
 all: clean windows-x64
+debug: clean debug-1
 
 windows-x64:
 	@echo Creating build directory...
@@ -31,15 +32,12 @@ clean:
 	@if exist "$(BUILD_DIR)\.." rmdir /s /q "$(BUILD_DIR)\.."
 	@echo Sucess.
 
-
-debug: clean debug-1
-
 debug-1: 
 	@echo Creating build directory...
 	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
 	@echo Sucess.
 	@echo Building main executable...
-	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
+	$(CC) -mwindows $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
 	@echo Sucess
 	@echo Copying resource files
 	copy "$(BIN_DIR)\*" $(BUILD_DIR)
