@@ -125,6 +125,7 @@ int WinMain(int argc, char *argv[]) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
           printf("Current number: %s\n", inputedString.c_str());
+          gFontTexture.loadFromText(inputedString, {255, 255, 255});
         }
 
         printf("Key pressed: %s\n", pressedKey);
@@ -153,7 +154,6 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.loadFromText(inputedString, {255, 255, 255});
     gFontTexture.render(0, 0, 100, 100);
     SDL_RenderPresent(gRenderer);
 
