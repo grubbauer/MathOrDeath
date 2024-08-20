@@ -10,8 +10,6 @@
 
 - Updated naming scheme
   - v.x.x.x -> x.x.x
-- *Makefile*
-  - Added logging
 - *TODO.md*
   - Updated TODO list
 - *src/main.cpp*
@@ -19,6 +17,11 @@
   - All characters except numbers are now rejected
   - Numbers entered are now being merged into a single string
   - Removed an unnecessary function
+  - Length and width of the rendered number-string are now automatically handled
+  - Formatted code
+- *Makefile*
+  - Added logging
+  - Added an argument to the debug target
 
 ## v.0.0.1-16
 
