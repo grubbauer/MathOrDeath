@@ -123,12 +123,8 @@ int WinMain(int argc, char *argv[]) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
 
-          printf("Current number: %s\n", inputedString.c_str());
-
           gFontTexture.loadFromText(inputedString, {255, 255, 255});
         }
-
-        printf("Key pressed: %s\n", pressedKey);
       }
     }
 
