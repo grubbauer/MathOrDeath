@@ -4,4 +4,4 @@
 - [x] Only accept number inputs
 - [x] Fix "src/main.cpp"
 - [x] Put together numbers when numbers are inputed
-- [ ] Try to automatically manage the length of the number-string
+- [x] Automatically manage the length of the number-string
