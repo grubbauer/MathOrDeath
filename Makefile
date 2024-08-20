@@ -1,4 +1,4 @@
-VERSION := v.0.0.1-16
+VERSION := v0.2.0
 
 CC := clang++
 SOURCE := src/main.cpp src/random.cpp
