@@ -68,5 +68,6 @@
         "thread": "cpp",
         "variant": "cpp"
     },
-    "makefile.configureOnOpen": true
+    "makefile.configureOnOpen": true,
+    "makefile.makePath": "mingw32-make"
 }
