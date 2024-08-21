@@ -2,6 +2,12 @@
 
 ## v0.3.0-alpha
 
+### Added
+
+- *TODO.md*
+
+### Updated
+
 - *Makefile*
   - Updated version number
 - *src/main.cpp*
