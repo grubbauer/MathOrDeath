@@ -1,3 +1,3 @@
 # TODO
 
-- [ ] Update layout
+- [ ] Update layout of fonts
