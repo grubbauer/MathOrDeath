@@ -1,4 +1,5 @@
 # TODO
 
 - [x] Generate random math equations
-- [ ] Display random math equations on screen
+- [x] Display random math equations on screen
+- [ ] Change layout to be prettier
