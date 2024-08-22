@@ -17,7 +17,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.3.0-alpha";
+const std::string VERSION = "v0.3.1-alpha";
 std::string inputedString;
 
 SDL_Window *gWindow = NULL;
@@ -133,10 +133,9 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gInputFontTexture.render(0, (SCR_HEIGHT/16), gInputFontTexture.getWidth(),
-                        gInputFontTexture.getHeight());
+    gInputFontTexture.render(0, (SCR_HEIGHT-(SCR_HEIGHT/4)), gInputFontTexture.getWidth(),gInputFontTexture.getHeight());
     gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
-                            (SCR_HEIGHT / 4),
+                            (SCR_HEIGHT / 2),
                             gEquationFontTexture.getWidth(), 
                             gEquationFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
@@ -161,8 +160,8 @@ void initialise() {
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
-  SCR_WIDTH = display_mode.w;
-  SCR_HEIGHT = display_mode.h;
+  SCR_WIDTH = display_mode.w/2;
+  SCR_HEIGHT = display_mode.h/2;
 
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -171,7 +170,7 @@ void initialise() {
       gWindow, -1,
       SDL_RENDERER_ACCELERATED |
           SDL_RENDERER_PRESENTVSYNC);  // Accelerated with VSync activated
-  SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+  // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
   SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
 
