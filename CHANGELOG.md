@@ -17,6 +17,10 @@
   - Updated version number
   - Added implementation of generate_equation.h
   - Implementation of random equation being displayed on screen
+- *README.md*
+  - Updated version
+- *docs/how_to_compile.md*
+  - Corrected grammar and spelling
 
 ### Removed
 
