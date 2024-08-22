@@ -1,7 +1,7 @@
 VERSION := v0.3.0
 
 CC := clang++
-SOURCE := src/main.cpp src/random.cpp
+SOURCE := src/main.cpp src/random.cpp src/generate_equation.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
@@ -37,7 +37,7 @@ debug-1:
 	@if not exist "$(BUILD_DIR)" mkdir "$(BUILD_DIR)"
 	@echo Sucess.
 	@echo Building main executable...
-	$(CC) -mwindows $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
+	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
 	@echo Sucess
 	@echo Copying resource files
 	copy "$(BIN_DIR)\*" $(BUILD_DIR)
