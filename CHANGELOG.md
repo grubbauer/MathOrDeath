@@ -16,6 +16,7 @@
 - *src/main.cpp*
   - Updated version number
   - Added implementation of generate_equation.h
+  - Semi-Implementation of random equation being displayed on screen
 
 ## v0.2.1-alpha
 
