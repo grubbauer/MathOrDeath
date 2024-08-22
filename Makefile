@@ -1,4 +1,4 @@
-VERSION := v0.3.0
+VERSION := v0.3.0-alpha
 
 CC := clang++
 SOURCE := src/main.cpp src/random.cpp src/generate_equation.cpp
