@@ -2,6 +2,10 @@
 
 ## v0.3.1-alpha
 
+### Added
+
+- *docs/main-layout.png*
+
 ### Updated
 
 - *Makefile.md*
