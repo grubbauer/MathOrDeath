@@ -1,13 +1,13 @@
 # How to compile
 
-## Neccesities
+## Necessities
 
 ### Windows
 
 #### Compiler
 
 First of all, you need to download MinGW. You can download the installer [here](https://github.com/msys2/msys2-installer/releases/download/2024-07-27/msys2-x86_64-20240727.exe).
-Run the installer and let the program install. If it finished installing, run a
+Run the installer and let the program install. Once it finishes installing, run a
 program titled "MYSYS2 MINGW64". Run the following commands:
 
 ```shell
@@ -18,7 +18,7 @@ pacman -S mingw-w64-x86_64-gcc --noconfirm
 pacman -S mingw-w64-x86_64-make --noconfirm
 ```
 
-Now, after you finished installing Clang, GCC and Make, add your "bin" directory
+Now, after you have finished installing Clang, GCC, and Make, add your "bin" directory
 to the system path. The bin directory is typically located at
 "C:\msys64\mingw64\bin".
 
@@ -31,11 +31,11 @@ gcc --version
 mingw32-make --version
 ```
 
-#### Librarys
+#### Libraries
 
 This project requires the SDL2, SDL2_image and the SDL2_mixer library. First,
 create a directory titled "lib" inside your project directory. Create another
-directory inside the "include" directory of your project called "SDL2". Inside
+directory inside the "include" directory of your project titled "SDL2". Inside
 your "lib" directory, create another directory titled "x64". The last step is
 to create a directory called "bin" inside your root directory.
 
@@ -61,7 +61,7 @@ mv SDL2_ttf-2.22.0/x86_64-w64-mingw32/bin/* MathOrDeath/SDL2/bin/
 mv SDL2_ttf-2.22.0/x86_64-w64-mingw32/lib/* MathOrDeath/SDL2/lib/
 ```
 
-Next, download the following fonts and put them in the "src/res/font"
+Next, download the following fonts and put them into the "src/res/font"
 directory:
 > [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)
 
@@ -71,4 +71,4 @@ Now, just navigate to your project root and execute this command
 mingw32-make
 ```
 
-The programm can now be executed.
+The program can now be executed.

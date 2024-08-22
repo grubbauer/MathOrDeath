@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v0.3.0-alpha
+
+### Added
+
+- *TODO.md*
+- *include/generate_equation.h*
+- *src/generate_equation.cpp*
+
+### Updated
+
+- *Makefile*
+  - Updated version number
+  - Removed "-mwindows" argument from debug target
+- *src/main.cpp*
+  - Updated version number
+  - Added implementation of generate_equation.h
+  - Implementation of random equation being displayed on screen
+- *README.md*
+  - Updated version
+- *docs/how_to_compile.md*
+  - Corrected grammar and spelling
+
+### Removed
+
+- *TODO.md*
+
 ## v0.2.1-alpha
 
 ### Updated

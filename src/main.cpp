@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+#include "generate_equation.h"
 #include "random.h"
 
 // Window variables
@@ -16,7 +17,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.2.0";
+const std::string VERSION = "v0.3.0-alpha";
 std::string inputedString;
 
 SDL_Window *gWindow = NULL;
@@ -24,9 +25,8 @@ SDL_Renderer *gRenderer = NULL;
 
 Mix_Music *sMusic = NULL;
 
-TTF_Font *fFont;
-
-int Operator;
+TTF_Font *fInput;
+TTF_Font *fEquation;
 
 void initialise();
 void loadAssets();
@@ -39,7 +39,7 @@ class cTexture {
   ~cTexture();  // Destructor
 
   void loadFromFile(std::string path);
-  void loadFromText(std::string text, SDL_Color color);
+  void loadFromText(std::string text, SDL_Color color, TTF_Font *font);
   void free();
   void render(int x, int y, int w, int h);
 
@@ -54,7 +54,8 @@ class cTexture {
 
 // Class objects
 cTexture gTestBackground;
-cTexture gFontTexture;
+cTexture gInputFontTexture;
+cTexture gEquationFontTexture;
 
 cTexture::cTexture() {
   mTexture = NULL;
@@ -75,10 +76,10 @@ void cTexture::loadFromFile(std::string path) {
   }
 }
 
-void cTexture::loadFromText(std::string text, SDL_Color color) {
+void cTexture::loadFromText(std::string text, SDL_Color color, TTF_Font *font) {
   free();
 
-  SDL_Surface *textSurface = TTF_RenderText_Solid(fFont, text.c_str(), color);
+  SDL_Surface *textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
   mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
   mWidth = textSurface->w;
   mHeight = textSurface->h;
@@ -122,36 +123,22 @@ int WinMain(int argc, char *argv[]) {
         if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
-
-          gFontTexture.loadFromText(inputedString, {255, 255, 255});
+          
+          gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+          gEquationFontTexture.loadFromText(randEquation(1), {255,0,255}, fEquation);
         }
       }
     }
-
-    // Game logic
-    /*
-    Operator = randNum(1,4);
-    switch (Operator) {
-        case 1:
-            printf("+");
-            break;
-        case 2:
-            printf("-");
-            break;
-        case 3:
-            printf("*");
-            break;
-        case 4:
-            printf("/");
-            break;
-    }
-    */
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gFontTexture.render(0, 0, gFontTexture.getWidth(),
-                        gFontTexture.getHeight());
+    gInputFontTexture.render(0, (SCR_HEIGHT/16), gInputFontTexture.getWidth(),
+                        gInputFontTexture.getHeight());
+    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
+                            (SCR_HEIGHT / 4),
+                            gEquationFontTexture.getWidth(), 
+                            gEquationFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -196,10 +183,14 @@ void loadAssets() {
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 
   // Fonts
-  fFont = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", 20);
-  gFontTexture.loadFromText(
+  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/16));
+  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/32));
+
+  // Font textures
+  gInputFontTexture.loadFromText(
       "Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte",
-      {0, 0, 0});
+      {0, 0, 0}, fInput);
+  gEquationFontTexture.loadFromText("fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.", {255,255,255}, fEquation);
 }
 
 void quit() {
@@ -208,6 +199,10 @@ void quit() {
 
   // Sounds
   Mix_FreeMusic(sMusic);
+
+  // Fonts
+  TTF_CloseFont(fInput);
+  TTF_CloseFont(fEquation);
 
   // SDL Elements
   SDL_DestroyRenderer(gRenderer);
@@ -222,5 +217,4 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 
-  Operator = NULL;
 }
