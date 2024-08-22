@@ -125,6 +125,7 @@ int WinMain(int argc, char *argv[]) {
           inputedString += pressedKey;  // Accumulate the number as a string
           
           gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+          gEquationFontTexture.loadFromText(randEquation(1), {255,0,255}, fEquation);
         }
       }
     }
@@ -183,7 +184,7 @@ void loadAssets() {
 
   // Fonts
   fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/16));
-  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/8));
+  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/32));
 
   // Font textures
   gInputFontTexture.loadFromText(
