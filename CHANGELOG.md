@@ -12,6 +12,7 @@
   - Updated version number
 - *src/main.cpp*
   - Updated version number
+  - Update layout of fonts
 
 ## v0.3.0-alpha
 
