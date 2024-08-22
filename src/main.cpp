@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+#include "generate_equation.h"
 #include "random.h"
 
 // Window variables
@@ -128,24 +129,9 @@ int WinMain(int argc, char *argv[]) {
       }
     }
 
-    // Game logic
-    /*
-    Operator = randNum(1,4);
-    switch (Operator) {
-        case 1:
-            printf("+");
-            break;
-        case 2:
-            printf("-");
-            break;
-        case 3:
-            printf("*");
-            break;
-        case 4:
-            printf("/");
-            break;
-    }
-    */
+    std::string equation = randEquation(1);
+    std::cout << equation << "\n"; 
+
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
