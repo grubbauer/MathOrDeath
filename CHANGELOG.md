@@ -18,6 +18,10 @@
   - Added implementation of generate_equation.h
   - Implementation of random equation being displayed on screen
 
+### Removed
+
+- *TODO.md*
+
 ## v0.2.1-alpha
 
 ### Updated
