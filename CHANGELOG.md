@@ -5,13 +5,17 @@
 ### Added
 
 - *TODO.md*
+- *include/generate_equation.h*
+- *src/generate_equation.cpp*
 
 ### Updated
 
 - *Makefile*
   - Updated version number
+  - Removed "-mwindows" argument from debug target
 - *src/main.cpp*
   - Updated version number
+  - Added implementation of generate_equation.h
 
 ## v0.2.1-alpha
 
