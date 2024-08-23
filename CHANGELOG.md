@@ -18,6 +18,7 @@
 - *src/main.cpp*
   - Updated version number
   - Added implementation of the equation_answer.h library
+  - Equations can now be answered
 
 ## v0.4.1-alpha
 
