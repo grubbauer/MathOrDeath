@@ -17,7 +17,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.3.1-alpha";
+const std::string VERSION = "v0.4.0-alpha";
 std::string inputedString;
 
 SDL_Window *gWindow = NULL;
@@ -53,7 +53,9 @@ class cTexture {
 };
 
 // Class objects
-cTexture gTestBackground;
+cTexture gInputWindow;
+
+// Font Textures
 cTexture gInputFontTexture;
 cTexture gEquationFontTexture;
 
@@ -132,7 +134,7 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
     gInputFontTexture.render(0, (SCR_HEIGHT-(SCR_HEIGHT/4)), gInputFontTexture.getWidth(),gInputFontTexture.getHeight());
     gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
                             (SCR_HEIGHT / 2),
@@ -176,7 +178,7 @@ void initialise() {
 
 void loadAssets() {
   // Graphical elements
-  gTestBackground.loadFromFile("res/img/background/test-0001.png");
+  gInputWindow.loadFromFile("res/img/window/window-0001.png");
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -194,7 +196,7 @@ void loadAssets() {
 
 void quit() {
   // Graphical elements
-  gTestBackground.free();
+  gInputWindow.free();
 
   // Sounds
   Mix_FreeMusic(sMusic);
