@@ -18,7 +18,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.5.0-alpha";
+const std::string VERSION = "v0.6.0-alpha";
 std::string inputedString;
 std::string equation;
 int equationResult;
