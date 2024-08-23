@@ -10,11 +10,12 @@
   
 - *.gitignore*
   - .aseprite and .ase files are now being ignored
+- *Makefile*
+  - Updated version number
 - *src/main.cpp*
   - Updated version number
   - Added input window
-- *Makefile*
-  - Updated version number
+  - Moved position of the equation font
 
 ### Removed
 
