@@ -4,8 +4,8 @@
 
 std::string randEquation(int lvl) {
   int rawOp = randNum(1, 4);
-  int firstNum = randNum(lvl, (lvl * 10));
-  int secondNum = randNum(lvl, (lvl * 10));
+  int firstNum = randNum(lvl, (lvl * 2));
+  int secondNum = randNum(lvl, (lvl * 2));
   char op;
 
   switch (rawOp) {
