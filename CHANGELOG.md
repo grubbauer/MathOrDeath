@@ -16,6 +16,7 @@
   - Updated version number
   - Added input window
   - Moved position of the equation font
+  - Moved postition of the input font
 
 ### Removed
 
