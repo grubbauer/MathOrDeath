@@ -13,12 +13,13 @@
 - *Makefile*
   - Updated version number
   - Added the file "equation_answer.cpp"
-- *src/generate_equation.cpp*
-  - Updated variables
 - *src/main.cpp*
   - Updated version number
   - Added implementation of the equation_answer.h library
   - Equations can now be answered
+- *src/generate_equation.cpp*
+  - Updated variables
+  - Updated random equation generation
 
 ## v0.4.1-alpha
 
