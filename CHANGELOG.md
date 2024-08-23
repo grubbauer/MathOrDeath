@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.4.1-alpha
+
+### Added
+
+- *src/res/img/character/teacher-0001.png*
+
+### Updated
+
+- *src/main.cpp*
+  - Added teacher sprite
+
 ## v0.4.0-alpha
 
 ### Added
