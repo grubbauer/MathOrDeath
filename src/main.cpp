@@ -20,7 +20,9 @@ int SCR_HEIGHT = 0;
 // General global variables
 const std::string VERSION = "v0.5.0-alpha";
 std::string inputedString;
+std::string equation;
 int equationResult;
+int lvl = 1;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -125,14 +127,27 @@ int WinMain(int argc, char *argv[]) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
         SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
-
         if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
           
+          equation = randEquation(lvl);
+          equationResult = getEquationAnswer(equation);
+
           gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
-          gEquationFontTexture.loadFromText(randEquation(1), {255,0,255}, fEquation);
-          equationResult = NULL;
+          gEquationFontTexture.loadFromText(equation, {255,0,255}, fEquation);
+          
+          printf("%i\n", equationResult);
+          lvl++;
+          printf("%i",lvl);
+        }
+        if (pressedKeyRaw == SDLK_RETURN) {
+          if (stoi(inputedString) == equationResult) {
+            printf("Yes");
+            inputedString = "";
+          } else {
+            exit(1);
+          }
         }
       }
     }
