@@ -5,6 +5,7 @@
 ### Added
 
 - *docs/main-layout.png*
+- *src/res/img/window/window-0001.png*
 
 ### Updated
 
@@ -13,6 +14,8 @@
 - *src/main.cpp*
   - Updated version number
   - Update layout of fonts
+- *.gitignore*
+  - .aseprite and .ase files are now being ignored
 
 ## v0.3.0-alpha
 
