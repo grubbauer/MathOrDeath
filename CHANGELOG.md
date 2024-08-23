@@ -23,6 +23,7 @@
 ### Removed
 
 - *src/res/img/background/*
+- *TODO.md*
 
 ## v0.3.1-alpha
 
