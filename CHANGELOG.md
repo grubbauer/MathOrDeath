@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## v0.4.0-alpha
+
+### Added
+
+- *src/res/img/window/window-0001.png*
+- *src/res/img/background/background-0001.png*
+
+### Updated
+  
+- *.gitignore*
+  - .aseprite and .ase files are now being ignored
+- *Makefile*
+  - Updated version number
+- *src/main.cpp*
+  - Updated version number
+  - Added input window
+  - Moved position of the equation font
+  - Moved postition of the input font
+  - Added background
+
+### Removed
+
+- *src/res/img/background/*
+- *TODO.md*
+
 ## v0.3.1-alpha
 
 ### Added

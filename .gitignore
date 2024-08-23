@@ -9,3 +9,5 @@ tmp
 .clang-format
 *.otf
 *.ttf
+*.aseprite
+*.ase

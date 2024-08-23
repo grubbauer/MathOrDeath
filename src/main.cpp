@@ -17,7 +17,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.3.1-alpha";
+const std::string VERSION = "v0.4.0-alpha";
 std::string inputedString;
 
 SDL_Window *gWindow = NULL;
@@ -53,7 +53,10 @@ class cTexture {
 };
 
 // Class objects
-cTexture gTestBackground;
+cTexture gBackgroundMain;
+cTexture gInputWindow;
+
+// Font Textures
 cTexture gInputFontTexture;
 cTexture gEquationFontTexture;
 
@@ -132,12 +135,11 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    gTestBackground.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gInputFontTexture.render(0, (SCR_HEIGHT-(SCR_HEIGHT/4)), gInputFontTexture.getWidth(),gInputFontTexture.getHeight());
-    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
-                            (SCR_HEIGHT / 2),
-                            gEquationFontTexture.getWidth(), 
-                            gEquationFontTexture.getHeight());
+    // Lots of magic numbers incoming!
+    gBackgroundMain.render(0,0,SCR_WIDTH, SCR_HEIGHT);
+    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
+    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
+    gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(), gInputFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -176,14 +178,15 @@ void initialise() {
 
 void loadAssets() {
   // Graphical elements
-  gTestBackground.loadFromFile("res/img/background/test-0001.png");
+  gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
+  gInputWindow.loadFromFile("res/img/window/window-0001.png");
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 
   // Fonts
-  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/16));
-  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/32));
+  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/30));
+  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/55));
 
   // Font textures
   gInputFontTexture.loadFromText(
@@ -194,7 +197,8 @@ void loadAssets() {
 
 void quit() {
   // Graphical elements
-  gTestBackground.free();
+  gBackgroundMain.free();
+  gInputWindow.free();
 
   // Sounds
   Mix_FreeMusic(sMusic);
