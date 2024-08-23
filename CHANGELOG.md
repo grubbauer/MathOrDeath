@@ -5,6 +5,7 @@
 ### Added
 
 - *src/res/img/window/window-0001.png*
+- *src/res/img/background/background-0001.png*
 
 ### Updated
   
