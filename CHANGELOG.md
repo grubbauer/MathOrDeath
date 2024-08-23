@@ -5,14 +5,19 @@
 ### Added
 
 - *TODO.md*
+- *equation_answer.h*
+- *equation_answer.cpp*
 
 ### Updated
 
-- *src/main.cpp*
-  - Updated version number
 - *Makefile*
   - Updated version number
   - Added the file "equation_answer.cpp"
+- *src/generate_equation.cpp*
+  - Updated variables
+- *src/main.cpp*
+  - Updated version number
+  - Added implementation of the equation_answer.h library
 
 ## v0.4.1-alpha
 
