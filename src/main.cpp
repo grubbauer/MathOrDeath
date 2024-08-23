@@ -4,6 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "equation_answer.h"
 
 #include <cmath>
 #include <iostream>
@@ -19,6 +20,7 @@ int SCR_HEIGHT = 0;
 // General global variables
 const std::string VERSION = "v0.5.0-alpha";
 std::string inputedString;
+int equationResult;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -130,6 +132,7 @@ int WinMain(int argc, char *argv[]) {
           
           gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
           gEquationFontTexture.loadFromText(randEquation(1), {255,0,255}, fEquation);
+          equationResult = NULL;
         }
       }
     }
