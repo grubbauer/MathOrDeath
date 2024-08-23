@@ -17,7 +17,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.4.0-alpha";
+const std::string VERSION = "v0.5.0-alpha";
 std::string inputedString;
 
 SDL_Window *gWindow = NULL;
