@@ -53,6 +53,7 @@ class cTexture {
 };
 
 // Class objects
+cTexture gBackgroundMain;
 cTexture gInputWindow;
 
 // Font Textures
@@ -135,6 +136,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     // Lots of magic numbers incoming!
+    gBackgroundMain.render(0,0,SCR_WIDTH, SCR_HEIGHT);
     gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
     gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(), gInputFontTexture.getHeight());
@@ -176,6 +178,7 @@ void initialise() {
 
 void loadAssets() {
   // Graphical elements
+  gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
 
   // Sounds
@@ -194,6 +197,7 @@ void loadAssets() {
 
 void quit() {
   // Graphical elements
+  gBackgroundMain.free();
   gInputWindow.free();
 
   // Sounds
