@@ -27,6 +27,10 @@
   - Equations can now be answered
   - Updated format
 
+### Removed
+
+- *TODO.md*
+
 ## v0.4.1-alpha
 
 ### Added
