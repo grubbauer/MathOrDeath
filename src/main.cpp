@@ -138,7 +138,7 @@ int WinMain(int argc, char *argv[]) {
     SDL_RenderClear(gRenderer);
     // Lots of magic numbers incoming!
     gBackgroundMain.render(0,0,SCR_WIDTH, SCR_HEIGHT);
-    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
+    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT/30), (SCR_WIDTH/4), (SCR_HEIGHT));
     gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
     gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(), gInputFontTexture.getHeight());
@@ -175,7 +175,7 @@ void initialise() {
       SDL_RENDERER_ACCELERATED |
           SDL_RENDERER_PRESENTVSYNC);  // Accelerated with VSync activated
   // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+  // SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
 
 void loadAssets() {
