@@ -3,26 +3,26 @@
 #include "random.h"
 
 std::string randEquation(int lvl) {
-  int rawOperator = randNum(1, 4);
+  int rawOp = randNum(1, 4);
   int firstNum = randNum(lvl, (lvl * 10));
   int secondNum = randNum(lvl, (lvl * 10));
-  char Operator;
+  char op;
 
-  switch (rawOperator) {
+  switch (rawOp) {
     case 1:
-      Operator = '+';
+      op = '+';
       break;
     case 2:
-      Operator = '-';
+      op = '-';
       break;
     case 3:
-      Operator = '*';
+      op = '*';
       break;
     case 4:
-      Operator = '/';
+      op = '/';
       break;
   }
 
-  return std::to_string(firstNum) + " " + Operator + " " +
+  return std::to_string(firstNum) + " " + op + " " +
          std::to_string(secondNum);
 }
