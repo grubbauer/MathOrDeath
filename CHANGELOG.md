@@ -1,11 +1,30 @@
 # CHANGELOG
 
+## v0.4.0-alpha
+
+### Added
+
+- *src/res/img/window/window-0001.png*
+
+### Updated
+  
+- *.gitignore*
+  - .aseprite and .ase files are now being ignored
+- *src/main.cpp*
+  - Updated version number
+  - Added input window
+- *Makefile*
+  - Updated version number
+
+### Removed
+
+- *src/res/img/background/*
+
 ## v0.3.1-alpha
 
 ### Added
 
 - *docs/main-layout.png*
-- *src/res/img/window/window-0001.png*
 
 ### Updated
 
@@ -14,8 +33,6 @@
 - *src/main.cpp*
   - Updated version number
   - Update layout of fonts
-- *.gitignore*
-  - .aseprite and .ase files are now being ignored
 
 ## v0.3.0-alpha
 
