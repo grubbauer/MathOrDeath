@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## v0.5.0-alpha
+
+### Added
+
+- *TODO.md*
+- *equation_answer.h*
+- *equation_answer.cpp*
+
+### Updated
+
+- *Makefile*
+  - Updated version number
+  - Added the file "equation_answer.cpp"
+- *include/equation_answer.h*
+  - Updated format
+- *src/equation_answer.cpp*
+  - Updated format
+- *src/generate_equation.cpp*
+  - Updated variables
+  - Updated random equation generation
+  - Updated format
+- *src/main.cpp*
+  - Updated version number
+  - Added implementation of the equation_answer.h library
+  - Equations can now be answered
+  - Updated format
+
+### Removed
+
+- *TODO.md*
+
 ## v0.4.1-alpha
 
 ### Added
