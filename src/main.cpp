@@ -134,12 +134,10 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
+    // Lots of magic numbers incoming!
     gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
+    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
     gInputFontTexture.render(0, (SCR_HEIGHT-(SCR_HEIGHT/4)), gInputFontTexture.getWidth(),gInputFontTexture.getHeight());
-    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
-                            (SCR_HEIGHT / 2),
-                            gEquationFontTexture.getWidth(), 
-                            gEquationFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -185,7 +183,7 @@ void loadAssets() {
 
   // Fonts
   fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/16));
-  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/32));
+  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/55));
 
   // Font textures
   gInputFontTexture.loadFromText(
