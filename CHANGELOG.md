@@ -10,6 +10,7 @@
 
 - *src/main.cpp*
   - Added teacher sprite
+  - Moved teacher sprite
 
 ## v0.4.0-alpha
 
