@@ -8,10 +8,11 @@
 
 ### Updated
 
-- *Makefile*
-  - Updated version number
 - *src/main.cpp*
   - Updated version number
+- *Makefile*
+  - Updated version number
+  - Added the file "equation_answer.cpp"
 
 ## v0.4.1-alpha
 
