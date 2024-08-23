@@ -4,12 +4,12 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "equation_answer.h"
 
 #include <cmath>
 #include <iostream>
 #include <string>
 
+#include "equation_answer.h"
 #include "generate_equation.h"
 #include "random.h"
 
@@ -130,16 +130,17 @@ int WinMain(int argc, char *argv[]) {
         if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
           pressedKey = SDL_GetKeyName(pressedKeyRaw);
           inputedString += pressedKey;  // Accumulate the number as a string
-          
+
           equation = randEquation(lvl);
           equationResult = getEquationAnswer(equation);
 
-          gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
-          gEquationFontTexture.loadFromText(equation, {255,0,255}, fEquation);
-          
+          gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                         fInput);
+          gEquationFontTexture.loadFromText(equation, {255, 0, 255}, fEquation);
+
           printf("%i\n", equationResult);
           lvl++;
-          printf("%i",lvl);
+          printf("%i", lvl);
         }
         if (pressedKeyRaw == SDLK_RETURN) {
           if (stoi(inputedString) == equationResult) {
@@ -155,11 +156,18 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
     // Lots of magic numbers incoming!
-    gBackgroundMain.render(0,0,SCR_WIDTH, SCR_HEIGHT);
-    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT/30), (SCR_WIDTH/4), (SCR_HEIGHT));
-    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3), (SCR_WIDTH/1.5), (SCR_HEIGHT/4));
-    gEquationFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
-    gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,(SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(), gInputFontTexture.getHeight());
+    gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
+                    (SCR_WIDTH / 4), (SCR_HEIGHT));
+    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),
+                        ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
+                        (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
+    gEquationFontTexture.render(
+        (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
+        gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
+    gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
+                             (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
+                             gInputFontTexture.getHeight());
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -182,8 +190,8 @@ void initialise() {
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
-  SCR_WIDTH = display_mode.w/2;
-  SCR_HEIGHT = display_mode.h/2;
+  SCR_WIDTH = display_mode.w / 2;
+  SCR_HEIGHT = display_mode.h / 2;
 
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -206,14 +214,17 @@ void loadAssets() {
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 
   // Fonts
-  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/30));
-  fEquation = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH/55));
+  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
+  fEquation =
+      TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
 
   // Font textures
   gInputFontTexture.loadFromText(
       "Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte",
       {0, 0, 0}, fInput);
-  gEquationFontTexture.loadFromText("fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.", {255,255,255}, fEquation);
+  gEquationFontTexture.loadFromText(
+      "fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.",
+      {255, 255, 255}, fEquation);
 }
 
 void quit() {
@@ -240,5 +251,4 @@ void quit() {
   IMG_Quit();
   Mix_Quit();
   SDL_Quit();
-
 }

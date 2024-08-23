@@ -2,8 +2,8 @@
 #define EQUATION_ANSWER_H
 
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 
 int getEquationAnswer(std::string originalEquation);
 

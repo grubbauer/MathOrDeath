@@ -23,6 +23,5 @@ std::string randEquation(int lvl) {
       break;
   }
 
-  return std::to_string(firstNum) + " " + op + " " +
-         std::to_string(secondNum);
+  return std::to_string(firstNum) + " " + op + " " + std::to_string(secondNum);
 }
