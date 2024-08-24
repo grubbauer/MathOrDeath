@@ -8,10 +8,11 @@
 
 ### Updated
 
-- *Makefile*
-  - Updated version number
 - *src/main.cpp*
   - Updated version number
+- *Makefile*
+  - Updated version number
+  - Revamped makefile for consistency and simplicity
 
 ## v0.5.0-alpha
 
