@@ -142,7 +142,7 @@ int WinMain(int argc, char *argv[]) {
           lvl++;
           printf("%i", lvl);
         }
-        if (pressedKeyRaw == SDLK_RETURN) {
+        else if (pressedKeyRaw == SDLK_RETURN) {
           if (stoi(inputedString) == equationResult) {
             printf("Yes");
             inputedString = "";
@@ -150,8 +150,23 @@ int WinMain(int argc, char *argv[]) {
             exit(1);
           }
         }
-      }
-    }
+        else if (pressedKeyRaw == SDLK_BACKSPACE) {
+            if (!inputedString.empty()) {  // Only modify the string if it's not empty
+                inputedString = inputedString.substr(0, inputedString.size() - 1);
+            }
+            
+            // Ensure we don't try to render an empty string
+            if (!inputedString.empty()) {
+                gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+            } else {
+                // Optionally, clear the texture if the string is empty
+                gInputFontTexture.free();
+            }
+        }
+      
+}
+}
+
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
