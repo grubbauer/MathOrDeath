@@ -13,6 +13,7 @@
 - *Makefile*
   - Updated version number
   - Revamped makefile for consistency and simplicity
+  - Mistakes can now be corrected when entering numbers
 
 ## v0.5.0-alpha
 
