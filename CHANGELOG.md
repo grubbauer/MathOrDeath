@@ -16,6 +16,7 @@
   - Mistakes can now be corrected when entering numbers
   - Updated format
   - Optimized code
+  - Negative numbers can now be entered
 
 ### Removed
 
