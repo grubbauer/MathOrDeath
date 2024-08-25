@@ -18,7 +18,7 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
-const std::string VERSION = "v0.5.0-alpha";
+const std::string VERSION = "v0.6.0-alpha";
 std::string inputedString;
 std::string equation;
 int equationResult;
@@ -127,31 +127,36 @@ int WinMain(int argc, char *argv[]) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
         SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
-        if (pressedKeyRaw >= SDLK_0 && pressedKeyRaw <= SDLK_9) {
-          pressedKey = SDL_GetKeyName(pressedKeyRaw);
-          inputedString += pressedKey;  // Accumulate the number as a string
 
-          equation = randEquation(lvl);
-          equationResult = getEquationAnswer(equation);
+        switch (pressedKeyRaw) {
+          case SDLK_0 ... SDLK_9:
+            pressedKey = SDL_GetKeyName(pressedKeyRaw);
+            inputedString += pressedKey;
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
+            break;
+          case SDLK_RETURN:
+            printf("R");
+            break;
+          case SDLK_BACKSPACE:
+            if (!inputedString
+                     .empty()) {  // Only modify the string if it's not empty
+              inputedString = inputedString.substr(0, inputedString.size() - 1);
+            }
 
-          gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                         fInput);
-          gEquationFontTexture.loadFromText(equation, {255, 0, 255}, fEquation);
-
-          printf("%i\n", equationResult);
-          lvl++;
-          printf("%i", lvl);
-        }
-        if (pressedKeyRaw == SDLK_RETURN) {
-          if (stoi(inputedString) == equationResult) {
-            printf("Yes");
-            inputedString = "";
-          } else {
-            exit(1);
-          }
+            // Ensuring that no empty string is being rendered
+            if (!inputedString.empty()) {
+              gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                             fInput);
+            } else {
+              // Optionally, clear the texture if the string is empty
+              gInputFontTexture.free();
+            }
+            break;
         }
       }
     }
+
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
@@ -168,6 +173,7 @@ int WinMain(int argc, char *argv[]) {
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
+
     SDL_RenderPresent(gRenderer);
 
     // Sounds

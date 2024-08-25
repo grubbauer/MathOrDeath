@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v0.6.0-alpha
+
+### Added
+
+- *TODO.md*
+
+### Updated
+
+- *Makefile*
+  - Updated version number
+  - Revamped makefile for consistency and simplicity
+- *src/main.cpp*
+  - Updated version number
+  - Mistakes can now be corrected when entering numbers
+  - Updated format
+  - Optimized code
+
+### Removed
+
+- *docs/main-layout.png*
+
 ## v0.5.0-alpha
 
 ### Added
