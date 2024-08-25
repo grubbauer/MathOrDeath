@@ -16,10 +16,12 @@
   - Mistakes can now be corrected when entering numbers
   - Updated format
   - Optimized code
+  - Negative numbers can now be entered
 
 ### Removed
 
 - *docs/main-layout.png*
+- *TODO.md*
 
 ## v0.5.0-alpha
 

@@ -18,11 +18,11 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
+int lvl = 1;
 const std::string VERSION = "v0.6.0-alpha";
 std::string inputedString;
-std::string equation;
-int equationResult;
-int lvl = 1;
+std::string equation = randEquation(lvl);
+int equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -119,7 +119,6 @@ int WinMain(int argc, char *argv[]) {
 
   bool stop = false;
   SDL_Event e;
-  const char *pressedKey;
 
   while (!stop) {
     while (SDL_PollEvent(&e) != 0) {
@@ -127,32 +126,51 @@ int WinMain(int argc, char *argv[]) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
         SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
+        const char *pressedKey = SDL_GetKeyName(pressedKeyRaw);
 
         switch (pressedKeyRaw) {
-          case SDLK_0 ... SDLK_9:
-            pressedKey = SDL_GetKeyName(pressedKeyRaw);
+          case SDLK_0 ... SDLK_9: {
             inputedString += pressedKey;
             gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
                                            fInput);
             break;
-          case SDLK_RETURN:
-            printf("R");
+          }
+          case SDLK_MINUS: {
+            inputedString += '-';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
             break;
-          case SDLK_BACKSPACE:
-            if (!inputedString
-                     .empty()) {  // Only modify the string if it's not empty
-              inputedString = inputedString.substr(0, inputedString.size() - 1);
+          }
+          case SDLK_RETURN: {
+            try {
+              if (std::stoi(inputedString) == equationResult) {
+                printf("Correct!\n");
+                lvl++;
+                equation = randEquation(lvl);
+                equationResult = getEquationAnswer(equation);
+                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                                                  fEquation);
+                inputedString.clear();  // Clear the string after correct input
+                gInputFontTexture.free();  // Optionally clear the texture
+              } else {
+                printf("Wrong!\n");
+              }
+            } catch (const std::invalid_argument &e) {
+              std::cerr << "Invalid input for checking equation: "
+                        << inputedString << std::endl;
             }
-
-            // Ensuring that no empty string is being rendered
+            break;
+          }
+          case SDLK_BACKSPACE: {
             if (!inputedString.empty()) {
+              inputedString = inputedString.substr(0, inputedString.size() - 1);
               gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
                                              fInput);
             } else {
-              // Optionally, clear the texture if the string is empty
-              gInputFontTexture.free();
+              gInputFontTexture.free();  // Optionally clear the texture
             }
             break;
+          }
         }
       }
     }
@@ -160,7 +178,8 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    // Lots of magic numbers incoming!
+
+    // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
                     (SCR_WIDTH / 4), (SCR_HEIGHT));
@@ -225,12 +244,8 @@ void loadAssets() {
       TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
 
   // Font textures
-  gInputFontTexture.loadFromText(
-      "Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte",
-      {0, 0, 0}, fInput);
-  gEquationFontTexture.loadFromText(
-      "fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.",
-      {255, 255, 255}, fEquation);
+  gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
+  gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
 }
 
 void quit() {
