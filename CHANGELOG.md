@@ -21,6 +21,7 @@
 ### Removed
 
 - *docs/main-layout.png*
+- *TODO.md*
 
 ## v0.5.0-alpha
 
