@@ -18,11 +18,11 @@ int SCR_WIDTH = 0;
 int SCR_HEIGHT = 0;
 
 // General global variables
+int lvl = 1;
 const std::string VERSION = "v0.6.0-alpha";
 std::string inputedString;
-std::string equation;
-int equationResult;
-int lvl = 1;
+std::string equation = randEquation(lvl);
+int equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -129,63 +129,84 @@ int WinMain(int argc, char *argv[]) {
         SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
 
         switch (pressedKeyRaw) {
-          case SDLK_0 ... SDLK_9:
+          case SDLK_0 ... SDLK_9: {
             pressedKey = SDL_GetKeyName(pressedKeyRaw);
             inputedString += pressedKey;
             gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
                                            fInput);
             break;
-          case SDLK_RETURN:
-            printf("R");
-            break;
-          case SDLK_BACKSPACE:
-            if (!inputedString
-                     .empty()) {  // Only modify the string if it's not empty
-              inputedString = inputedString.substr(0, inputedString.size() - 1);
-            }
+          }
+          case SDLK_MINUS: {
+            int tempValue = stoi(inputedString);
+            tempValue *= -1;
+            inputedString = std::to_string(tempValue);
 
-            // Ensuring that no empty string is being rendered
-            if (!inputedString.empty()) {
-              gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                             fInput);
-            } else {
-              // Optionally, clear the texture if the string is empty
-              gInputFontTexture.free();
-            }
             break;
+
+            case SDLK_RETURN: {
+              if (stoi(inputedString) == equationResult) {
+                printf("Correct!");
+                lvl++;
+                equation = randEquation(lvl);
+                equationResult = getEquationAnswer(equation);
+                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                                                  fEquation);
+                inputedString = inputedString.empty();
+              } else {
+                printf("Wrong!");
+              }
+            }
+            case SDLK_BACKSPACE: {
+              if (!inputedString
+                       .empty()) {  // Only modify the string if it's not empty
+                inputedString =
+                    inputedString.substr(0, inputedString.size() - 1);
+              }
+
+              // Ensuring that no empty string is being rendered
+              if (!inputedString.empty()) {
+                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                               fInput);
+              } else {
+                // Optionally, clear the texture if the string is empty
+                gInputFontTexture.free();
+              }
+              break;
+            }
+          }
         }
+      }
+
+      // Graphical rendering
+      SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
+      SDL_RenderClear(gRenderer);
+      // Lots of magic numbers incoming!
+      gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+      gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
+                      (SCR_WIDTH / 4), (SCR_HEIGHT));
+      gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),
+                          ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
+                          (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
+      gEquationFontTexture.render(
+          (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2,
+          (SCR_HEIGHT / 1.63), gEquationFontTexture.getWidth(),
+          gEquationFontTexture.getHeight());
+      gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
+                               (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
+                               gInputFontTexture.getHeight());
+
+      SDL_RenderPresent(gRenderer);
+
+      // Sounds
+      if (Mix_PlayingMusic() == 0) {
+        Mix_PlayMusic(sMusic, -1);
       }
     }
 
-    // Graphical rendering
-    SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
-    SDL_RenderClear(gRenderer);
-    // Lots of magic numbers incoming!
-    gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
-                    (SCR_WIDTH / 4), (SCR_HEIGHT));
-    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),
-                        ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
-                        (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
-    gEquationFontTexture.render(
-        (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
-        gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
-    gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
-                             (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
-                             gInputFontTexture.getHeight());
-
-    SDL_RenderPresent(gRenderer);
-
-    // Sounds
-    if (Mix_PlayingMusic() == 0) {
-      Mix_PlayMusic(sMusic, -1);
-    }
+    quit();
+    return 0;
   }
-
-  quit();
-  return 0;
 }
-
 void initialise() {
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
@@ -225,12 +246,8 @@ void loadAssets() {
       TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
 
   // Font textures
-  gInputFontTexture.loadFromText(
-      "Als Gregor Samsa eines Morgens aus unruhigen Traeumen erwachte",
-      {0, 0, 0}, fInput);
-  gEquationFontTexture.loadFromText(
-      "fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.",
-      {255, 255, 255}, fEquation);
+  gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
+  gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
 }
 
 void quit() {
