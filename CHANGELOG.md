@@ -15,6 +15,7 @@
   - Updated version number
   - Mistakes can now be corrected when entering numbers
   - Updated format
+  - Optimized code
 
 ## v0.5.0-alpha
 
