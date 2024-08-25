@@ -8,12 +8,13 @@
 
 ### Updated
 
-- *src/main.cpp*
-  - Updated version number
 - *Makefile*
   - Updated version number
   - Revamped makefile for consistency and simplicity
+- *src/main.cpp*
+  - Updated version number
   - Mistakes can now be corrected when entering numbers
+  - Updated format
 
 ## v0.5.0-alpha
 
