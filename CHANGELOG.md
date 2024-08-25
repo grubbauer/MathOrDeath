@@ -12,6 +12,7 @@
   - Updated version number
 - *src/main.cpp*
   - Updated version number
+  - No errors are now thrown when `inputedString` is empty
 
 ## v0.6.0-alpha
 
