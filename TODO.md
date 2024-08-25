@@ -1,4 +1,5 @@
 # TODO
 
 - [x] Improve answering equation code
-- [ ] Generate first question on start
+- [x] Generate first question on start
+- [x] Negative number support
