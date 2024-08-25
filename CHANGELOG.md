@@ -17,6 +17,10 @@
   - Updated format
   - Optimized code
 
+### Removed
+
+- *docs/main-layout.png*
+
 ## v0.5.0-alpha
 
 ### Added
