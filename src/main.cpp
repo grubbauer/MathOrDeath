@@ -119,7 +119,6 @@ int WinMain(int argc, char *argv[]) {
 
   bool stop = false;
   SDL_Event e;
-  const char *pressedKey;
 
   while (!stop) {
     while (SDL_PollEvent(&e) != 0) {
@@ -127,49 +126,48 @@ int WinMain(int argc, char *argv[]) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
         SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
+        const char *pressedKey = SDL_GetKeyName(pressedKeyRaw);
 
         switch (pressedKeyRaw) {
           case SDLK_0 ... SDLK_9: {
-            pressedKey = SDL_GetKeyName(pressedKeyRaw);
             inputedString += pressedKey;
             gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
                                            fInput);
             break;
           }
           case SDLK_MINUS: {
-            int tempValue = stoi(inputedString);
-            tempValue *= -1;
-            inputedString = std::to_string(tempValue);
-
+            inputedString += '-';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
             break;
           }
-
           case SDLK_RETURN: {
-            if (stoi(inputedString) == equationResult) {
-              printf("Correct!");
-              lvl++;
-              equation = randEquation(lvl);
-              equationResult = getEquationAnswer(equation);
-              gEquationFontTexture.loadFromText(equation, {255, 255, 255},
-                                                fEquation);
-              inputedString = inputedString.empty();
-            } else {
-              printf("Wrong!");
+            try {
+              if (std::stoi(inputedString) == equationResult) {
+                printf("Correct!\n");
+                lvl++;
+                equation = randEquation(lvl);
+                equationResult = getEquationAnswer(equation);
+                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                                                  fEquation);
+                inputedString.clear();  // Clear the string after correct input
+                gInputFontTexture.free();  // Optionally clear the texture
+              } else {
+                printf("Wrong!\n");
+              }
+            } catch (const std::invalid_argument &e) {
+              std::cerr << "Invalid input for checking equation: "
+                        << inputedString << std::endl;
             }
+            break;
           }
           case SDLK_BACKSPACE: {
-            if (!inputedString
-                     .empty()) {  // Only modify the string if it's not empty
-              inputedString = inputedString.substr(0, inputedString.size() - 1);
-            }
-
-            // Ensuring that no empty string is being rendered
             if (!inputedString.empty()) {
+              inputedString = inputedString.substr(0, inputedString.size() - 1);
               gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
                                              fInput);
             } else {
-              // Optionally, clear the texture if the string is empty
-              gInputFontTexture.free();
+              gInputFontTexture.free();  // Optionally clear the texture
             }
             break;
           }
@@ -180,7 +178,8 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    // Lots of magic numbers incoming!
+
+    // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
                     (SCR_WIDTH / 4), (SCR_HEIGHT));
