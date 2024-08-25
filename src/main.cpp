@@ -19,7 +19,7 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-const std::string VERSION = "v0.7.0-alpha";
+const std::string VERSION = "v0.6.0-alpha";
 std::string inputedString;
 std::string equation = randEquation(lvl);
 int equationResult = getEquationAnswer(equation);
@@ -163,13 +163,16 @@ int WinMain(int argc, char *argv[]) {
           }
           case SDLK_BACKSPACE: {
             if (!inputedString.empty()) {
-              inputedString = inputedString.substr(0, inputedString.size() - 1);
-              gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                             fInput);
-            } else {
-              gInputFontTexture.free();  // Optionally clear the texture
+              inputedString =
+                  inputedString.substr(0, inputedString.length() - 1);
+
+              if (inputedString.empty()) {
+                gInputFontTexture.free();
+              } else {
+                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                               fInput);
+              }
             }
-            break;
           }
         }
       }
