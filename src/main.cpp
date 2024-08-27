@@ -141,6 +141,11 @@ int WinMain(int argc, char *argv[]) {
                                            fInput);
             break;
           }
+          case SDLK_PERIOD: {
+            inputedString += '.';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+            break;
+          }
           case SDLK_RETURN: {
             try {
               if (std::stoi(inputedString) == equationResult) {
