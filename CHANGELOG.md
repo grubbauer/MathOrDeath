@@ -14,6 +14,10 @@
   - Updated version number
   - No errors are now thrown when `inputedString` is empty
   - Commas can now be entered
+- *include/equation_answer.h*
+  - Updated format
+- *src/equation_answer.cpp*
+  - Updated format
 
 ## v0.6.0-alpha
 
