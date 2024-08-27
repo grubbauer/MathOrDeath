@@ -13,6 +13,7 @@
 - *src/main.cpp*
   - Updated version number
   - No errors are now thrown when `inputedString` is empty
+  - Commas can now be entered
 
 ## v0.6.0-alpha
 
