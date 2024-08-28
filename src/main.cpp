@@ -22,7 +22,7 @@ int lvl = 1;
 const std::string VERSION = "v0.8.0-alpha";
 std::string inputedString;
 std::string equation = randEquation(lvl);
-int equationResult = getEquationAnswer(equation);
+float equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -144,26 +144,6 @@ int WinMain(int argc, char *argv[]) {
           case SDLK_PERIOD: {
             inputedString += '.';
             gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
-            break;
-          }
-          case SDLK_RETURN: {
-            try {
-              if (std::stoi(inputedString) == equationResult) {
-                printf("Correct!\n");
-                lvl++;
-                equation = randEquation(lvl);
-                equationResult = getEquationAnswer(equation);
-                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
-                                                  fEquation);
-                inputedString.clear();  // Clear the string after correct input
-                gInputFontTexture.free();  // Optionally clear the texture
-              } else {
-                printf("Wrong!\n");
-              }
-            } catch (const std::invalid_argument &e) {
-              std::cerr << "Invalid input for checking equation: "
-                        << inputedString << std::endl;
-            }
             break;
           }
           case SDLK_BACKSPACE: {
