@@ -10,6 +10,10 @@
   - Updated TODO list
 - *src/main.cpp*
   - Updated version number
+- *include/equation_answer.h*
+  - Changed type `int` to type `float`
+- *src/equation_answer.cpp*
+  - Changed type `int` to type `float`
 
 ## v0.7.0-alpha
 
