@@ -143,7 +143,37 @@ int WinMain(int argc, char *argv[]) {
           }
           case SDLK_PERIOD: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
+            break;
+          }
+          case SDLK_RETURN: {
+            try {
+              float userAnswer =
+                  std::stof(inputedString);  // Convert input to float
+
+              // Round both values to two decimal places
+              float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
+              float roundedEquationResult = std::floorf(equationResult * 100) / 100;
+
+              printf("%f", roundedEquationResult);
+              // Compare the rounded values
+              if (roundedUserAnswer == roundedEquationResult) {
+                printf("Correct!\n");
+                lvl++;
+                equation = randEquation(lvl);
+                equationResult = getEquationAnswer(equation);
+                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                                                  fEquation);
+                inputedString.clear();  // Clear the string after correct input
+                gInputFontTexture.free();  // Optionally clear the texture
+              } else {
+                printf("Wrong!\n");
+              }
+            } catch (const std::invalid_argument &e) {
+              std::cerr << "Invalid input for checking equation: "
+                        << inputedString << std::endl;
+            }
             break;
           }
           case SDLK_BACKSPACE: {
