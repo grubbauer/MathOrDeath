@@ -1,3 +1,3 @@
 # TODO
 
-- [ ] Add commas to equation-solving input
+- [ ] Change `equationResult` from type `int` to `float`
