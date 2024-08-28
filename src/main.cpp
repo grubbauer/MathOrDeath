@@ -141,6 +141,11 @@ int WinMain(int argc, char *argv[]) {
                                            fInput);
             break;
           }
+          case SDLK_PERIOD: {
+            inputedString += '.';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+            break;
+          }
           case SDLK_RETURN: {
             try {
               if (std::stoi(inputedString) == equationResult) {
@@ -163,13 +168,16 @@ int WinMain(int argc, char *argv[]) {
           }
           case SDLK_BACKSPACE: {
             if (!inputedString.empty()) {
-              inputedString = inputedString.substr(0, inputedString.size() - 1);
-              gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                             fInput);
-            } else {
-              gInputFontTexture.free();  // Optionally clear the texture
+              inputedString =
+                  inputedString.substr(0, inputedString.length() - 1);
+
+              if (inputedString.empty()) {
+                gInputFontTexture.free();
+              } else {
+                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                               fInput);
+              }
             }
-            break;
           }
         }
       }
