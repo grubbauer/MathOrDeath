@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.8.0-alpha
+
+### Updated
+
+- *Makefile*
+  - Updated version number
+- *TODO.md*
+  - Updated TODO list
+- *src/main.cpp*
+  - Updated version number
+
 ## v0.7.0-alpha
 
 ### Added
