@@ -2,12 +2,20 @@
 
 ## v0.9.0-alpha
 
+### Added
+
+* .markdownl
+
+### Updated
+
 * *src/main.cpp*
   * Updated version number
 * *Makefile*
   * Updated version number
 * *CHANGELOG.md*
   * Updated format
+* *.gitignore*
+  * .markdownlint.json is no longer ignored
 
 ## v0.8.0-alpha
 
