@@ -6,6 +6,8 @@
   * Updated version number
 * *Makefile*
   * Updated version number
+* *CHANGELOG.md*
+  * Updated format
 
 ## v0.8.0-alpha
 
