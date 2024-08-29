@@ -19,7 +19,7 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-const std::string VERSION = "v0.8.0-alpha";
+const std::string VERSION = "v0.9.0-alpha";
 std::string inputedString;
 std::string equation = randEquation(lvl);
 float equationResult = getEquationAnswer(equation);
