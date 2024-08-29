@@ -4,16 +4,19 @@
 
 ### Updated
 
-- *Makefile*
-  - Updated version number
 - *TODO.md*
   - Updated TODO list
-- *src/main.cpp*
-  - Updated version number
 - *include/equation_answer.h*
   - Changed type `int` to type `float`
+- *Makefile*
+  - Updated version number
+  - Updated name of debug target
+- *src/main.cpp*
+  - Updated version number
+  - Added debug printf statements
 - *src/equation_answer.cpp*
   - Changed type `int` to type `float`
+  - Return result is now a `float` instead of an `int`
 
 ## v0.7.0-alpha
 
