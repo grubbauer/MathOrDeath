@@ -24,6 +24,10 @@
   - Changed type `int` to type `float`
   - Return result is now a `float` instead of an `int`
 
+### Removed
+
+- *TODO.md*
+
 ## v0.7.0-alpha
 
 ### Added
