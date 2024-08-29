@@ -1,3 +1,3 @@
 # TODO
 
-- [ ] Change `equationResult` from type `int` to `float`
+- [x] Change `equationResult` from type `int` to `float`
