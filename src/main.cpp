@@ -154,7 +154,8 @@ int WinMain(int argc, char *argv[]) {
 
               // Round both values to two decimal places
               float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
-              float roundedEquationResult = std::floorf(equationResult * 100) / 100;
+              float roundedEquationResult =
+                  std::floorf(equationResult * 100) / 100;
 
               printf("%f", roundedEquationResult);
               printf("%f", equationResult);
