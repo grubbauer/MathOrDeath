@@ -157,6 +157,7 @@ int WinMain(int argc, char *argv[]) {
               float roundedEquationResult = std::floorf(equationResult * 100) / 100;
 
               printf("%f", roundedEquationResult);
+              printf("%f", equationResult);
               // Compare the rounded values
               if (roundedUserAnswer == roundedEquationResult) {
                 printf("Correct!\n");
