@@ -15,7 +15,7 @@ LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Targets
 all: clean windows-x64
-debug: clean debug-build
+d: clean debug-build
 
 # Windows x64 Build
 windows-x64: setup-build-dir
