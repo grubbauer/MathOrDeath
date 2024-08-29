@@ -17,12 +17,13 @@
 - *Makefile*
   - Updated version number
   - Updated name of debug target
-- *src/main.cpp*
-  - Updated version number
-  - Added debug printf statements
 - *src/equation_answer.cpp*
   - Changed type `int` to type `float`
   - Return result is now a `float` instead of an `int`
+- *src/main.cpp*
+  - Updated version number
+  - Added debug printf statements
+  - Updated format
 
 ### Removed
 
