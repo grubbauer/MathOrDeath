@@ -4,7 +4,7 @@
 
 ### Added
 
-* .markdownl
+* .markdownlint.json
 
 ### Updated
 
