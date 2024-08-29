@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## v0.8.0-alpha
+
+### Added
+
+- *SECURITY.md*
+- *src/res/img/bar/Time-0001.png*
+- *src/res/img/bar/json/Time-0001.json*
+
+### Updated
+
+- *TODO.md*
+  - Updated TODO list
+- *include/equation_answer.h*
+  - Changed type `int` to type `float`
+- *Makefile*
+  - Updated version number
+  - Updated name of debug target
+- *src/equation_answer.cpp*
+  - Changed type `int` to type `float`
+  - Return result is now a `float` instead of an `int`
+- *src/main.cpp*
+  - Updated version number
+  - Added debug printf statements
+  - Updated format
+
+### Removed
+
+- *TODO.md*
+
 ## v0.7.0-alpha
 
 ### Added

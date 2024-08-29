@@ -19,10 +19,10 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-const std::string VERSION = "v0.6.0-alpha";
+const std::string VERSION = "v0.8.0-alpha";
 std::string inputedString;
 std::string equation = randEquation(lvl);
-int equationResult = getEquationAnswer(equation);
+float equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -143,12 +143,24 @@ int WinMain(int argc, char *argv[]) {
           }
           case SDLK_PERIOD: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255}, fInput);
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
             break;
           }
           case SDLK_RETURN: {
             try {
-              if (std::stoi(inputedString) == equationResult) {
+              float userAnswer =
+                  std::stof(inputedString);  // Convert input to float
+
+              // Round both values to two decimal places
+              float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
+              float roundedEquationResult =
+                  std::floorf(equationResult * 100) / 100;
+
+              printf("%f", roundedEquationResult);
+              printf("%f", equationResult);
+              // Compare the rounded values
+              if (roundedUserAnswer == roundedEquationResult) {
                 printf("Correct!\n");
                 lvl++;
                 equation = randEquation(lvl);

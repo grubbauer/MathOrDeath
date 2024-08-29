@@ -2,7 +2,7 @@
 #include <sstream>
 #include <string>
 
-int getEquationAnswer(std::string originalEquation) {
+float getEquationAnswer(std::string originalEquation) {
   int num1, num2;
   char op;
 
@@ -12,7 +12,7 @@ int getEquationAnswer(std::string originalEquation) {
   ss >> op;
   ss >> num2;
 
-  int result;
+  float result;
 
   switch (op) {
     case '+':
@@ -25,7 +25,7 @@ int getEquationAnswer(std::string originalEquation) {
       result = num1 * num2;
       break;
     case '/':
-      result = num1 / num2;
+      result = static_cast<float>(num1) / num2;  // Casting num1 to float
       break;
   }
 

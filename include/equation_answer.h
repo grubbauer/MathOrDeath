@@ -5,6 +5,6 @@
 #include <sstream>
 #include <string>
 
-int getEquationAnswer(std::string originalEquation);
+float getEquationAnswer(std::string originalEquation);
 
 #endif
