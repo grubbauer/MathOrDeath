@@ -25,7 +25,7 @@ float getEquationAnswer(std::string originalEquation) {
       result = num1 * num2;
       break;
     case '/':
-      result = num1 / num2;
+      result = static_cast<float>(num1) / num2;  // Casting num1 to float
       break;
   }
 
