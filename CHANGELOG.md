@@ -5,6 +5,8 @@
 ### Added
 
 - *SECURITY.md*
+- *src/res/img/bar/Time-0001.png*
+- *src/res/img/bar/json/Time-0001.json*
 
 ### Updated
 
