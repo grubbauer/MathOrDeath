@@ -5,6 +5,7 @@
 ### Added
 
 * .markdownlint.json
+* .clang-format
 
 ### Updated
 
@@ -15,7 +16,8 @@
 * *CHANGELOG.md*
   * Updated format
 * *.gitignore*
-  * .markdownlint.json is no longer ignored
+  * `.markdownlint.json` files is no longer ignored
+  * `.clang-format` files is no longer ignored
 
 ## v0.8.0-alpha
 
