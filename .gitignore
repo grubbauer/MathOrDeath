@@ -5,7 +5,6 @@ include/SDL2
 tmp.*
 *.tmp
 tmp
-.clang-format
 *.otf
 *.ttf
 *.aseprite
