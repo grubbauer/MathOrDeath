@@ -19,7 +19,7 @@
   * `.markdownlint.json` files is no longer ignored
   * `.clang-format` files is no longer ignored
 * *.clang-format*
-  * Updated formatting
+  * Extended formatting instructions **2**
 
 ## v0.8.0-alpha
 
