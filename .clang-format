@@ -1,4 +1,4 @@
-AccessModifierOffset: '2'
+AccessModifierOffset: '-1'
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: 'true'
 AlignConsecutiveAssignments: 'false'
@@ -39,7 +39,13 @@ DerivePointerAlignment: 'false'
 DisableFormat: 'false'
 ExperimentalAutoDetectBinPacking: 'false'
 FixNamespaceComments: 'false'
-IncludeBlocks: Regroup
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^<.*>'
+    Priority: 1
+  - Regex: '^"'
+    Priority: 2
+IncludeIsMainRegex: '.*'
 IndentCaseLabels: 'true'
 IndentPPDirectives: None
 IndentWidth: '2'

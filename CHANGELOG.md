@@ -20,7 +20,7 @@
   * `.clang-format` files is no longer ignored
 * *.clang-format*
   * Updated format
-  * Extended formatting instructions **5x**
+  * Extended formatting instructions **6x**
 
 ## v0.8.0-alpha
 
