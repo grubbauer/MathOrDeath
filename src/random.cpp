@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Raphael Grubbauer
+ * Licensed under the Raphael Grubbauer's Free License v1.0.1
+ * See LICENSE file in the project root for full license information.
+*/
+
 #include "random.h"
 
 int randNum(int min, int max) {
