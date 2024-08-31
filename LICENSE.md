@@ -14,7 +14,8 @@ sell, and redistribute it, provided that the following conditions are met:
 1. The origin of this software must not be misrepresented; you must not claim
    that you wrote the original software. An acknowledgment in the documentation
    and at the startup of the software is required as follows:
-   > Credit: Raphael Grubbauer (<raphael.grubbauer@hotmail.com>) for {original_project_name}
+   > Credit: Raphael Grubbauer (<raphael.grubbauer@hotmail.com>) for
+   > {original_project_name}
 2. Altered source versions must be marked as such and must not be misrepresented
    as the original software.
 3. You must redistribute any version, modified or original, under the same
