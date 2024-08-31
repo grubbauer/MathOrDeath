@@ -43,6 +43,8 @@
 * *src/random.cpp*
   * Updated format
   * Added license header
+* *SECURITY.md*
+  * Updated format
 
 ## v0.8.0-alpha
 
