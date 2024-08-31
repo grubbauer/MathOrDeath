@@ -21,18 +21,28 @@
 * *.clang-format*
   * Updated format
   * Extended formatting instructions **8x**
-* *src/equation_answer.cpp*
-  * Updated format
-* *src/generate_equation.cpp*
-  * Updated format
-* *src/main.cpp*
-  * Updated format
-* *src/random.cpp*
-  * Updated format
 * *.markdownlint.json*
   * Extended formatting instructions
 * *LICENSE.md*
   * Updated format
+* *include/equation_answer.h*
+  * Added license header
+* *include/generate_equation.h*
+  * Added license header
+* *include/random.h*
+  * Added license header
+* *src/equation_answer.cpp*
+  * Updated format
+  * Added license header
+* *src/generate_equation.cpp*
+  * Updated format
+  * Added license header
+* *src/main.cpp*
+  * Updated format
+  * Added license header
+* *src/random.cpp*
+  * Updated format
+  * Added license header
 
 ## v0.8.0-alpha
 
