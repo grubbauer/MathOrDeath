@@ -26,3 +26,17 @@ BreakBeforeBinaryOperators: None
 BreakBeforeBraces: Linux
 BreakBeforeTernaryOperators: 'false'
 BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+BreakStringLiterals: 'true'
+ColumnLimit: '80'
+CommentPragmas: ^clang-format
+CompactNamespaces: 'false'
+ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
+ConstructorInitializerIndentWidth: '4'
+ContinuationIndentWidth: '04'
+Cpp11BracedListStyle: 'true'
+DerivePointerAlignment: 'false'
+DisableFormat: 'false'
+ExperimentalAutoDetectBinPacking: 'false'
+FixNamespaceComments: 'false'
+IncludeBlocks: Regroup
