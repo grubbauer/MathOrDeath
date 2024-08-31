@@ -20,7 +20,15 @@
   * `.clang-format` files is no longer ignored
 * *.clang-format*
   * Updated format
-  * Extended formatting instructions **6x**
+  * Extended formatting instructions **8x**
+* *src/equation_answer.cpp*
+  * Updated format
+* *src/generate_equation.cpp*
+  * Updated format
+* *src/main.cpp*
+  * Updated format
+* *src/random.cpp*
+  * Updated format
 
 ## v0.8.0-alpha
 
