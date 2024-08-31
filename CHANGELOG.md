@@ -29,6 +29,10 @@
   * Updated format
 * *src/random.cpp*
   * Updated format
+* *.markdownlint.json*
+  * Extended formatting instructions
+* *LICENSE.md*
+  * Updated format
 
 ## v0.8.0-alpha
 
