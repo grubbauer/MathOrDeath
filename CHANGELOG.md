@@ -6,6 +6,7 @@
 
 * *.markdownlint.json*
 * *.clang-format*
+* *LICENSE_media.md*
 
 ### Updated
 
@@ -16,38 +17,52 @@
 * *.gitignore*
   * `.markdownlint.json` files is no longer ignored
   * `.clang-format` files is no longer ignored
-* *LICENSE.md*
-  * Updated format
-* *include/equation_answer.h*
-  * Added license header
-* *include/generate_equation.h*
-  * Added license header
-* *include/random.h*
-  * Added license header
-* *src/equation_answer.cpp*
-  * Updated format
-  * Added license header
-* *src/generate_equation.cpp*
-  * Updated format
-  * Added license header
-* *src/main.cpp*
-  * Updated format
-  * Added license header
-* *src/random.cpp*
-  * Updated format
-  * Added license header
 * *SECURITY.md*
+  * Updated format
+* *.markdownlint.json*
+  * Extended formatting instructions
   * Updated format
 * *.clang-format*
   * Updated format
   * Extended formatting instructions **8x**
   * Added license header
-* *.markdownlint.json*
-  * Extended formatting instructions
+  * Updated license header
+* *LICENSE.md*
   * Updated format
+  * Updated license
 * *Makefile*
   * Updated version number
   * Added license header
+  * Updated license header
+* *include/equation_answer.h*
+  * Added license header
+  * Updated license header
+* *include/generate_equation.h*
+  * Added license header
+  * Updated license header
+* *include/random.h*
+  * Added license header
+  * Updated license header
+* *src/equation_answer.cpp*
+  * Updated format
+  * Added license header
+  * Updated license header
+* *src/generate_equation.cpp*
+  * Updated format
+  * Added license header
+  * Updated license header
+* *src/main.cpp*
+  * Updated format
+  * Added license header
+  * Updated license header
+* *src/random.cpp*
+  * Updated format
+  * Added license header
+  * Updated license header
+
+### Removed
+
+* *src/res/img/bar/Time-0001.png*
 
 ## v0.8.0-alpha
 
