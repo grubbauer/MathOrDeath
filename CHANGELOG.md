@@ -20,9 +20,6 @@
 	* `.clang-format` files is no longer ignored
 * *SECURITY.md*
 	* Updated format
-* *.markdownlint.json*
-	* Extended formatting instructions
-	* Updated format
 * *LICENSE.md*
 	* Updated format
 	* Updated license
@@ -61,6 +58,9 @@
 	* Added license header
 	* Updated license header
 	* Added timer
+* *.markdownlint.json*
+	* Extended formatting instructions **2x**
+	* Updated format
 
 ## v0.8.0-alpha
 
