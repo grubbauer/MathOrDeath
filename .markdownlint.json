@@ -6,6 +6,10 @@
   "MD004": {
     "style": "asterisk"
   },
+	"MD007": {
+		"indent": 1
+	},
+	"MD010": false,
   "MD013": {
     "code_blocks": false,
     "line_length": 80,
