@@ -60,10 +60,6 @@
   * Added license header
   * Updated license header
 
-### Removed
-
-* *src/res/img/bar/Time-0001.png*
-
 ## v0.8.0-alpha
 
 ### Added
