@@ -66,6 +66,7 @@ class cTexture {
 cTexture gBackgroundMain;
 cTexture gInputWindow;
 cTexture gTeacher;
+cTexture gTimer;
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -156,12 +157,12 @@ int WinMain(int argc, char *argv[]) {
 					case SDLK_RETURN: {
 						try {
 							float userAnswer =
-									std::stof(inputedString);	 // Convert input to float
+								std::stof(inputedString);	 // Convert input to float
 
 							// Round both values to two decimal places
 							float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
 							float roundedEquationResult =
-									std::floorf(equationResult * 100) / 100;
+								std::floorf(equationResult * 100) / 100;
 
 							printf("%f", roundedEquationResult);
 							printf("%f", equationResult);
@@ -187,7 +188,7 @@ int WinMain(int argc, char *argv[]) {
 					case SDLK_BACKSPACE: {
 						if (!inputedString.empty()) {
 							inputedString =
-									inputedString.substr(0, inputedString.length() - 1);
+								inputedString.substr(0, inputedString.length() - 1);
 
 							if (inputedString.empty()) {
 								gInputFontTexture.free();
@@ -213,12 +214,12 @@ int WinMain(int argc, char *argv[]) {
 												((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
 												(SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
 		gEquationFontTexture.render(
-				(SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
-				gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
+			(SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
+			gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
 		gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
 														 (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
 														 gInputFontTexture.getHeight());
-
+		gTimer.render(0,0,gTimer.getWidth(), gTimer.getHeight());
 		SDL_RenderPresent(gRenderer);
 
 		// Sounds
@@ -248,9 +249,9 @@ void initialise() {
 														 SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 														 SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
 	gRenderer = SDL_CreateRenderer(
-			gWindow, -1,
-			SDL_RENDERER_ACCELERATED |
-					SDL_RENDERER_PRESENTVSYNC);	 // Accelerated with VSync activated
+		gWindow, -1,
+		SDL_RENDERER_ACCELERATED |
+			SDL_RENDERER_PRESENTVSYNC);	 // Accelerated with VSync activated
 	// SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	// SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
@@ -260,6 +261,7 @@ void loadAssets() {
 	gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
 	gInputWindow.loadFromFile("res/img/window/window-0001.png");
 	gTeacher.loadFromFile("res/img/character/teacher-0001.png");
+	gTimer.loadFromFile("res/img/bar/time-0001.png");
 
 	// Sounds
 	sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -267,7 +269,7 @@ void loadAssets() {
 	// Fonts
 	fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
 	fEquation =
-			TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
+		TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
 
 	// Font textures
 	gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
