@@ -36,8 +36,8 @@ ColumnLimit: '80'
 CommentPragmas: ^clang-format
 CompactNamespaces: 'false'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'false'
-ConstructorInitializerIndentWidth: '4'
-ContinuationIndentWidth: '04'
+ConstructorInitializerIndentWidth: '2'  # Changed to match TabWidth
+ContinuationIndentWidth: '2'             # Changed to match TabWidth
 Cpp11BracedListStyle: 'true'
 DerivePointerAlignment: 'false'
 DisableFormat: 'false'
@@ -52,8 +52,7 @@ IncludeCategories:
 IncludeIsMainRegex: '.*'
 IndentCaseLabels: 'true'
 IndentPPDirectives: None
-IndentWidth: '2'
-IndentWrappedFunctionNames: 'false'
+IndentWidth: '2'  # This is for indentation level
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: 'true'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'
