@@ -7,6 +7,7 @@
 * *.markdownlint.json*
 * *.clang-format*
 * *LICENSE_media.md*
+* *TODO.md*
 
 ### Updated
 
