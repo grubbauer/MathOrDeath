@@ -11,18 +11,11 @@
 
 * *src/main.cpp*
   * Updated version number
-* *Makefile*
-  * Updated version number
 * *CHANGELOG.md*
   * Updated format
 * *.gitignore*
   * `.markdownlint.json` files is no longer ignored
   * `.clang-format` files is no longer ignored
-* *.clang-format*
-  * Updated format
-  * Extended formatting instructions **8x**
-* *.markdownlint.json*
-  * Extended formatting instructions
 * *LICENSE.md*
   * Updated format
 * *include/equation_answer.h*
@@ -45,6 +38,16 @@
   * Added license header
 * *SECURITY.md*
   * Updated format
+* *.clang-format*
+  * Updated format
+  * Extended formatting instructions **8x**
+  * Added license header
+* *.markdownlint.json*
+  * Extended formatting instructions
+  * Updated format
+* *Makefile*
+  * Updated version number
+  * Added license header
 
 ## v0.8.0-alpha
 
