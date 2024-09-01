@@ -22,11 +22,6 @@
 * *.markdownlint.json*
   * Extended formatting instructions
   * Updated format
-* *.clang-format*
-  * Updated format
-  * Extended formatting instructions **8x**
-  * Added license header
-  * Updated license header
 * *LICENSE.md*
   * Updated format
   * Updated license
@@ -59,6 +54,11 @@
   * Updated format
   * Added license header
   * Updated license header
+* *.clang-format*
+  * Updated format
+  * Added license header
+  * Updated license header
+  * Extended formatting instructions **9x**
 
 ## v0.8.0-alpha
 
