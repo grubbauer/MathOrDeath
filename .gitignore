@@ -5,6 +5,7 @@ include/SDL2
 tmp.*
 *.tmp
 tmp
+*tmp*
 *.otf
 *.ttf
 *.aseprite
