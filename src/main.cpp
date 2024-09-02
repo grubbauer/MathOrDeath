@@ -14,6 +14,7 @@
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <ctime>
 
 #include "equation_answer.h"
 #include "generate_equation.h"
