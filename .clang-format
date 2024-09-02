@@ -85,4 +85,5 @@ SpacesInParentheses: 'false'
 SpacesInSquareBrackets: 'false'
 Standard: Cpp11
 TabWidth: '2'
+UseCRLF: 'false'
 UseTab: Never
