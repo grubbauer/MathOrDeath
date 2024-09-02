@@ -51,7 +51,7 @@ class cTexture {
 	void loadFromFile(std::string path);
 	void loadFromText(std::string text, SDL_Color color, TTF_Font *font);
 	void free();
-	void render(int x, int y, int w, int h);
+	void render(int x, int y, int w = -1, int h = -1, SDL_Rect* clip = NULL);
 
 	int getWidth();
 	int getHeight();
@@ -111,8 +111,14 @@ void cTexture::free() {
 	}
 }
 
-void cTexture::render(int x, int y, int w, int h) {
+void cTexture::render(int x, int y, int w, int h, SDL_Rect* clip) {
 	SDL_Rect renderQuad = {x, y, w, h};
+
+	if (clip != NULL) {
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
+
 	SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
 }
 
