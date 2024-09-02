@@ -48,11 +48,6 @@
   * Updated license header
   * Added timer
   * Added option to use sprite sheets
-* *.clang-format*
-  * Updated format
-  * Added license header
-  * Updated license header
-  * Extended formatting instructions **10x**
 * *.gitignore*
   * `.markdownlint.json` files is no longer ignored
   * `.clang-format` files is no longer ignored
@@ -62,6 +57,11 @@
   * Extended formatting instructions **3x**
 * *CHANGELOG.md*
   * Updated format **2**
+* *.clang-format*
+  * Updated format
+  * Added license header
+  * Updated license header
+  * Extended formatting instructions **11x**
 
 ## v0.8.0-alpha
 
