@@ -8,6 +8,8 @@
 * *.clang-format*
 * *LICENSE_media.md*
 * *TODO.md*
+* *src/res/img/misc/correctness_indicator.png*
+* *src/res/img/misc/json/correctness_indicator.json*
 
 ### Updated
 
@@ -57,16 +59,16 @@
   * Updated format **2x**
 * *docs/naming_definition*
   * Added definition of rXXXXX
+* *src/res/img/bar/json/time-0001.json*
+  * Updated format
 * *src/main.cpp*
   * Updated version number
   * Added license header
   * Updated license header
   * Added timer
   * Added option to use sprite sheets
-  * Updated format **2x**
   * Timer sprite can now be rendered as a spritesheet
-* *src/res/img/bar/json/time-0001.json*
-  * Updated format
+  * Updated format **3x**
 
 ## v0.8.0-alpha
 
