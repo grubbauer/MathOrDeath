@@ -29,25 +29,6 @@
 * *include/random.h*
   * Added license header
   * Updated license header
-* *src/equation_answer.cpp*
-  * Updated format
-  * Added license header
-  * Updated license header
-* *src/generate_equation.cpp*
-  * Updated format
-  * Added license header
-  * Updated license header
-* *src/random.cpp*
-  * Updated format
-  * Added license header
-  * Updated license header
-* *src/main.cpp*
-  * Updated version number
-  * Updated format
-  * Added license header
-  * Updated license header
-  * Added timer
-  * Added option to use sprite sheets
 * *.gitignore*
   * `.markdownlint.json` files is no longer ignored
   * `.clang-format` files is no longer ignored
@@ -56,12 +37,36 @@
   * Updated format
   * Extended formatting instructions **3x**
 * *CHANGELOG.md*
-  * Updated format **2**
+  * Updated format **2x**
 * *.clang-format*
   * Updated format
   * Added license header
   * Updated license header
   * Extended formatting instructions **11x**
+* *src/equation_answer.cpp*
+  * Added license header
+  * Updated license header
+  * Updated format **2x**
+* *src/generate_equation.cpp*
+  * Added license header
+  * Updated license header
+  * Updated format **2x**
+* *src/random.cpp*
+  * Added license header
+  * Updated license header
+  * Updated format **2x**
+* *docs/naming_definition*
+  * Added definition of rXXXXX
+* *src/main.cpp*
+  * Updated version number
+  * Added license header
+  * Updated license header
+  * Added timer
+  * Added option to use sprite sheets
+  * Updated format **2x**
+  * Timer sprite can now be rendered as a spritesheet
+* *src/res/img/bar/json/time-0001.json*
+  * Updated format
 
 ## v0.8.0-alpha
 
