@@ -53,14 +53,15 @@
 	* Added license header
 	* Updated license header
 	* Extended formatting instructions **9x**
+* *.markdownlint.json*
+	* Extended formatting instructions **2x**
+	* Updated format
 * *src/main.cpp*
 	* Updated format
 	* Added license header
 	* Updated license header
 	* Added timer
-* *.markdownlint.json*
-	* Extended formatting instructions **2x**
-	* Updated format
+	* Added option to use sprite sheets
 
 ## v0.8.0-alpha
 
