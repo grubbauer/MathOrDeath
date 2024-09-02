@@ -9,31 +9,31 @@
 #include <string>
 
 float getEquationAnswer(std::string originalEquation) {
-	int num1, num2;
-	char op;
+  int num1, num2;
+  char op;
 
-	std::stringstream ss(originalEquation);
+  std::stringstream ss(originalEquation);
 
-	ss >> num1;
-	ss >> op;
-	ss >> num2;
+  ss >> num1;
+  ss >> op;
+  ss >> num2;
 
-	float result;
+  float result;
 
-	switch (op) {
-		case '+':
-			result = num1 + num2;
-			break;
-		case '-':
-			result = num1 - num2;
-			break;
-		case '*':
-			result = num1 * num2;
-			break;
-		case '/':
-			result = static_cast<float>(num1) / num2;	 // Casting num1 to float
-			break;
-	}
+  switch (op) {
+    case '+':
+      result = num1 + num2;
+      break;
+    case '-':
+      result = num1 - num2;
+      break;
+    case '*':
+      result = num1 * num2;
+      break;
+    case '/':
+      result = static_cast<float>(num1) / num2;  // Casting num1 to float
+      break;
+  }
 
-	return result;
+  return result;
 }
