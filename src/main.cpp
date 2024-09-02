@@ -115,13 +115,12 @@ void cTexture::free() {
 }
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
-
   SDL_Rect renderQuad = {x, y, w, h};
   if (clip != NULL) {
     renderQuad.w = clip->w;
     renderQuad.h = clip->h;
   }
-  
+
   SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
 }
 
