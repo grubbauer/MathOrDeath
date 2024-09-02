@@ -51,7 +51,7 @@ class cTexture {
   void loadFromFile(std::string path);
   void loadFromText(std::string text, SDL_Color color, TTF_Font *font);
   void free();
-  void render(int x, int y, int w = -1, int h = -1, SDL_Rect *clip = NULL);
+  void render(int x, int y, int w, int h, SDL_Rect *clip = NULL);
 
   int getWidth();
   int getHeight();
@@ -67,6 +67,9 @@ cTexture gBackgroundMain;
 cTexture gInputWindow;
 cTexture gTeacher;
 cTexture gTimer;
+
+// Spritesheet rect's
+SDL_Rect rTimer[2];
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -112,14 +115,14 @@ void cTexture::free() {
 }
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
-  SDL_Rect renderQuad = {x, y, w, h};
 
+  SDL_Rect renderQuad = {x, y, w, h};
   if (clip != NULL) {
     renderQuad.w = clip->w;
     renderQuad.h = clip->h;
   }
-
-  SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
+  
+  SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
 }
 
 int cTexture::getWidth() { return mWidth; }
@@ -225,7 +228,7 @@ int WinMain(int argc, char *argv[]) {
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
-    gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight());
+    gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(), &rTimer[1]);
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -268,6 +271,17 @@ void loadAssets() {
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
   gTeacher.loadFromFile("res/img/character/teacher-0001.png");
   gTimer.loadFromFile("res/img/bar/time-0001.png");
+
+  // Sprite sheet rect's
+  rTimer[0].x = 0;
+  rTimer[0].y = 0;
+  rTimer[0].w = 360;
+  rTimer[0].h = 30;
+
+  rTimer[1].x = 0;
+  rTimer[1].y = 40;
+  rTimer[1].w = 360;
+  rTimer[1].h = 30;
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
