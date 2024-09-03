@@ -14,7 +14,6 @@
 #include <cmath>
 #include <iostream>
 #include <string>
-#include <ctime>
 
 #include "equation_answer.h"
 #include "generate_equation.h"
@@ -41,6 +40,7 @@ TTF_Font *fEquation;
 
 void initialise();
 void loadAssets();
+void setupSpritesheets();
 void quit();
 
 // Texture class
@@ -70,7 +70,7 @@ cTexture gTeacher;
 cTexture gTimer;
 
 // Spritesheet rect's
-SDL_Rect rTimer[2];
+SDL_Rect rTimer[10];
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -132,6 +132,7 @@ int cTexture::getHeight() { return mHeight; }
 int WinMain(int argc, char *argv[]) {
   initialise();
   loadAssets();
+  setupSpritesheets();
 
   bool stop = false;
   SDL_Event e;
@@ -228,7 +229,7 @@ int WinMain(int argc, char *argv[]) {
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
-    gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(), &rTimer[1]);
+    gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(), &rTimer[9]);
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -257,10 +258,9 @@ void initialise() {
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
+  // Accelerated with VSync enabled
   gRenderer = SDL_CreateRenderer(
-    gWindow, -1,
-    SDL_RENDERER_ACCELERATED |
-      SDL_RENDERER_PRESENTVSYNC);  // Accelerated with VSync activated
+    gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
   // SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
@@ -271,17 +271,6 @@ void loadAssets() {
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
   gTeacher.loadFromFile("res/img/character/teacher-0001.png");
   gTimer.loadFromFile("res/img/bar/time-0001.png");
-
-  // Sprite sheet rect's
-  rTimer[0].x = 0;
-  rTimer[0].y = 0;
-  rTimer[0].w = 360;
-  rTimer[0].h = 30;
-
-  rTimer[1].x = 0;
-  rTimer[1].y = 40;
-  rTimer[1].w = 360;
-  rTimer[1].h = 30;
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -294,6 +283,16 @@ void loadAssets() {
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
   gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
+}
+
+void setupSpritesheets() {
+  // Timer bar spritesheet
+  for (int i = 0; i <= 9; i++) {
+    rTimer[i].x = 0;
+    rTimer[i].y = (i * 30) + i;
+    rTimer[i].w = 360;
+    rTimer[i].h = 30;
+  }
 }
 
 void quit() {
