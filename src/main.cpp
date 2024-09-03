@@ -29,7 +29,8 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-std::atomic<int> spriteIndex(9);
+std::atomic<int> spriteIndex(10);
+std::atomic<bool> stopFlag(false);
 std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
@@ -174,7 +175,7 @@ int WinMain(int argc, char *argv[]) {
                              gInputFontTexture.getHeight());
 
     // Render the timer
-    if (spriteIndex >= 0 && spriteIndex <= 10) {
+    if (spriteIndex >= 0) {
       gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
@@ -239,6 +240,7 @@ void loadAssets() {
 void setupSpritesheets() {
   // Timer bar spritesheet
   for (int i = 0; i <= 10; i++) {
+    std::cout << i << std::endl;
     rTimer[i].x = 0;
     rTimer[i].y = (i * 30) + i;
     rTimer[i].w = 360;
@@ -247,13 +249,17 @@ void setupSpritesheets() {
 }
 
 void runTimer() {
-  while (remainingTime > 0) {
+  // Decrement immediately to avoid long first frame
+  remainingTime--;
+  spriteIndex.store(remainingTime);
+  std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+
+  while (remainingTime > 0 && !stopFlag.load()) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     remainingTime--;  // Decrease the remaining time
 
     // Update sprite index based on remaining time
-    spriteIndex =
-      remainingTime - 1;  // Assuming the timer bar has 10 frames (0-9)
+    spriteIndex.store(remainingTime);
     std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
   }
 
@@ -264,6 +270,10 @@ void quit() {
   // Graphical elements
   gBackgroundMain.free();
   gInputWindow.free();
+  gEquationFontTexture.free();
+  gInputFontTexture.free();
+  gTeacher.free();
+  gTimer.free();
 
   // Sounds
   Mix_FreeMusic(sMusic);
