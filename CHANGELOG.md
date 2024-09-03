@@ -86,6 +86,7 @@
   * Added missing timer sprites
   * Updated timer logic **3x**
   * Added correctness indicator
+  * Re-added key input system
 
 ## v0.8.0-alpha
 
