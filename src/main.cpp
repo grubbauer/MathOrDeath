@@ -11,13 +11,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <atomic>
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include "equation_answer.h"
 #include "generate_equation.h"
 #include "random.h"
+
+const std::string VERSION = "v0.9.0-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -25,9 +29,10 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-const std::string VERSION = "v0.9.0-alpha";
+std::atomic<int> spriteIndex(9);
 std::string inputedString;
 std::string equation = randEquation(lvl);
+std::atomic<int> remainingTime(10);
 float equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
@@ -41,6 +46,7 @@ TTF_Font *fEquation;
 void initialise();
 void loadAssets();
 void setupSpritesheets();
+void runTimer();
 void quit();
 
 // Texture class
@@ -134,6 +140,9 @@ int WinMain(int argc, char *argv[]) {
   loadAssets();
   setupSpritesheets();
 
+  // Start the timer thread
+  std::thread timerThread(runTimer);
+
   bool stop = false;
   SDL_Event e;
 
@@ -142,73 +151,7 @@ int WinMain(int argc, char *argv[]) {
       if (e.type == SDL_QUIT) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
-        SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
-        const char *pressedKey = SDL_GetKeyName(pressedKeyRaw);
-
-        switch (pressedKeyRaw) {
-          case SDLK_0 ... SDLK_9: {
-            inputedString += pressedKey;
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
-            break;
-          }
-          case SDLK_MINUS: {
-            inputedString += '-';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
-            break;
-          }
-          case SDLK_PERIOD: {
-            inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
-            break;
-          }
-          case SDLK_RETURN: {
-            try {
-              float userAnswer =
-                std::stof(inputedString);  // Convert input to float
-
-              // Round both values to two decimal places
-              float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
-              float roundedEquationResult =
-                std::floorf(equationResult * 100) / 100;
-
-              printf("%f", roundedEquationResult);
-              printf("%f", equationResult);
-              // Compare the rounded values
-              if (roundedUserAnswer == roundedEquationResult) {
-                printf("Correct!\n");
-                lvl++;
-                equation = randEquation(lvl);
-                equationResult = getEquationAnswer(equation);
-                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
-                                                  fEquation);
-                inputedString.clear();  // Clear the string after correct input
-                gInputFontTexture.free();  // Optionally clear the texture
-              } else {
-                printf("Wrong!\n");
-              }
-            } catch (const std::invalid_argument &e) {
-              std::cerr << "Invalid input for checking equation: "
-                        << inputedString << std::endl;
-            }
-            break;
-          }
-          case SDLK_BACKSPACE: {
-            if (!inputedString.empty()) {
-              inputedString =
-                inputedString.substr(0, inputedString.length() - 1);
-
-              if (inputedString.empty()) {
-                gInputFontTexture.free();
-              } else {
-                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                               fInput);
-              }
-            }
-          }
-        }
+        // Handle key events...
       }
     }
 
@@ -229,7 +172,12 @@ int WinMain(int argc, char *argv[]) {
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
-    gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(), &rTimer[9]);
+
+    // Render the timer
+    if (spriteIndex >= 0 && spriteIndex <= 9) {
+      gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
+                    &rTimer[spriteIndex]);
+    }
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -237,6 +185,9 @@ int WinMain(int argc, char *argv[]) {
       Mix_PlayMusic(sMusic, -1);
     }
   }
+
+  // Wait for the timer thread to finish
+  timerThread.join();
 
   quit();
   return 0;
@@ -293,6 +244,20 @@ void setupSpritesheets() {
     rTimer[i].w = 360;
     rTimer[i].h = 30;
   }
+}
+
+void runTimer() {
+  while (remainingTime > 0) {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    remainingTime--;  // Decrease the remaining time
+
+    // Update sprite index based on remaining time
+    spriteIndex =
+      remainingTime - 1;  // Assuming the timer bar has 10 frames (0-9)
+    std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+  }
+
+  std::cout << "Time's up!" << std::endl;
 }
 
 void quit() {
