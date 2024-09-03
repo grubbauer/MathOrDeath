@@ -84,7 +84,8 @@
   * Timer sprite can now be rendered as a spritesheet
   * Updated format **3x**
   * Added missing timer sprites
-  * Completed timer logic **2x**
+  * Updated timer logic **3x**
+  * Added correctness indicator
 
 ## v0.8.0-alpha
 
