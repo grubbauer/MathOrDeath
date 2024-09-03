@@ -32,7 +32,7 @@ int lvl = 1;
 std::atomic<int> spriteIndex(9);
 std::string inputedString;
 std::string equation = randEquation(lvl);
-std::atomic<int> remainingTime(10);
+std::atomic<int> remainingTime(11);
 float equationResult = getEquationAnswer(equation);
 
 SDL_Window *gWindow = NULL;
@@ -76,7 +76,7 @@ cTexture gTeacher;
 cTexture gTimer;
 
 // Spritesheet rect's
-SDL_Rect rTimer[10];
+SDL_Rect rTimer[11];
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -174,7 +174,7 @@ int WinMain(int argc, char *argv[]) {
                              gInputFontTexture.getHeight());
 
     // Render the timer
-    if (spriteIndex >= 0 && spriteIndex <= 9) {
+    if (spriteIndex >= 0 && spriteIndex <= 10) {
       gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
@@ -238,7 +238,7 @@ void loadAssets() {
 
 void setupSpritesheets() {
   // Timer bar spritesheet
-  for (int i = 0; i <= 9; i++) {
+  for (int i = 0; i <= 10; i++) {
     rTimer[i].x = 0;
     rTimer[i].y = (i * 30) + i;
     rTimer[i].w = 360;
