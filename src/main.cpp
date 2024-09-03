@@ -75,9 +75,11 @@ cTexture gBackgroundMain;
 cTexture gInputWindow;
 cTexture gTeacher;
 cTexture gTimer;
+cTexture gCorrect;
 
 // Spritesheet rect's
 SDL_Rect rTimer[11];
+SDL_Rect rCorrect[2];
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -179,6 +181,7 @@ int WinMain(int argc, char *argv[]) {
       gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
+    gCorrect.render(0,0, gCorrect.getWidth(), gCorrect.getHeight(), &rCorrect[1]);
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -223,6 +226,7 @@ void loadAssets() {
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
   gTeacher.loadFromFile("res/img/character/teacher-0001.png");
   gTimer.loadFromFile("res/img/bar/time-0001.png");
+  gCorrect.loadFromFile("res/img/misc/correctness_indicator.png");
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -240,25 +244,33 @@ void loadAssets() {
 void setupSpritesheets() {
   // Timer bar spritesheet
   for (int i = 0; i <= 10; i++) {
-    std::cout << i << std::endl;
+    std::cout << "Timer bar: " << i << std::endl;
     rTimer[i].x = 0;
     rTimer[i].y = (i * 30) + i;
     rTimer[i].w = 360;
     rTimer[i].h = 30;
   }
+
+  // Correctness Indicator spritesheet
+  for (int i = 0; i <= 1; i++) {
+    std::cout << "Correctness Indicator: " << i << std::endl;
+    rCorrect[i].x = (i*128) + i;
+    rCorrect[i].y = 0;
+    rCorrect[i].w = 128;
+    rCorrect[i].h = 128;
+  }
 }
 
 void runTimer() {
-  // Decrement immediately to avoid long first frame
+  // Decrement immididately to avoid first long frame (annoying!)
   remainingTime--;
   spriteIndex.store(remainingTime);
   std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
 
   while (remainingTime > 0 && !stopFlag.load()) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    remainingTime--;  // Decrease the remaining time
+    remainingTime--; 
 
-    // Update sprite index based on remaining time
     spriteIndex.store(remainingTime);
     std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
   }
@@ -273,7 +285,8 @@ void quit() {
   gEquationFontTexture.free();
   gInputFontTexture.free();
   gTeacher.free();
-  gTimer.free();
+  gTimer.free(); 
+  gCorrect.free();
 
   // Sounds
   Mix_FreeMusic(sMusic);
