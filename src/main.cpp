@@ -154,7 +154,73 @@ int WinMain(int argc, char *argv[]) {
       if (e.type == SDL_QUIT) {
         stop = true;
       } else if (e.type == SDL_KEYDOWN) {
-        // Handle key events...
+        SDL_Keycode pressedKeyRaw = e.key.keysym.sym;
+        const char *pressedKey = SDL_GetKeyName(pressedKeyRaw);
+
+        switch (pressedKeyRaw) {
+          case SDLK_0 ... SDLK_9: {
+            inputedString += pressedKey;
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
+            break;
+          }
+          case SDLK_MINUS: {
+            inputedString += '-';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
+            break;
+          }
+          case SDLK_PERIOD: {
+            inputedString += '.';
+            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                           fInput);
+            break;
+          }
+          case SDLK_RETURN: {
+            try {
+              float userAnswer =
+                  std::stof(inputedString);  // Convert input to float
+
+              // Round both values to two decimal places
+              float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
+              float roundedEquationResult =
+                  std::floorf(equationResult * 100) / 100;
+
+              printf("%f", roundedEquationResult);
+              printf("%f", equationResult);
+              // Compare the rounded values
+              if (roundedUserAnswer == roundedEquationResult) {
+                printf("Correct!\n");
+                lvl++;
+                equation = randEquation(lvl);
+                equationResult = getEquationAnswer(equation);
+                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                                                  fEquation);
+                inputedString.clear();  // Clear the string after correct input
+                gInputFontTexture.free();  // Optionally clear the texture
+              } else {
+                printf("Wrong!\n");
+              }
+            } catch (const std::invalid_argument &e) {
+              std::cerr << "Invalid input for checking equation: "
+                        << inputedString << std::endl;
+            }
+            break;
+          }
+          case SDLK_BACKSPACE: {
+            if (!inputedString.empty()) {
+              inputedString =
+                  inputedString.substr(0, inputedString.length() - 1);
+
+              if (inputedString.empty()) {
+                gInputFontTexture.free();
+              } else {
+                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                                               fInput);
+              }
+            }
+          }
+        }
       }
     }
 
