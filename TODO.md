@@ -1,5 +1,5 @@
 # TODO
 
 * [x] Add option to use sprite sheets
-* [ ] Add timer
+* [x] Add timer
 * [ ] Add lose mechanic
