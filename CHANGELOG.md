@@ -63,10 +63,6 @@
   * Updated format
 * *src/res/img/background/background-0001.png*
   * Updated image
-* *src/res/img/bar/time-0001.png*
-  * Updated image
-* *src/res/img/bar/json/time-0001.json*
-  * Updated json file to match image
 * *src/res/img/misc/correctness_indicator.png*
   * Updated image
 * *src/res/img/misc/json/correctness_indicator.json*
@@ -75,6 +71,10 @@
   * Updated image
 * *src/res/img/character/teacher-0001.png*
   * Updated image **2x**
+* *src/res/img/bar/time-0001.png*
+  * Updated image **2x**
+* *src/res/img/bar/json/time-0001.json*
+  * Updated json file to match image **2x**
 * *src/main.cpp*
   * Updated version number
   * Added license header
@@ -84,6 +84,7 @@
   * Timer sprite can now be rendered as a spritesheet
   * Updated format **3x**
   * Added missing timer sprites
+  * Completed timer logic **2x**
 
 ## v0.8.0-alpha
 
