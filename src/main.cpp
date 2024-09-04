@@ -21,7 +21,7 @@
 #include "generate_equation.h"
 #include "random.h"
 
-const std::string VERSION = "v0.9.0-alpha";
+const std::string VERSION = "v0.9.1-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -30,7 +30,7 @@ int SCR_HEIGHT = 0;
 // General global variables
 int lvl = 1;
 std::atomic<int> spriteIndex(10);
-std::atomic<bool> stopFlag(false);
+std::atomic<bool> stopTimer(false);
 std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
@@ -272,6 +272,8 @@ int WinMain(int argc, char *argv[]) {
   }
 
   // Wait for the timer thread to finish
+  stopTimer.load();
+  stopTimer = true;
   timerThread.join();
 
   quit();
@@ -348,7 +350,7 @@ void runTimer() {
   spriteIndex.store(remainingTime);
   std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
 
-  while (remainingTime > 0 && !stopFlag.load()) {
+  while (remainingTime > 0 && !stopTimer.load()) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     remainingTime--;
 
