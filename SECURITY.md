@@ -12,6 +12,6 @@ format below:
 
 **Message:**
 
-- **Version:** vX.X.X  
-- **Vulnerability:** Describe the vulnerability here.  
-- **GitHub Username:** yourUsername123
+* **Version:** vX.X.X  
+* **Vulnerability:** Describe the vulnerability here.  
+* **GitHub Username:** yourUsername123

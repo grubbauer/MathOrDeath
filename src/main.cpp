@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Raphael Grubbauer
+ * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
+ * See LICENSE.md file in the project root for full license information.
+*/
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -5,13 +11,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <atomic>
 #include <cmath>
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include "equation_answer.h"
 #include "generate_equation.h"
 #include "random.h"
+
+const std::string VERSION = "v0.9.0-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -19,10 +29,13 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-const std::string VERSION = "v0.8.0-alpha";
+std::atomic<int> spriteIndex(10);
+std::atomic<bool> stopFlag(false);
 std::string inputedString;
 std::string equation = randEquation(lvl);
+std::atomic<int> remainingTime(11);
 float equationResult = getEquationAnswer(equation);
+bool answeredWrong = false;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -34,18 +47,20 @@ TTF_Font *fEquation;
 
 void initialise();
 void loadAssets();
+void setupSpritesheets();
+void runTimer();
 void quit();
 
 // Texture class
 class cTexture {
  public:
-  cTexture();   // Constructor
+  cTexture();  // Constructor
   ~cTexture();  // Destructor
 
   void loadFromFile(std::string path);
   void loadFromText(std::string text, SDL_Color color, TTF_Font *font);
   void free();
-  void render(int x, int y, int w, int h);
+  void render(int x, int y, int w, int h, SDL_Rect *clip = NULL);
 
   int getWidth();
   int getHeight();
@@ -60,6 +75,12 @@ class cTexture {
 cTexture gBackgroundMain;
 cTexture gInputWindow;
 cTexture gTeacher;
+cTexture gTimer;
+cTexture gCorrect;
+
+// Spritesheet rect's
+SDL_Rect rTimer[11];
+SDL_Rect rCorrect[2];
 
 // Font Textures
 cTexture gInputFontTexture;
@@ -104,9 +125,14 @@ void cTexture::free() {
   }
 }
 
-void cTexture::render(int x, int y, int w, int h) {
+void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
   SDL_Rect renderQuad = {x, y, w, h};
-  SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
+  if (clip != NULL) {
+    renderQuad.w = clip->w;
+    renderQuad.h = clip->h;
+  }
+
+  SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
 }
 
 int cTexture::getWidth() { return mWidth; }
@@ -116,6 +142,10 @@ int cTexture::getHeight() { return mHeight; }
 int WinMain(int argc, char *argv[]) {
   initialise();
   loadAssets();
+  setupSpritesheets();
+
+  // Start the timer thread
+  std::thread timerThread(runTimer);
 
   bool stop = false;
   SDL_Event e;
@@ -150,12 +180,12 @@ int WinMain(int argc, char *argv[]) {
           case SDLK_RETURN: {
             try {
               float userAnswer =
-                  std::stof(inputedString);  // Convert input to float
+                std::stof(inputedString);  // Convert input to float
 
               // Round both values to two decimal places
               float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
               float roundedEquationResult =
-                  std::floorf(equationResult * 100) / 100;
+                std::floorf(equationResult * 100) / 100;
 
               printf("%f", roundedEquationResult);
               printf("%f", equationResult);
@@ -171,6 +201,7 @@ int WinMain(int argc, char *argv[]) {
                 gInputFontTexture.free();  // Optionally clear the texture
               } else {
                 printf("Wrong!\n");
+                answeredWrong = true;
               }
             } catch (const std::invalid_argument &e) {
               std::cerr << "Invalid input for checking equation: "
@@ -181,7 +212,7 @@ int WinMain(int argc, char *argv[]) {
           case SDLK_BACKSPACE: {
             if (!inputedString.empty()) {
               inputedString =
-                  inputedString.substr(0, inputedString.length() - 1);
+                inputedString.substr(0, inputedString.length() - 1);
 
               if (inputedString.empty()) {
                 gInputFontTexture.free();
@@ -207,12 +238,31 @@ int WinMain(int argc, char *argv[]) {
                         ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
                         (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
     gEquationFontTexture.render(
-        (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
-        gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
+      (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
+      gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
 
+    // Render the timer
+    if (spriteIndex >= 0) {
+      gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
+                    &rTimer[spriteIndex]);
+    }
+    if (spriteIndex == 0) {
+      answeredWrong = true;
+    }
+
+    if (answeredWrong == true) {
+      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
+                      &rCorrect[0]);
+      SDL_RenderPresent(gRenderer);
+      SDL_Delay(1000);
+      stop = true;
+    } else {
+      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
+                      &rCorrect[1]);
+    }
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -220,6 +270,9 @@ int WinMain(int argc, char *argv[]) {
       Mix_PlayMusic(sMusic, -1);
     }
   }
+
+  // Wait for the timer thread to finish
+  timerThread.join();
 
   quit();
   return 0;
@@ -241,10 +294,9 @@ void initialise() {
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
+  // Accelerated with VSync enabled
   gRenderer = SDL_CreateRenderer(
-      gWindow, -1,
-      SDL_RENDERER_ACCELERATED |
-          SDL_RENDERER_PRESENTVSYNC);  // Accelerated with VSync activated
+    gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
   // SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 }
@@ -254,6 +306,8 @@ void loadAssets() {
   gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
   gTeacher.loadFromFile("res/img/character/teacher-0001.png");
+  gTimer.loadFromFile("res/img/bar/time-0001.png");
+  gCorrect.loadFromFile("res/img/misc/correctness_indicator.png");
 
   // Sounds
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -261,17 +315,59 @@ void loadAssets() {
   // Fonts
   fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
   fEquation =
-      TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
+    TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
   gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
 }
 
+void setupSpritesheets() {
+  // Timer bar spritesheet
+  for (int i = 0; i <= 10; i++) {
+    std::cout << "Timer bar: " << i << std::endl;
+    rTimer[i].x = 0;
+    rTimer[i].y = (i * 30) + i;
+    rTimer[i].w = 360;
+    rTimer[i].h = 30;
+  }
+
+  // Correctness Indicator spritesheet
+  for (int i = 0; i <= 1; i++) {
+    std::cout << "Correctness Indicator: " << i << std::endl;
+    rCorrect[i].x = (i * 128) + i;
+    rCorrect[i].y = 0;
+    rCorrect[i].w = 128;
+    rCorrect[i].h = 128;
+  }
+}
+
+void runTimer() {
+  // Decrement immididately to avoid first long frame (annoying!)
+  remainingTime--;
+  spriteIndex.store(remainingTime);
+  std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+
+  while (remainingTime > 0 && !stopFlag.load()) {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    remainingTime--;
+
+    spriteIndex.store(remainingTime);
+    std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+  }
+
+  std::cout << "Time's up!" << std::endl;
+}
+
 void quit() {
   // Graphical elements
   gBackgroundMain.free();
   gInputWindow.free();
+  gEquationFontTexture.free();
+  gInputFontTexture.free();
+  gTeacher.free();
+  gTimer.free();
+  gCorrect.free();
 
   // Sounds
   Mix_FreeMusic(sMusic);

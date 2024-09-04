@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) Raphael Grubbauer
+ * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
+ * See LICENSE.md file in the project root for full license information.
+*/
+
 #include <iostream>
 #include <sstream>
 #include <string>

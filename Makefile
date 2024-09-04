@@ -1,4 +1,8 @@
-VERSION := v0.8.0-alpha
+# Copyright (c) Raphael Grubbauer
+# Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
+# See LICENSE.md file in the project root for full license information.
+
+VERSION := v0.9.0-alpha
 
 # Compiler and Directories
 CC := clang++
