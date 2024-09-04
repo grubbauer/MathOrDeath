@@ -35,6 +35,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 float equationResult = getEquationAnswer(equation);
+bool answeredWrong = false;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -179,12 +180,12 @@ int WinMain(int argc, char *argv[]) {
           case SDLK_RETURN: {
             try {
               float userAnswer =
-                  std::stof(inputedString);  // Convert input to float
+                std::stof(inputedString);  // Convert input to float
 
               // Round both values to two decimal places
               float roundedUserAnswer = std::floorf(userAnswer * 100) / 100;
               float roundedEquationResult =
-                  std::floorf(equationResult * 100) / 100;
+                std::floorf(equationResult * 100) / 100;
 
               printf("%f", roundedEquationResult);
               printf("%f", equationResult);
@@ -200,6 +201,7 @@ int WinMain(int argc, char *argv[]) {
                 gInputFontTexture.free();  // Optionally clear the texture
               } else {
                 printf("Wrong!\n");
+                answeredWrong = true;
               }
             } catch (const std::invalid_argument &e) {
               std::cerr << "Invalid input for checking equation: "
@@ -210,7 +212,7 @@ int WinMain(int argc, char *argv[]) {
           case SDLK_BACKSPACE: {
             if (!inputedString.empty()) {
               inputedString =
-                  inputedString.substr(0, inputedString.length() - 1);
+                inputedString.substr(0, inputedString.length() - 1);
 
               if (inputedString.empty()) {
                 gInputFontTexture.free();
@@ -247,7 +249,20 @@ int WinMain(int argc, char *argv[]) {
       gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
-    gCorrect.render(0,0, gCorrect.getWidth(), gCorrect.getHeight(), &rCorrect[1]);
+    if (spriteIndex == 0) {
+      answeredWrong = true;
+    }
+
+    if (answeredWrong == true) {
+      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
+                      &rCorrect[0]);
+      SDL_RenderPresent(gRenderer);
+      SDL_Delay(1000);
+      stop = true;
+    } else {
+      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
+                      &rCorrect[1]);
+    }
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -320,7 +335,7 @@ void setupSpritesheets() {
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
     std::cout << "Correctness Indicator: " << i << std::endl;
-    rCorrect[i].x = (i*128) + i;
+    rCorrect[i].x = (i * 128) + i;
     rCorrect[i].y = 0;
     rCorrect[i].w = 128;
     rCorrect[i].h = 128;
@@ -335,7 +350,7 @@ void runTimer() {
 
   while (remainingTime > 0 && !stopFlag.load()) {
     std::this_thread::sleep_for(std::chrono::seconds(1));
-    remainingTime--; 
+    remainingTime--;
 
     spriteIndex.store(remainingTime);
     std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
@@ -351,7 +366,7 @@ void quit() {
   gEquationFontTexture.free();
   gInputFontTexture.free();
   gTeacher.free();
-  gTimer.free(); 
+  gTimer.free();
   gCorrect.free();
 
   // Sounds
