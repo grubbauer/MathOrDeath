@@ -89,6 +89,10 @@
   * Re-added key input system
   * Added loosing mechanic
 
+### Removed
+
+* *TODO.md*
+
 ## v0.8.0-alpha
 
 ### Added
