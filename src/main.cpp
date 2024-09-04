@@ -21,7 +21,7 @@
 #include "generate_equation.h"
 #include "random.h"
 
-const std::string VERSION = "v0.9.1-alpha";
+const std::string VERSION = "v0.9.2-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
