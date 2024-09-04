@@ -8,6 +8,7 @@
   * Updated version number
 * *src/main.cpp*
   * Updated version number
+  * Thread `runTimer` is now stopped when program is closed
 
 ## v0.9.0-alpha
 
