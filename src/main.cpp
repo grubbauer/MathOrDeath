@@ -246,7 +246,8 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 20, gTimer.getWidth(), gTimer.getHeight(),
+      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 20,
+                    gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
     if (spriteIndex == 0) {
@@ -353,7 +354,9 @@ void runTimer() {
   while (remainingTime > 0 && !stopTimer.load()) {
     for (int i = 0; i <= 9; i++) {
       std::this_thread::sleep_for(std::chrono::milliseconds(100));
-      if (stopTimer.load()) { break; }
+      if (stopTimer.load()) {
+        break;
+      }
     }
     remainingTime--;
 
