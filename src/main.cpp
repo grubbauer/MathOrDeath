@@ -246,7 +246,7 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
+      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 20, gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
     if (spriteIndex == 0) {
@@ -274,9 +274,9 @@ int WinMain(int argc, char *argv[]) {
   // Wait for the timer thread to finish
   stopTimer.load();
   stopTimer = true;
-  timerThread.join();
 
   quit();
+  timerThread.join();
   return 0;
 }
 
@@ -351,7 +351,10 @@ void runTimer() {
   std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
 
   while (remainingTime > 0 && !stopTimer.load()) {
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    for (int i = 0; i <= 9; i++) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      if (stopTimer.load()) { break; }
+    }
     remainingTime--;
 
     spriteIndex.store(remainingTime);
