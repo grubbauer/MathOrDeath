@@ -2,12 +2,19 @@
 
 ## v0.9.2-alpha
 
+### Added
+
+* *docs/rev_layoutUpdate.png*
+* *docs/rev_layoutUpdate.png_description.md*
+
 ### Updated
 
 * *Makefile*
   * Updated version number
 * *src/main.cpp*
   * Updated version number
+  * Updated layout
+    1. Moved timer position
 
 ## v.0.9.1-alpha
 
