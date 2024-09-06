@@ -246,7 +246,7 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 20,
+      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 50,
                     gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
