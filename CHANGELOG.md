@@ -15,6 +15,9 @@
   * Updated version number
   * Updated layout **2x**
     1. Moved timer position **2x**
+* *.clang-format*
+  * Updated formatting options
+    * Set `AccessModifierOffset` to `-2`
 
 ## v.0.9.1-alpha
 
