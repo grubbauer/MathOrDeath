@@ -13,8 +13,8 @@
   * Updated version number
 * *src/main.cpp*
   * Updated version number
-  * Updated layout
-    1. Moved timer position
+  * Updated layout **2x**
+    1. Moved timer position **2x**
 
 ## v.0.9.1-alpha
 
