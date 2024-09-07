@@ -18,6 +18,7 @@
 * *.clang-format*
   * Updated formatting options
     * Set `AccessModifierOffset` to `-2`
+    * Set `AccessModifierOffset` to `0`
 
 ## v.0.9.1-alpha
 
