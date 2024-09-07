@@ -13,8 +13,9 @@
   * Updated version number
 * *src/main.cpp*
   * Updated version number
-  * Updated layout **2x**
+  * Updated layout **3x**
     1. Moved timer position **2x**
+    2. Moved correctness indicatior position
 * *.clang-format*
   * Updated formatting options
     * Set `AccessModifierOffset` to `-2`
