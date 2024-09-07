@@ -53,7 +53,7 @@ void quit();
 
 // Texture class
 class cTexture {
- public:
+  public:
   cTexture();  // Constructor
   ~cTexture();  // Destructor
 
@@ -65,7 +65,7 @@ class cTexture {
   int getWidth();
   int getHeight();
 
- private:
+  private:
   SDL_Texture *mTexture;
   int mHeight;
   int mWidth;
@@ -255,14 +255,12 @@ int WinMain(int argc, char *argv[]) {
     }
 
     if (answeredWrong == true) {
-      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
-                      &rCorrect[0]);
+      gCorrect.render((SCR_WIDTH / 2 - gCorrect.getWidth()/3 / 2),(SCR_HEIGHT / 2 - gCorrect.getHeight()/3 / 2),SCR_HEIGHT/3,SCR_HEIGHT/3,&rCorrect[0]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else {
-      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
-                      &rCorrect[1]);
+      gCorrect.render((SCR_WIDTH / 2 - gCorrect.getWidth()/3 / 2),(SCR_HEIGHT / 2 - gCorrect.getHeight()/3 / 2),SCR_HEIGHT/3,SCR_HEIGHT/3,&rCorrect[1]);
     }
     SDL_RenderPresent(gRenderer);
 
@@ -397,3 +395,4 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
+
