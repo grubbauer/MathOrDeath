@@ -6,6 +6,7 @@
 
 * *docs/rev_layoutUpdate.png*
 * *docs/rev_layoutUpdate.png_description.md*
+* *.clangd*
 
 ### Updated
 
