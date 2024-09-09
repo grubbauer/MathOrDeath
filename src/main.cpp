@@ -19,7 +19,6 @@
 
 #include "equation_answer.h"
 #include "generate_equation.h"
-#include "random.h"
 
 const std::string VERSION = "v0.9.2-alpha";
 
@@ -126,14 +125,17 @@ void cTexture::free() {
 }
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
-  SDL_Rect renderQuad = {x, y, w, h};
-  if (clip != NULL) {
-    renderQuad.w = clip->w;
-    renderQuad.h = clip->h;
-  }
-
-  SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
+    SDL_Rect renderQuad = {x, y, w, h};  // Target render area
+    
+    // Scale render area to target width and height
+    if (clip != NULL) {
+        SDL_Rect srcRect = {clip->x, clip->y, clip->w, clip->h};  // Source rectangle
+        SDL_RenderCopy(gRenderer, mTexture, &srcRect, &renderQuad);  // Use clip as source
+    } else {
+        SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);  // No clipping
+    }
 }
+
 
 int cTexture::getWidth() { return mWidth; }
 
@@ -255,12 +257,22 @@ int WinMain(int argc, char *argv[]) {
     }
 
     if (answeredWrong == true) {
-      gCorrect.render((SCR_WIDTH / 2 - gCorrect.getWidth()/3 / 2),(SCR_HEIGHT / 2 - gCorrect.getHeight()/3 / 2),SCR_HEIGHT/3,SCR_HEIGHT/3,&rCorrect[0]);
+      gCorrect.render((SCR_WIDTH / 2 - ((gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight()) / 2),
+                (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
+                (gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight(),
+                SCR_HEIGHT / 3,
+                &rCorrect[0]);
+
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else {
-      gCorrect.render((SCR_WIDTH / 2 - gCorrect.getWidth()/3 / 2),(SCR_HEIGHT / 2 - gCorrect.getHeight()/3 / 2),SCR_HEIGHT/3,SCR_HEIGHT/3,&rCorrect[1]);
+      gCorrect.render((SCR_WIDTH / 2 - ((gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight()) / 2),
+                (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
+                (gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight(),
+                SCR_HEIGHT / 3,
+                &rCorrect[1]);
+
     }
     SDL_RenderPresent(gRenderer);
 
