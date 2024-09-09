@@ -3,7 +3,6 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
 */
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
@@ -125,17 +124,18 @@ void cTexture::free() {
 }
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
-    SDL_Rect renderQuad = {x, y, w, h};  // Target render area
-    
-    // Scale render area to target width and height
-    if (clip != NULL) {
-        SDL_Rect srcRect = {clip->x, clip->y, clip->w, clip->h};  // Source rectangle
-        SDL_RenderCopy(gRenderer, mTexture, &srcRect, &renderQuad);  // Use clip as source
-    } else {
-        SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);  // No clipping
-    }
-}
+  SDL_Rect renderQuad = {x, y, w, h};  // Target render area
 
+  // Scale render area to target width and height
+  if (clip != NULL) {
+    SDL_Rect srcRect = {clip->x, clip->y, clip->w,
+                        clip->h};  // Source rectangle
+    SDL_RenderCopy(gRenderer, mTexture, &srcRect,
+                   &renderQuad);  // Use clip as source
+  } else {
+    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);  // No clipping
+  }
+}
 
 int cTexture::getWidth() { return mWidth; }
 
@@ -257,23 +257,25 @@ int WinMain(int argc, char *argv[]) {
     }
 
     if (answeredWrong == true) {
-      gCorrect.render((SCR_WIDTH / 2 - ((gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight()) / 2),
-                (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
-                (gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight(),
-                SCR_HEIGHT / 3,
-                &rCorrect[0]);
+      gCorrect.render((SCR_WIDTH / 2 - (gCorrect.getWidth() * SCR_HEIGHT / 3) /
+                                         gCorrect.getHeight() / 2),
+                      (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
+                      (gCorrect.getWidth() * SCR_HEIGHT / 3) /
+                        gCorrect.getHeight(),
+                      SCR_HEIGHT / 3, &rCorrect[0]);
 
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else {
-      gCorrect.render((SCR_WIDTH / 2 - ((gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight()) / 2),
-                (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
-                (gCorrect.getWidth() * SCR_HEIGHT / 3) / gCorrect.getHeight(),
-                SCR_HEIGHT / 3,
-                &rCorrect[1]);
-
+      gCorrect.render((SCR_WIDTH / 2 - (gCorrect.getWidth() * SCR_HEIGHT / 3) /
+                                         gCorrect.getHeight() / 2),
+                      (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
+                      (gCorrect.getWidth() * SCR_HEIGHT / 3) /
+                        gCorrect.getHeight(),
+                      SCR_HEIGHT / 3, &rCorrect[1]);
     }
+
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -407,4 +409,3 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
-
