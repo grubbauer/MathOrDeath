@@ -3,7 +3,6 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
 */
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
@@ -125,17 +124,30 @@ void cTexture::free() {
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
   SDL_Rect renderQuad = {x, y, w, h};  // Target render area
-
-  // Scale render area to target width and height
+  
   if (clip != NULL) {
-    SDL_Rect srcRect = {clip->x, clip->y, clip->w,
-                        clip->h};  // Source rectangle
-    SDL_RenderCopy(gRenderer, mTexture, &srcRect,
-                   &renderQuad);  // Use clip as source
+    float clipAspect = (float)clip->w / (float)clip->h;
+    float targetAspect = (float)w / (float)h;
+    
+    if (targetAspect > clipAspect) {
+      // Width is too large, adjust it
+      renderQuad.w = h * clipAspect;
+      renderQuad.x = x + (w - renderQuad.w) / 2;  // Center horizontally
+    } else if (targetAspect < clipAspect) {
+      // Height is too large, adjust it
+      renderQuad.h = w / clipAspect;
+      renderQuad.y = y + (h - renderQuad.h) / 2;  // Center vertically
+    }
+  }
+  
+  // Render the texture
+  if (clip != NULL) {
+    SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
   } else {
-    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);  // No clipping
+    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
   }
 }
+
 
 int cTexture::getWidth() { return mWidth; }
 
@@ -248,7 +260,7 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(SCR_WIDTH - gTimer.getWidth(), SCR_HEIGHT / 50,
+      gTimer.render(SCR_WIDTH - gTimer.getWidth(), gTimer.getHeight(),
                     gTimer.getWidth(), gTimer.getHeight(),
                     &rTimer[spriteIndex]);
     }
@@ -409,3 +421,4 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
+
