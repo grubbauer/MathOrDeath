@@ -17,6 +17,7 @@
   * Updated layout **4x**
     1. Moved timer position **2x**
     2. Moved correctness indicatior position **2x**
+  * Changed renderer function
 * *.clang-format*
   * Updated formatting options
     * Set `AccessModifierOffset` to `-2`
