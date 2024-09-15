@@ -3,8 +3,6 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
 */
-
-#include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
@@ -19,9 +17,8 @@
 
 #include "equation_answer.h"
 #include "generate_equation.h"
-#include "random.h"
 
-const std::string VERSION = "v0.9.1-alpha";
+const std::string VERSION = "v0.9.2-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -53,7 +50,7 @@ void quit();
 
 // Texture class
 class cTexture {
- public:
+  public:
   cTexture();  // Constructor
   ~cTexture();  // Destructor
 
@@ -65,7 +62,7 @@ class cTexture {
   int getWidth();
   int getHeight();
 
- private:
+  private:
   SDL_Texture *mTexture;
   int mHeight;
   int mWidth;
@@ -126,14 +123,27 @@ void cTexture::free() {
 }
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
-  SDL_Rect renderQuad = {x, y, w, h};
+  SDL_Rect renderQuad = {x, y, w, h};  // Target render area
+  
   if (clip != NULL) {
-    renderQuad.w = clip->w;
-    renderQuad.h = clip->h;
+    float clipAspect = (float)clip->w / (float)clip->h;
+    float targetAspect = (float)w / (float)h;
+    
+    if (targetAspect > clipAspect) {
+      renderQuad.w = h * clipAspect;
+    } else if (targetAspect < clipAspect) {
+      renderQuad.h = w / clipAspect;
+    }
   }
-
-  SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
+  
+  // Render the texture
+  if (clip != NULL) {
+    SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
+  } else {
+    SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
+  }
 }
+
 
 int cTexture::getWidth() { return mWidth; }
 
@@ -246,23 +256,21 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(0, 0, gTimer.getWidth(), gTimer.getHeight(),
-                    &rTimer[spriteIndex]);
+    gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT/2, SCR_HEIGHT/24, &rTimer[spriteIndex]);
     }
     if (spriteIndex == 0) {
       answeredWrong = true;
     }
 
     if (answeredWrong == true) {
-      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
-                      &rCorrect[0]);
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else {
-      gCorrect.render(0, 0, gCorrect.getWidth(), gCorrect.getHeight(),
-                      &rCorrect[1]);
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
     }
+
     SDL_RenderPresent(gRenderer);
 
     // Sounds
@@ -274,9 +282,9 @@ int WinMain(int argc, char *argv[]) {
   // Wait for the timer thread to finish
   stopTimer.load();
   stopTimer = true;
-  timerThread.join();
 
   quit();
+  timerThread.join();
   return 0;
 }
 
@@ -292,7 +300,8 @@ void initialise() {
 
   SCR_WIDTH = display_mode.w / 2;
   SCR_HEIGHT = display_mode.h / 2;
-
+  std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
+  std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
@@ -351,7 +360,12 @@ void runTimer() {
   std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
 
   while (remainingTime > 0 && !stopTimer.load()) {
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    for (int i = 0; i <= 9; i++) {
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      if (stopTimer.load()) {
+        break;
+      }
+    }
     remainingTime--;
 
     spriteIndex.store(remainingTime);
@@ -391,3 +405,4 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
+

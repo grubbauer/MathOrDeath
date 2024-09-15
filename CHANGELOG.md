@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v0.9.2-alpha
+
+### Added
+
+* *docs/rev_layoutUpdate.png*
+* *docs/rev_layoutUpdate.png_description.md*
+* *.clangd*
+
+### Updated
+
+* *Makefile*
+  * Updated version number
+* *src/main.cpp*
+  * Updated version number
+  * Updated layout **5x**
+    1. Moved timer position **2x**
+    2. Moved correctness indicatior position **3x**
+    3. Modified size of correctness indicatior
+  * Changed renderer function
+* *.clang-format*
+  * Updated formatting options
+    * Set `AccessModifierOffset` to `-2`
+    * Set `AccessModifierOffset` to `0`
+* *README.md*
+  * Updated text
+
 ## v.0.9.1-alpha
 
 ### Updated
