@@ -130,13 +130,9 @@ void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
     float targetAspect = (float)w / (float)h;
     
     if (targetAspect > clipAspect) {
-      // Width is too large, adjust it
       renderQuad.w = h * clipAspect;
-      renderQuad.x = x + (w - renderQuad.w) / 2;  // Center horizontally
     } else if (targetAspect < clipAspect) {
-      // Height is too large, adjust it
       renderQuad.h = w / clipAspect;
-      renderQuad.y = y + (h - renderQuad.h) / 2;  // Center vertically
     }
   }
   
@@ -260,32 +256,19 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-      gTimer.render(SCR_WIDTH - gTimer.getWidth(), gTimer.getHeight(),
-                    gTimer.getWidth(), gTimer.getHeight(),
-                    &rTimer[spriteIndex]);
+    gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT/2, SCR_HEIGHT/24, &rTimer[spriteIndex]);
     }
     if (spriteIndex == 0) {
       answeredWrong = true;
     }
 
     if (answeredWrong == true) {
-      gCorrect.render((SCR_WIDTH / 2 - (gCorrect.getWidth() * SCR_HEIGHT / 3) /
-                                         gCorrect.getHeight() / 2),
-                      (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
-                      (gCorrect.getWidth() * SCR_HEIGHT / 3) /
-                        gCorrect.getHeight(),
-                      SCR_HEIGHT / 3, &rCorrect[0]);
-
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else {
-      gCorrect.render((SCR_WIDTH / 2 - (gCorrect.getWidth() * SCR_HEIGHT / 3) /
-                                         gCorrect.getHeight() / 2),
-                      (SCR_HEIGHT / 2 - SCR_HEIGHT / 3 / 2),
-                      (gCorrect.getWidth() * SCR_HEIGHT / 3) /
-                        gCorrect.getHeight(),
-                      SCR_HEIGHT / 3, &rCorrect[1]);
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
     }
 
     SDL_RenderPresent(gRenderer);
@@ -317,7 +300,8 @@ void initialise() {
 
   SCR_WIDTH = display_mode.w / 2;
   SCR_HEIGHT = display_mode.h / 2;
-
+  std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
+  std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
