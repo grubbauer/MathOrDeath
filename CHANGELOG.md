@@ -6,6 +6,7 @@
 
 * *src/main.cpp*
   * Updated version number
+  * `correctness_indicator` is now only displayed when number is inputed
 * *Makefile*
   * Updated version number
 
