@@ -33,6 +33,8 @@ std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
+bool answeredCorrect = false;
+Uint32 answeredCorrectTime = 0;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -209,6 +211,8 @@ int WinMain(int argc, char *argv[]) {
                                                   fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
+                answeredCorrect = true;
+                answeredCorrectTime = SDL_GetTicks();
               } else {
                 printf("Wrong!\n");
                 answeredWrong = true;
@@ -235,7 +239,9 @@ int WinMain(int argc, char *argv[]) {
         }
       }
     }
-
+  
+    Uint32 currentTime = SDL_GetTicks();
+    
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
@@ -267,8 +273,10 @@ int WinMain(int argc, char *argv[]) {
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
-    } else {
+    } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+    } else {
+      answeredCorrect = false;
     }
 
     SDL_RenderPresent(gRenderer);
