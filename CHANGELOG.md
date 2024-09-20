@@ -8,6 +8,7 @@
   * Updated version number
   * `correctness_indicator` is now only displayed when number is inputed
   * Formatted code
+  * Timer is now being paused while `correctness_indicator` is being displayed
 * *Makefile*
   * Updated version number
 
