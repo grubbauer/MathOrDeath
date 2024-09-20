@@ -1,4 +1,4 @@
 # TODO
 
-* [ ] Reset timer when answer was inputted correctly
+* [x] Reset timer when answer was inputted correctly
 
