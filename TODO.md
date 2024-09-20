@@ -1,3 +1,3 @@
 # TODO
 
-* [ ] Update layout of timer and correctness-indicator
+* [ ] Pause timer while correctness indicator is being displayed
