@@ -12,6 +12,10 @@
 * *Makefile*
   * Updated version number
 
+### Removed
+
+* *.vscode/*
+
 ## v0.9.2-alpha
 
 ### Added
