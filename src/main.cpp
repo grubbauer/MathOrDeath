@@ -31,9 +31,9 @@ std::atomic<bool> stopTimer(false);
 std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
+std::atomic<bool> answeredCorrect = false;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
-bool answeredCorrect = false;
 Uint32 answeredCorrectTime = 0;
 
 SDL_Window *gWindow = NULL;
@@ -366,25 +366,28 @@ void setupSpritesheets() {
 }
 
 void runTimer() {
-  // Decrement immididately to avoid first long frame (annoying!)
-  remainingTime--;
-  spriteIndex.store(remainingTime);
-  std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
-
-  while (remainingTime > 0 && !stopTimer.load()) {
-    for (int i = 0; i <= 9; i++) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));
-      if (stopTimer.load()) {
-        break;
-      }
-    }
+  if (!answeredCorrect.load()) {
+    // Decrement immididately to avoid first long frame (annoying!)
     remainingTime--;
-
     spriteIndex.store(remainingTime);
+    std::cout << "Paused: " << answeredCorrect.load() << std::endl;
     std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
-  }
 
-  std::cout << "Time's up!" << std::endl;
+    while (remainingTime > 0 && !stopTimer.load()) {
+      for (int i = 0; i <= 9; i++) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (stopTimer.load()) {
+          break;
+        }
+      }
+      remainingTime--;
+
+      spriteIndex.store(remainingTime);
+      std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+    }
+
+    std::cout << "Time's up!" << std::endl;
+  }
 }
 
 void quit() {
