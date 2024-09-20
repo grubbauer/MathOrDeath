@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) Raphael Grubbauer
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
@@ -279,6 +279,8 @@ int WinMain(int argc, char *argv[]) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+      spriteIndex = 10;
+      remainingTime = 11;
     } else {
       answeredCorrect = false;
     }
@@ -321,7 +323,7 @@ void initialise() {
   gRenderer = SDL_CreateRenderer(
     gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-  // SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 }
 
 void loadAssets() {
@@ -385,7 +387,6 @@ void runTimer() {
       spriteIndex.store(remainingTime);
       std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
     }
-
     std::cout << "Time's up!" << std::endl;
   }
 }
