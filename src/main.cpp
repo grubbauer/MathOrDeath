@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (c) Raphael Grubbauer
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v0.9.2-alpha";
+const std::string VERSION = "v0.9.3-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -31,8 +31,10 @@ std::atomic<bool> stopTimer(false);
 std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
+std::atomic<bool> answeredCorrect = false;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
+Uint32 answeredCorrectTime = 0;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -124,18 +126,18 @@ void cTexture::free() {
 
 void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
   SDL_Rect renderQuad = {x, y, w, h};  // Target render area
-  
+
   if (clip != NULL) {
     float clipAspect = (float)clip->w / (float)clip->h;
     float targetAspect = (float)w / (float)h;
-    
+
     if (targetAspect > clipAspect) {
       renderQuad.w = h * clipAspect;
     } else if (targetAspect < clipAspect) {
       renderQuad.h = w / clipAspect;
     }
   }
-  
+
   // Render the texture
   if (clip != NULL) {
     SDL_RenderCopy(gRenderer, mTexture, clip, &renderQuad);
@@ -143,7 +145,6 @@ void cTexture::render(int x, int y, int w, int h, SDL_Rect *clip) {
     SDL_RenderCopy(gRenderer, mTexture, NULL, &renderQuad);
   }
 }
-
 
 int cTexture::getWidth() { return mWidth; }
 
@@ -209,6 +210,8 @@ int WinMain(int argc, char *argv[]) {
                                                   fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
+                answeredCorrect = true;
+                answeredCorrectTime = SDL_GetTicks();
               } else {
                 printf("Wrong!\n");
                 answeredWrong = true;
@@ -236,6 +239,8 @@ int WinMain(int argc, char *argv[]) {
       }
     }
 
+    Uint32 currentTime = SDL_GetTicks();
+
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
@@ -256,19 +261,28 @@ int WinMain(int argc, char *argv[]) {
 
     // Render the timer
     if (spriteIndex >= 0) {
-    gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT/2, SCR_HEIGHT/24, &rTimer[spriteIndex]);
+      gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT / 2,
+                    SCR_HEIGHT / 24, &rTimer[spriteIndex]);
     }
     if (spriteIndex == 0) {
       answeredWrong = true;
     }
 
     if (answeredWrong == true) {
-      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
+                      (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
+    } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
+      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
+                      (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+      spriteIndex = 10;
+      remainingTime = 11;
     } else {
-      gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2, (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2, SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+      answeredCorrect = false;
     }
 
     SDL_RenderPresent(gRenderer);
@@ -309,7 +323,7 @@ void initialise() {
   gRenderer = SDL_CreateRenderer(
     gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   // SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-  // SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 }
 
 void loadAssets() {
@@ -354,25 +368,27 @@ void setupSpritesheets() {
 }
 
 void runTimer() {
-  // Decrement immididately to avoid first long frame (annoying!)
-  remainingTime--;
-  spriteIndex.store(remainingTime);
-  std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
-
-  while (remainingTime > 0 && !stopTimer.load()) {
-    for (int i = 0; i <= 9; i++) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));
-      if (stopTimer.load()) {
-        break;
-      }
-    }
+  if (!answeredCorrect.load()) {
+    // Decrement immididately to avoid first long frame (annoying!)
     remainingTime--;
-
     spriteIndex.store(remainingTime);
+    std::cout << "Paused: " << answeredCorrect.load() << std::endl;
     std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
-  }
 
-  std::cout << "Time's up!" << std::endl;
+    while (remainingTime > 0 && !stopTimer.load()) {
+      for (int i = 0; i <= 9; i++) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (stopTimer.load()) {
+          break;
+        }
+      }
+      remainingTime--;
+
+      spriteIndex.store(remainingTime);
+      std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
+    }
+    std::cout << "Time's up!" << std::endl;
+  }
 }
 
 void quit() {
@@ -405,4 +421,3 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
-

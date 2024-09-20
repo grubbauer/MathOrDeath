@@ -1,3 +1,4 @@
 # TODO
 
-* [ ] Update layout of timer and correctness-indicator
+* [x] Reset timer when answer was inputted correctly
+

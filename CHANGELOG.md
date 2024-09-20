@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## v0.9.3-alpha
+
+### Updated
+
+* *src/main.cpp*
+  * Updated version number
+  * `correctness_indicator` is now only displayed when number is inputed
+  * Formatted code
+  * Timer is now being paused while `correctness_indicator` is being displayed
+  * Timer is now being resetted if answered correctly
+* *Makefile*
+  * Updated version number
+
+### Removed
+
+* *.vscode/*
+
 ## v0.9.2-alpha
 
 ### Added
