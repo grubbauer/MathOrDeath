@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.10.0-alpha
+
+### Updated
+
+* *Makefile*
+  * Updated version number
+* *src/main.cpp*
+  * Updated version number
+
 ## v0.9.3-alpha
 
 ### Updated
