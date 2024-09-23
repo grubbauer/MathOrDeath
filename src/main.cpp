@@ -45,7 +45,7 @@ Mix_Music *sMusic = NULL;
 TTF_Font *fInput;
 TTF_Font *fEquation;
 
-void initialise();
+void initialize();
 void loadAssets();
 void setupSpritesheets();
 void runTimer();
@@ -152,7 +152,7 @@ int cTexture::getWidth() { return mWidth; }
 int cTexture::getHeight() { return mHeight; }
 
 int WinMain(int argc, char *argv[]) {
-  initialise();
+  initialize();
   loadAssets();
   setupSpritesheets();
 
@@ -303,7 +303,7 @@ int WinMain(int argc, char *argv[]) {
   return 0;
 }
 
-void initialise() {
+void initialize() {
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
