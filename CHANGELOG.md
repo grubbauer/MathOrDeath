@@ -8,6 +8,8 @@
   * Updated version number
 * *src/main.cpp*
   * Updated version number
+  * Fixed issue #14
+    * Renamed `initialise` function to `initialize`
 
 ## v0.9.3-alpha
 
