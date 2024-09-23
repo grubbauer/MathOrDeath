@@ -32,6 +32,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
+bool startMenu = true;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
