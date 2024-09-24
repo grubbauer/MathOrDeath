@@ -10,6 +10,7 @@
   * Updated version number
   * Fixed issue #14
     * Renamed `initialise` function to `initialize`
+  * Added splash screen
 
 ## v0.9.3-alpha
 
