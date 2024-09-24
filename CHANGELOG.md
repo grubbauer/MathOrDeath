@@ -1,12 +1,28 @@
 # CHANGELOG
 
+
+
+## v0.10.0-alpha
+
+* *Makefile*
+  * Updated version number
+* *src/main.cpp*
+  * Updated version number
+  * Renamed `initialise` function to `initialize`
+
 ## v0.9.4-alpha
 
 ### Updated
 
 * *Makefile*
+  * Updated version number
+* *src/main.cpp*
+  * Updated version number
+  * Fixed issue #14
+  * Added splash screen
   * Fixed issue #15
     * Added missing dll's
+
 
 ## v0.9.3-alpha
 

@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v0.9.3-alpha";
+const std::string VERSION = "v0.10.0-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -32,6 +32,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
+bool displaySplashScreen = true;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
@@ -44,7 +45,7 @@ Mix_Music *sMusic = NULL;
 TTF_Font *fInput;
 TTF_Font *fEquation;
 
-void initialise();
+void initialize();
 void loadAssets();
 void setupSpritesheets();
 void runTimer();
@@ -71,6 +72,7 @@ class cTexture {
 };
 
 // Class objects
+cTexture gSplashScreen;
 cTexture gBackgroundMain;
 cTexture gInputWindow;
 cTexture gTeacher;
@@ -151,7 +153,7 @@ int cTexture::getWidth() { return mWidth; }
 int cTexture::getHeight() { return mHeight; }
 
 int WinMain(int argc, char *argv[]) {
-  initialise();
+  initialize();
   loadAssets();
   setupSpritesheets();
 
@@ -244,7 +246,15 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
+    
 
+    if (displaySplashScreen) {
+      gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
+      SDL_RenderPresent(gRenderer);
+      SDL_Delay(1000);
+      displaySplashScreen = false;
+
+    }
     // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
@@ -302,7 +312,8 @@ int WinMain(int argc, char *argv[]) {
   return 0;
 }
 
-void initialise() {
+void initialize() {
+  
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
@@ -328,6 +339,7 @@ void initialise() {
 
 void loadAssets() {
   // Graphical elements
+  gSplashScreen.loadFromFile("res/img/misc/splash-0001.png");
   gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
   gInputWindow.loadFromFile("res/img/window/window-0001.png");
   gTeacher.loadFromFile("res/img/character/teacher-0001.png");
