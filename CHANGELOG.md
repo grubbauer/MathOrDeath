@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.9.4-alpha
+
+### Updated
+
+* *Makefile*
+  * Fixed issue #15
+    * Added missing dll's
+
 ## v0.9.3-alpha
 
 ### Updated
