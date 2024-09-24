@@ -15,7 +15,7 @@ BIN_DIR := bin
 BUILD_DIR := build\windows-x64
 
 # Libraries
-LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lgcc_s -lwinpthread -lstdc++
 
 # Targets
 all: clean windows-x64
@@ -31,7 +31,7 @@ windows-x64: setup-build-dir
 # Debug Build
 debug-build: setup-build-dir
 	@echo Building main executable with debug information...
-	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
+	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v -shared-libgcc
 	@echo Success.
 	$(MAKE) copy-resources
 	@echo Launching executable...
