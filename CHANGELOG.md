@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.10.1-alpha
+
+* *Makefile*
+  * Updated version number
+* *src/main.cpp*
+  * Updated version number 
+  * Updated timer logic
+  * Timer now gets paused during the splash screen
 
 
 ## v0.10.0-alpha

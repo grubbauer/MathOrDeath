@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v0.10.0-alpha";
+const std::string VERSION = "v0.10.1-alpha";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -32,6 +32,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
+std::atomic<bool> runTimerVar =  false;
 bool displaySplashScreen = true;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
@@ -253,7 +254,7 @@ int WinMain(int argc, char *argv[]) {
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       displaySplashScreen = false;
-
+      runTimerVar = true;
     }
     // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
@@ -379,28 +380,23 @@ void setupSpritesheets() {
   }
 }
 
+
 void runTimer() {
-  if (!answeredCorrect.load()) {
-    // Decrement immididately to avoid first long frame (annoying!)
-    remainingTime--;
-    spriteIndex.store(remainingTime);
-    std::cout << "Paused: " << answeredCorrect.load() << std::endl;
-    std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
-
-    while (remainingTime > 0 && !stopTimer.load()) {
-      for (int i = 0; i <= 9; i++) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        if (stopTimer.load()) {
-          break;
+    while (!stopTimer.load()) {
+        if (!answeredCorrect.load() && runTimerVar) {
+            if (remainingTime > 0) {
+                remainingTime--;  // Decrement the timer
+                spriteIndex.store(remainingTime);  // Update the sprite index
+                std::cout << "Timer updated: " << remainingTime << std::endl;
+                std::this_thread::sleep_for(std::chrono::seconds(1));  // Sleep for 1 second
+            } else {
+                stopTimer = true;
+                answeredWrong = true;  // Time's up, mark as wrong
+            }
+        } else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait a bit before checking again
         }
-      }
-      remainingTime--;
-
-      spriteIndex.store(remainingTime);
-      std::cout << "Timer updated: " << spriteIndex.load() << std::endl;
     }
-    std::cout << "Time's up!" << std::endl;
-  }
 }
 
 void quit() {
