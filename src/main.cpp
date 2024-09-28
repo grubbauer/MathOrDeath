@@ -41,8 +41,13 @@ Uint32 answeredCorrectTime = 0;
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 
+// Music
 Mix_Music *sMusic = NULL;
 
+// Soundeffect
+Mix_Chunk *sSplash = NULL;
+
+// Fonts
 TTF_Font *fInput;
 TTF_Font *fEquation;
 
@@ -252,7 +257,8 @@ int WinMain(int argc, char *argv[]) {
     if (displaySplashScreen) {
       gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
       SDL_RenderPresent(gRenderer);
-      SDL_Delay(1000);
+      Mix_PlayChannel(-1, sSplash, 0);
+      SDL_Delay(1500);
       displaySplashScreen = false;
       runTimerVar = true;
     }
@@ -347,8 +353,11 @@ void loadAssets() {
   gTimer.loadFromFile("res/img/bar/time-0001.png");
   gCorrect.loadFromFile("res/img/misc/correctness_indicator.png");
 
-  // Sounds
+  // Music
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
+
+  // Sounds
+  sSplash = Mix_LoadWAV("res/sfx/start-0001.ogg");
 
   // Fonts
   fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
