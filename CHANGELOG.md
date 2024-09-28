@@ -6,6 +6,7 @@
   * Updated version number
 * *src/main.cpp*
   * Updated version number
+  * Added sound that gets played during the splash screen
 
 ## v0.10.1-alpha
 
