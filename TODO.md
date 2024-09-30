@@ -1,7 +1,7 @@
 # TODO
 
 * [ ] Update textures
-  * [ ] "src/res/img/background/background-0001.png"
+  * [x] "src/res/img/background/background-0001.png"
   * [ ] "src/res/img/bar/time-0001.png"
   * [ ] "src/res/img/character/teacher-0001.png""
   * [ ] "src/res/img/misc/correctness_indicator.png"
