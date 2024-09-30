@@ -2,12 +2,24 @@
 
 ## v1.0.0
 
-* *Makefile*
+### Added
+
+* "src/res/img/background/backgroundMaster-0001.png"
+
+### Updated
+
+* "Makefile"
   * Updated version number
-* *src/main.cpp*
+* "src/main.cpp"
   * Updated version number
 
+### Removed
+
+* "src/res/img/*"
+
 ## v0.10.2-alpha
+
+### Updated
 
 * *Makefile*
   * Updated version number
@@ -17,6 +29,8 @@
 
 ## v0.10.1-alpha
 
+### Updated
+
 * *Makefile*
   * Updated version number
 * *src/main.cpp*
@@ -24,8 +38,9 @@
   * Updated timer logic
   * Timer now gets paused during the splash screen
 
-
 ## v0.10.0-alpha
+
+### Updated
 
 * *Makefile*
   * Updated version number
@@ -45,7 +60,6 @@
   * Added splash screen
   * Fixed issue #15
     * Added missing dll's
-
 
 ## v0.9.3-alpha
 
