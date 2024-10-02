@@ -5,6 +5,8 @@
 ### Added
 
 * "src/res/img/background/backgroundMaster-0001.png"
+* "src/res/img/bar/timerBar-0001.png"
+* "src/res/img/bar/json/timerBar-0001.json"
 
 ### Updated
 
