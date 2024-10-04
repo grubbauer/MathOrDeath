@@ -7,6 +7,7 @@
 * "src/res/img/background/backgroundMaster-0001.png"
 * "src/res/img/bar/timerBar-0001.png"
 * "src/res/img/bar/json/timerBar-0001.json"
+* "src/res/img/character/teacher-0001.png"
 
 ### Updated
 
