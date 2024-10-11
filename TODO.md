@@ -7,4 +7,4 @@
   * [x] "src/res/img/misc/correctness_indicator.png"
   * [ ] "src/res/img/misc/splash-0001.png"
   * [ ] "src/res/img/window/window-0001.png"
-
+* [x] Add GPixel-0001 Font
