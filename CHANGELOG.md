@@ -10,6 +10,10 @@
 * "src/res/img/character/teacher-0001.png"
 * "src/res/img/misc/correctnessIndicator.png"
 * "src/res/img/misc/json/correctnessIndicator.json"
+* "src/res/font/GPixel/*"
+* "src/res/font/GPixel_v1.0.0.ttf"
+* "src/res/font/GPixel.sfd"
+* "src/res/font/GPixel-0001.png"
 
 ### Updated
 
