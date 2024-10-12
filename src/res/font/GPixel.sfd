@@ -23,7 +23,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1728228413
-ModificationTime: 1728668912
+ModificationTime: 1728724940
 PfmFamily: 17
 TTFWeight: 400
 TTFWidth: 5
@@ -52,7 +52,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 57 19 4
+WinInfo: 19 19 4
 BeginPrivate: 0
 EndPrivate
 Grid
@@ -65,7 +65,7 @@ Grid
 -338.191772461 1300 m 0
  -338.191772461 -700 l 1024
 EndSplineSet
-BeginChars: 257 93
+BeginChars: 257 94
 
 StartChar: A
 Encoding: 65 65 0
@@ -93,7 +93,7 @@ SplineSet
  571.142578125 514.286132812 l 1
  571.142578125 657.142578125 l 1
 EndSplineSet
-Validated: 524293
+Validated: 5
 EndChar
 
 StartChar: B
@@ -130,7 +130,7 @@ SplineSet
  715 515.307617188 l 1
  571.938476562 515.307617188 l 1
 EndSplineSet
-Validated: 524293
+Validated: 5
 EndChar
 
 StartChar: C
@@ -156,7 +156,7 @@ SplineSet
  714 -200 l 1
  142.571289062 -200 l 1
 EndSplineSet
-Validated: 524293
+Validated: 5
 EndChar
 
 StartChar: D
@@ -183,7 +183,7 @@ SplineSet
  714 -57.142578125 l 1
  571.142578125 -57.142578125 l 1
 EndSplineSet
-Validated: 524293
+Validated: 5
 EndChar
 
 StartChar: E
@@ -2389,7 +2389,7 @@ SplineSet
  142.849609375 -330 l 5
  0 -330 l 5
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: hyphen
@@ -2475,7 +2475,7 @@ SplineSet
  143.208984375 229.624023438 l 5
  0 229.624023438 l 5
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: semicolon
@@ -2497,7 +2497,7 @@ SplineSet
  143.146484375 -340 l 5
  0 -340 l 5
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: less
@@ -2756,7 +2756,7 @@ SplineSet
  555 -200 l 1
  0.0478515625 -200 l 1
 EndSplineSet
-Validated: 524289
+Validated: 1
 EndChar
 
 StartChar: braceleft
@@ -2898,7 +2898,16 @@ SplineSet
  286 657.150390625 l 5
  143.150390625 657.150390625 l 5
 EndSplineSet
-Validated: 524293
+Validated: 5
+EndChar
+
+StartChar: space
+Encoding: 32 32 93
+Width: 250
+Flags: HW
+LayerCount: 2
+Fore
+Validated: 1
 EndChar
 EndChars
 EndSplineFont
