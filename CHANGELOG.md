@@ -21,6 +21,10 @@
   * Updated version number
 * "src/main.cpp"
   * Updated version number
+* "src/font/GPixel.sfd"
+  * Fixed space bar issue
+* "src/font/GPixel_v1.0.0.ttf"
+  * Fixed space bar issue
 
 ### Removed
 
