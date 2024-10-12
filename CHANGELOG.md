@@ -14,6 +14,7 @@
 * "src/res/font/GPixel_v1.0.0.ttf"
 * "src/res/font/GPixel.sfd"
 * "src/res/font/GPixel-0001.png"
+* "src/res/img/splash/splashMaster-0001.png"
 
 ### Updated
 
