@@ -266,8 +266,8 @@ int WinMain(int argc, char *argv[]) {
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
                     (SCR_WIDTH / 4), (SCR_HEIGHT));
-    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),
-                        ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
+    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2.0),
+                        ((SCR_HEIGHT - (SCR_HEIGHT / 4.0)) / 1.3),
                         (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
     gEquationFontTexture.render(
       (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
