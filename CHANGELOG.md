@@ -15,6 +15,7 @@
 * "src/res/font/GPixel.sfd"
 * "src/res/font/GPixel-0001.png"
 * "src/res/img/splash/splashMaster-0001.png"
+* "src/res/img/notepad/notepad-0001.png"
 
 ### Updated
 
