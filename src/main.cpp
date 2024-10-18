@@ -346,12 +346,12 @@ void initialize() {
 
 void loadAssets() {
   // Graphical elements
-  gSplashScreen.loadFromFile("res/img/misc/splash-0001.png");
-  gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
-  gInputWindow.loadFromFile("res/img/window/window-0001.png");
-  gTeacher.loadFromFile("res/img/character/teacher-0001.png");
-  gTimer.loadFromFile("res/img/bar/time-0001.png");
-  gCorrect.loadFromFile("res/img/misc/correctness_indicator.png");
+  gSplashScreen.loadFromFile("src/res/img/splash/splashMaster-0001.png");
+  gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
+  gInputWindow.loadFromFile("res/img/notepad/notepad-0001.png");
+  gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
+  gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
+  gCorrect.loadFromFile("res/img/misc/correctnessIndicator.png");
 
   // Music
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
@@ -360,9 +360,9 @@ void loadAssets() {
   sSplash = Mix_LoadWAV("res/sfx/start-0001.ogg");
 
   // Fonts
-  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
+  fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
   fEquation =
-    TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
+    TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
