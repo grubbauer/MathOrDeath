@@ -256,8 +256,11 @@ int WinMain(int argc, char *argv[]) {
 
     if (displaySplashScreen) {
       gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
+      std::cout << "Splash screen render logic ran!" << std::endl;
       SDL_RenderPresent(gRenderer);
+      std::cout << "Refreshed renderer!" << std::endl;
       Mix_PlayChannel(-1, sSplash, 0);
+      std::cout << "Music played" << std::endl;
       SDL_Delay(1500);
       displaySplashScreen = false;
       runTimerVar = true;
@@ -357,7 +360,7 @@ void loadAssets() {
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
 
   // Sounds
-  sSplash = Mix_LoadWAV("res/sfx/start-0001.ogg");
+  sSplash = Mix_LoadWAV("res/sfx/splash.wav");
 
   // Fonts
   fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));

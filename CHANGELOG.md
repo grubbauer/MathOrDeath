@@ -25,6 +25,7 @@
   * Updated version number
   * Fixed warning
   * Updated paths
+  * Added debug info
 * "src/font/GPixel.sfd"
   * Fixed space bar issue
 * "src/font/GPixel_v1.0.0.ttf"
