@@ -8,5 +8,6 @@
   * [x] "src/res/img/misc/splash-0001.png"
   * [x] "src/res/img/window/window-0001.png"
 * [x] Add GPixel-0001 Font
+* [ ] Add start-sound
 * [ ] Update code to support new textures
 
