@@ -9,5 +9,6 @@
   * [x] "src/res/img/window/window-0001.png"
 * [x] Add GPixel-0001 Font
 * [x] Add start-sound
+* [ ] Fix splash screen texture (not being displayed)
 * [ ] Update code to support new textures
 
