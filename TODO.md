@@ -10,5 +10,6 @@
 * [x] Add GPixel-0001 Font
 * [x] Add start-sound
 * [ ] Fix splash screen texture (not being displayed)
+  * Added info: probably doesnt have anything to do with the original image
 * [ ] Update code to support new textures
 
