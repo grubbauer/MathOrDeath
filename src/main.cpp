@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright (c) Raphael Grubbauer
  * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
  * See LICENSE.md file in the project root for full license information.
@@ -349,12 +349,12 @@ void initialize() {
 
 void loadAssets() {
   // Graphical elements
-  gSplashScreen.loadFromFile("src/res/img/splash/splashMaster-0001.png");
+  gSplashScreen.loadFromFile("res/img/splash/splashMaster-0001.png");
   gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
-  gInputWindow.loadFromFile("res/img/notepad/notepad-0001.png");
+  gInputWindow.loadFromFile("res/img/notepad/notepadMaster-0001.png");
   gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
   gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
-  gCorrect.loadFromFile("res/img/misc/correctnessIndicator.png");
+  gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
 
   // Music
   sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
