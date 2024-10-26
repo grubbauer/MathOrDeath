@@ -1,6 +1,6 @@
 # TODO
 
-* [ ] Update textures
+* [x] Update textures
   * [x] "src/res/img/background/background-0001.png"
   * [x] "src/res/img/bar/time-0001.png"
   * [x] "src/res/img/character/teacher-0001.png"
@@ -11,5 +11,6 @@
 * [x] Add start-sound
 * [x] Fix splash screen texture (not being displayed)
   * Added info: probably doesnt have anything to do with the original image
+* [ ] Update texture-spacing to 4 pixels
 * [ ] Update code to support new textures
 
