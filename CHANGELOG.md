@@ -21,16 +21,18 @@
 
 * "Makefile"
   * Updated version number
+* "src/font/GPixel.sfd"
+  * Fixed space bar issue
+* "src/font/GPixel_v1.0.0.ttf"
+  * Fixed space bar issue
+* "src/res/img/misc/*"
+  * Changed spacing to 4 px
 * "src/main.cpp"
   * Updated version number
   * Fixed warning
   * Updated paths
   * Added debug info
   * Fixed path errors
-* "src/font/GPixel.sfd"
-  * Fixed space bar issue
-* "src/font/GPixel_v1.0.0.ttf"
-  * Fixed space bar issue
 
 ### Removed
 
