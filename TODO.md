@@ -11,6 +11,6 @@
 * [x] Add start-sound
 * [x] Fix splash screen texture (not being displayed)
   * Added info: probably doesnt have anything to do with the original image
-* [ ] Update texture-spacing to 4 pixels
+* [x] Update texture-spacing to 4 pixels
 * [ ] Update code to support new textures
 
