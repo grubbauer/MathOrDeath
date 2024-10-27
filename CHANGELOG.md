@@ -37,6 +37,7 @@
   * Fixed path errors
   * Updated code to support new textures
     * Timer
+    * CorrectnessIndicator
 
 ### Removed
 
