@@ -27,6 +27,8 @@
   * Fixed space bar issue
 * "src/res/img/misc/*"
   * Changed spacing to 4 px
+* "*.json"
+  * Changed format to unix
 * "src/main.cpp"
   * Updated version number
   * Fixed warning
