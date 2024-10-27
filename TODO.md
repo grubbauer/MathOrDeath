@@ -16,4 +16,5 @@
   * [x] Timer
   * [x] CorrectnessIndicator
   * [ ] InputWindow
+  * [ ] Teacher
 
