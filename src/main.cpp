@@ -280,11 +280,11 @@ int WinMain(int argc, char *argv[]) {
                              gInputFontTexture.getHeight());
 
     // Render the timer
-    if (spriteIndex >= 0) {
+    if (spriteIndex <= 10) {
       gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT / 2,
                     SCR_HEIGHT / 24, &rTimer[spriteIndex]);
     }
-    if (spriteIndex == 0) {
+    if (spriteIndex == 10) {
       answeredWrong = true;
     }
 
@@ -299,7 +299,7 @@ int WinMain(int argc, char *argv[]) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
-      spriteIndex = 10;
+      spriteIndex = 0;
       remainingTime = 11;
     } else {
       answeredCorrect = false;
@@ -377,9 +377,9 @@ void setupSpritesheets() {
   for (int i = 0; i <= 10; i++) {
     std::cout << "Timer bar: " << i << std::endl;
     rTimer[i].x = 0;
-    rTimer[i].y = (i * 30) + i;
-    rTimer[i].w = 360;
-    rTimer[i].h = 30;
+    rTimer[i].y = (i * 30) + (i * 4);
+    rTimer[i].w = SCR_HEIGHT / 2;
+    rTimer[i].h = SCR_HEIGHT / 24;
   }
 
   // Correctness Indicator spritesheet
@@ -394,11 +394,13 @@ void setupSpritesheets() {
 
 
 void runTimer() {
+    spriteIndex.store(0);
     while (!stopTimer.load()) {
         if (!answeredCorrect.load() && runTimerVar) {
             if (remainingTime > 0) {
                 remainingTime--;  // Decrement the timer
-                spriteIndex.store(remainingTime);  // Update the sprite index
+                spriteIndex.fetch_add(1);  // Update the sprite index
+                std::cout << spriteIndex << std::endl;
                 std::cout << "Timer updated: " << remainingTime << std::endl;
                 std::this_thread::sleep_for(std::chrono::seconds(1));  // Sleep for 1 second
             } else {
