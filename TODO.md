@@ -14,6 +14,6 @@
 * [x] Update texture-spacing to 4 pixels
 * [ ] Update code to support new textures
   * [x] Timer
-  * [ ] CorrectnessIndicator
+  * [x] CorrectnessIndicator
   * [ ] InputWindow
 
