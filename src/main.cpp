@@ -254,7 +254,7 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    
+
 
     if (displaySplashScreen) {
       gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
