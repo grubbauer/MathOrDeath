@@ -29,6 +29,8 @@
   * Changed spacing to 4 px
 * "*.json"
   * Changed format to unix
+* "docs/naming_definition.md"
+  * Added catergory
 * "src/main.cpp"
   * Updated version number
   * Fixed warning
@@ -38,6 +40,8 @@
   * Updated code to support new textures
     * Timer
     * CorrectnessIndicator
+    * Teacher
+    * Notepad
 
 ### Removed
 
