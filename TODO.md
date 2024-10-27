@@ -17,4 +17,5 @@
   * [x] CorrectnessIndicator
   * [x] InputWindow
 * [x] Improve music
+* [ ] Add metadata to all images
 
