@@ -1,6 +1,6 @@
 # Grubbauer Open Source License (GOSL)
 
-## Version 1.2.0
+## Version 1.3.0
 
 ## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
 
@@ -21,7 +21,7 @@ sell, and redistribute it, provided that the following conditions are met:
    as the original software.
 3. You must redistribute any version, modified or original, under the same
    license as the original software.
-4. You must state any changes made to the software in the software
+4. It is preferred that any changes made to the software be noted in the software
    documentation.
 5. Sharing the modified software source code is preferred, but not required.
 6. This notice must not be removed or altered from any source distribution.

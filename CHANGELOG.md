@@ -33,6 +33,8 @@
   * Changed format to unix
 * "docs/naming_definition.md"
   * Added catergory
+* "LICENSE.md"
+  * Updated license terms
 * "src/main.cpp"
   * Updated version number
   * Fixed warning
