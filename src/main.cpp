@@ -198,6 +198,12 @@ int WinMain(int argc, char *argv[]) {
                                            fInput);
             break;
           }
+          case SDLK_COMMA: {
+            inputedString += '.';
+            gInputFontTexture.loadFromText(inputedString, cBlack,
+                                           fInput);
+            break;
+          }
           case SDLK_RETURN: {
             try {
               float userAnswer =
@@ -263,7 +269,7 @@ int WinMain(int argc, char *argv[]) {
       std::cout << "Refreshed renderer!" << std::endl;
       Mix_PlayChannel(-1, sSplash, 0);
       std::cout << "Music played" << std::endl;
-      SDL_Delay(1500);
+      SDL_Delay(8000);
       displaySplashScreen = false;
       runTimerVar = true;
     }
@@ -356,10 +362,10 @@ void loadAssets() {
   gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
 
   // Music
-  sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
+  sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
 
   // Sounds
-  sSplash = Mix_LoadWAV("res/sfx/splash.wav");
+  sSplash = Mix_LoadWAV("res/sfx/splashMaster-0001.ogg");
 
   // Fonts
   fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
