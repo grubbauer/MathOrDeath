@@ -12,9 +12,9 @@
 * [x] Fix splash screen texture (not being displayed)
   * Added info: probably doesnt have anything to do with the original image
 * [x] Update texture-spacing to 4 pixels
-* [ ] Update code to support new textures
+* [x] Update code to support new textures
   * [x] Timer
   * [x] CorrectnessIndicator
-  * [ ] InputWindow
-  * [ ] Teacher
+  * [x] InputWindow
+* [ ] Improve music
 
