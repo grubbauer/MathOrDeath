@@ -35,6 +35,8 @@
   * Updated paths
   * Added debug info
   * Fixed path errors
+  * Updated code to support new textures
+    * Timer
 
 ### Removed
 
