@@ -16,5 +16,5 @@
   * [x] Timer
   * [x] CorrectnessIndicator
   * [x] InputWindow
-* [ ] Improve music
+* [x] Improve music
 
