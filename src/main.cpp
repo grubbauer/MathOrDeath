@@ -291,14 +291,14 @@ int WinMain(int argc, char *argv[]) {
     if (answeredWrong == true) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
-                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
-                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
       spriteIndex = 0;
       remainingTime = 11;
     } else {
@@ -378,14 +378,14 @@ void setupSpritesheets() {
     std::cout << "Timer bar: " << i << std::endl;
     rTimer[i].x = 0;
     rTimer[i].y = (i * 30) + (i * 4);
-    rTimer[i].w = SCR_HEIGHT / 2;
-    rTimer[i].h = SCR_HEIGHT / 24;
+    rTimer[i].w = 360;
+    rTimer[i].h = 30;
   }
 
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
     std::cout << "Correctness Indicator: " << i << std::endl;
-    rCorrect[i].x = (i * 128) + i;
+    rCorrect[i].x = (i * SCR_WIDTH / 10) + (i * 4);
     rCorrect[i].y = 0;
     rCorrect[i].w = 128;
     rCorrect[i].h = 128;
