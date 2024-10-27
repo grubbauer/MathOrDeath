@@ -41,6 +41,8 @@ Uint32 answeredCorrectTime = 0;
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 
+SDL_Color cBlack = {0, 0, 0};
+
 // Music
 Mix_Music *sMusic = NULL;
 
@@ -180,19 +182,19 @@ int WinMain(int argc, char *argv[]) {
         switch (pressedKeyRaw) {
           case SDLK_0 ... SDLK_9: {
             inputedString += pressedKey;
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+            gInputFontTexture.loadFromText(inputedString, cBlack,
                                            fInput);
             break;
           }
           case SDLK_MINUS: {
             inputedString += '-';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+            gInputFontTexture.loadFromText(inputedString, cBlack,
                                            fInput);
             break;
           }
           case SDLK_PERIOD: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+            gInputFontTexture.loadFromText(inputedString, cBlack,
                                            fInput);
             break;
           }
@@ -214,7 +216,7 @@ int WinMain(int argc, char *argv[]) {
                 lvl++;
                 equation = randEquation(lvl);
                 equationResult = getEquationAnswer(equation);
-                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
+                gEquationFontTexture.loadFromText(equation, cBlack,
                                                   fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
@@ -238,7 +240,7 @@ int WinMain(int argc, char *argv[]) {
               if (inputedString.empty()) {
                 gInputFontTexture.free();
               } else {
-                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
+                gInputFontTexture.loadFromText(inputedString, cBlack,
                                                fInput);
               }
             }
@@ -267,11 +269,8 @@ int WinMain(int argc, char *argv[]) {
     }
     // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
-                    (SCR_WIDTH / 4), (SCR_HEIGHT));
-    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2.0),
-                        ((SCR_HEIGHT - (SCR_HEIGHT / 4.0)) / 1.3),
-                        (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
+    gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
+    gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 1.7, SCR_HEIGHT, SCR_HEIGHT / 0.75);
     gEquationFontTexture.render(
       (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
       gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
@@ -369,7 +368,7 @@ void loadAssets() {
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
-  gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
+  gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
 }
 
 void setupSpritesheets() {
@@ -434,12 +433,8 @@ void quit() {
   SDL_DestroyRenderer(gRenderer);
   SDL_DestroyWindow(gWindow);
 
-  /*
-   *  Special attention: If IMG_Quit does NOT work when working with CMake,
-   * change #include "close_code.h" on line 2191 to #include <close_code.h>.
-   * This will typically resolve the issue.
-   */
   IMG_Quit();
   Mix_Quit();
   SDL_Quit();
 }
+
