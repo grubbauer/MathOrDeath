@@ -16,6 +16,8 @@
 * "src/res/font/GPixel-0001.png"
 * "src/res/img/splash/splashMaster-0001.png"
 * "src/res/img/notepad/notepad-0001.png"
+* "src/res/sfx/music/mainMaster-0001.ogg"
+* "src/res/sfx/splashMaster-0001.ogg"
 
 ### Updated
 
