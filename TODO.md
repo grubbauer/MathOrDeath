@@ -17,5 +17,6 @@
   * [x] CorrectnessIndicator
   * [x] InputWindow
 * [x] Improve music
-* [ ] Add metadata to all images
+* [x] Add metadata to all images
+* [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
 
