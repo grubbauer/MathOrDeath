@@ -27,6 +27,8 @@
   * Fixed space bar issue
 * "src/font/GPixel_v1.0.0.ttf"
   * Fixed space bar issue
+* "*.png"
+  * Added metadata
 * "src/res/img/misc/*"
   * Changed spacing to 4 px
 * "*.json"
