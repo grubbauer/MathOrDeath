@@ -18,5 +18,12 @@
   * [x] InputWindow
 * [x] Improve music
 * [x] Add metadata to all images
+* [ ] Fix missing dll errors 
 * [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
+  * [ ] Windows
+    * [ ] Own machine
+    * [ ] 10
+  * [ ] Linux
+    * [ ] Debian
+    * [ ] OpenSUSE
 
