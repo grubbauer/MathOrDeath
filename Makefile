@@ -15,7 +15,7 @@ BIN_DIR := bin
 BUILD_DIR := build\windows-x64
 
 # Libraries
-LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lgcc_s -lwinpthread -lstdc++
+LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -static-libgccstatic-libgcc -static-libstdc++ -lpthread
 
 # Targets
 all: clean windows-x64
