@@ -32,7 +32,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
-std::atomic<bool> runTimerVar =  false;
+std::atomic<bool> runTimerVar = false;
 bool displaySplashScreen = true;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
@@ -182,26 +182,22 @@ int WinMain(int argc, char *argv[]) {
         switch (pressedKeyRaw) {
           case SDLK_0 ... SDLK_9: {
             inputedString += pressedKey;
-            gInputFontTexture.loadFromText(inputedString, cBlack,
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_MINUS: {
             inputedString += '-';
-            gInputFontTexture.loadFromText(inputedString, cBlack,
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_PERIOD: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, cBlack,
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_COMMA: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, cBlack,
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_RETURN: {
@@ -222,8 +218,7 @@ int WinMain(int argc, char *argv[]) {
                 lvl++;
                 equation = randEquation(lvl);
                 equationResult = getEquationAnswer(equation);
-                gEquationFontTexture.loadFromText(equation, cBlack,
-                                                  fEquation);
+                gEquationFontTexture.loadFromText(equation, cBlack, fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
                 answeredCorrect = true;
@@ -246,8 +241,7 @@ int WinMain(int argc, char *argv[]) {
               if (inputedString.empty()) {
                 gInputFontTexture.free();
               } else {
-                gInputFontTexture.loadFromText(inputedString, cBlack,
-                                               fInput);
+                gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
               }
             }
           }
@@ -261,9 +255,8 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
 
-
     if (displaySplashScreen) {
-      gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
+      gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
       std::cout << "Splash screen render logic ran!" << std::endl;
       SDL_RenderPresent(gRenderer);
       std::cout << "Refreshed renderer!" << std::endl;
@@ -276,7 +269,8 @@ int WinMain(int argc, char *argv[]) {
     // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
-    gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 1.7, SCR_HEIGHT, SCR_HEIGHT / 0.75);
+    gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 1.7,
+                        SCR_HEIGHT, SCR_HEIGHT / 0.75);
     gEquationFontTexture.render(
       (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
       gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
@@ -328,7 +322,6 @@ int WinMain(int argc, char *argv[]) {
 }
 
 void initialize() {
-  
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
@@ -369,8 +362,7 @@ void loadAssets() {
 
   // Fonts
   fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
-  fEquation =
-    TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
+  fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
@@ -397,25 +389,26 @@ void setupSpritesheets() {
   }
 }
 
-
 void runTimer() {
-    spriteIndex.store(0);
-    while (!stopTimer.load()) {
-        if (!answeredCorrect.load() && runTimerVar) {
-            if (remainingTime > 0) {
-                remainingTime--;  // Decrement the timer
-                spriteIndex.fetch_add(1);  // Update the sprite index
-                std::cout << spriteIndex << std::endl;
-                std::cout << "Timer updated: " << remainingTime << std::endl;
-                std::this_thread::sleep_for(std::chrono::seconds(1));  // Sleep for 1 second
-            } else {
-                stopTimer = true;
-                answeredWrong = true;  // Time's up, mark as wrong
-            }
-        } else {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait a bit before checking again
-        }
+  spriteIndex.store(0);
+  while (!stopTimer.load()) {
+    if (!answeredCorrect.load() && runTimerVar) {
+      if (remainingTime > 0) {
+        remainingTime--;  // Decrement the timer
+        spriteIndex.fetch_add(1);  // Update the sprite index
+        std::cout << spriteIndex << std::endl;
+        std::cout << "Timer updated: " << remainingTime << std::endl;
+        std::this_thread::sleep_for(
+          std::chrono::seconds(1));  // Sleep for 1 second
+      } else {
+        stopTimer = true;
+        answeredWrong = true;  // Time's up, mark as wrong
+      }
+    } else {
+      std::this_thread::sleep_for(
+        std::chrono::milliseconds(100));  // Wait a bit before checking again
     }
+  }
 }
 
 void quit() {
@@ -443,4 +436,3 @@ void quit() {
   Mix_Quit();
   SDL_Quit();
 }
-
