@@ -18,13 +18,13 @@
   * [x] InputWindow
 * [x] Improve music
 * [x] Add metadata to all images
-* [ ] Fix missing dll errors 
-  * [ ] Update makefile
 * [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
   * [ ] Windows
-    * [ ] Own machine
+    * [x] Own machine
     * [ ] 10
+      * PROBLEM: CorrectnessIndicator doesnt render correctly
   * [ ] Linux
     * [ ] Debian
     * [ ] OpenSUSE
+* [ ] Updated documentation
 
