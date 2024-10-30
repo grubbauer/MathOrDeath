@@ -22,7 +22,7 @@
   * [ ] Windows
     * [x] Own machine
     * [ ] 10
-      * PROBLEM: CorrectnessIndicator doesnt render correctly
+      * [x] SOLVED PROBLEM: CorrectnessIndicator doesnt render correctly
   * [ ] Linux
     * [ ] Debian
     * [ ] OpenSUSE
