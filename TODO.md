@@ -23,6 +23,7 @@
     * [x] Own machine
     * [ ] 10
       * [x] SOLVED PROBLEM: CorrectnessIndicator doesnt render correctly
+      * [ ] PROBLEM: Timer is not rendered correctly
   * [ ] Linux
     * [ ] Debian
     * [ ] OpenSUSE
