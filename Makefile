@@ -11,11 +11,12 @@ RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
 LIB_DIR := lib
+MINGW_LIB_DIR := C:\msys64\mingw64/lib
 BIN_DIR := bin
 BUILD_DIR := build\windows-x64
 
 # Libraries
-LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -static-libgccstatic-libgcc -static-libstdc++ -lpthread
+LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Targets
 all: clean windows-x64
@@ -31,7 +32,7 @@ windows-x64: setup-build-dir
 # Debug Build
 debug-build: setup-build-dir
 	@echo Building main executable with debug information...
-	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v -shared-libgcc
+	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
 	@echo Success.
 	$(MAKE) copy-resources
 	@echo Launching executable...
@@ -56,3 +57,4 @@ clean:
 	@echo Starting clean process...
 	@if exist "$(BUILD_DIR)" rmdir /s /q "$(BUILD_DIR)"
 	@echo Success.
+
