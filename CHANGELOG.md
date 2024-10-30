@@ -48,6 +48,7 @@
     * CorrectnessIndicator
     * Teacher
     * Notepad
+  * Fixed correctnessIndicator rendering issue
 
 ### Removed
 
