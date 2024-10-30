@@ -49,6 +49,7 @@
     * Teacher
     * Notepad
   * Fixed correctnessIndicator rendering issue
+  * Updated format
 
 ### Removed
 
