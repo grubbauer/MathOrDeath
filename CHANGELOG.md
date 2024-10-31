@@ -37,6 +37,10 @@
   * Added catergory
 * "LICENSE.md"
   * Updated license terms
+* "*.cpp"
+  * Updated format
+* "*.h"
+  * Updated format
 * "src/main.cpp"
   * Updated version number
   * Fixed warning
