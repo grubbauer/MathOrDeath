@@ -398,15 +398,15 @@ void runTimer() {
         spriteIndex.fetch_add(1);  // Update the sprite index
         std::cout << spriteIndex << std::endl;
         std::cout << "Timer updated: " << remainingTime << std::endl;
-        std::this_thread::sleep_for(
-          std::chrono::seconds(1));  // Sleep for 1 second
+        // Sleep for 1 seconds
+        std::this_thread::sleep_for(std::chrono::seconds(1));
       } else {
         stopTimer = true;
         answeredWrong = true;  // Time's up, mark as wrong
       }
     } else {
-      std::this_thread::sleep_for(
-        std::chrono::milliseconds(100));  // Wait a bit before checking again
+      // Wait a bit before checking again
+      std::this_thread::sleep_for(std::chrono::milliseconds(100)); 
     }
   }
 }

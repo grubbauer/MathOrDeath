@@ -14,3 +14,6 @@
 float getEquationAnswer(std::string originalEquation);
 
 #endif
+
+
+

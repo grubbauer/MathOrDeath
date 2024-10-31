@@ -37,3 +37,4 @@ float getEquationAnswer(std::string originalEquation) {
 
   return result;
 }
+
