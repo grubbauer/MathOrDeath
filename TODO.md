@@ -21,9 +21,9 @@
 * [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
   * [ ] Windows
     * [x] Own machine
-    * [ ] 10
+    * [x] 10
       * [x] SOLVED PROBLEM: CorrectnessIndicator doesnt render correctly
-      * [ ] PROBLEM: Timer is not rendered correctly
+      * [x] SOLVED PROBLEM: Timer is not rendered correctly
   * [ ] Linux
     * [ ] Debian
     * [ ] OpenSUSE

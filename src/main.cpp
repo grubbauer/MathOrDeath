@@ -41,6 +41,7 @@ Uint32 answeredCorrectTime = 0;
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 
+// Colors
 SDL_Color cBlack = {0, 0, 0};
 
 // Music
@@ -331,8 +332,8 @@ void initialize() {
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
-  SCR_WIDTH = display_mode.w / 2;
-  SCR_HEIGHT = display_mode.h / 2;
+  SCR_WIDTH = 1080;
+  SCR_HEIGHT = 720;
   std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
   std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
@@ -382,7 +383,7 @@ void setupSpritesheets() {
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
     std::cout << "Correctness Indicator: " << i << std::endl;
-    rCorrect[i].x = (i * SCR_WIDTH / 10) + (i * 4);
+    rCorrect[i].x = (i * 128) + (i * 4);
     rCorrect[i].y = 0;
     rCorrect[i].w = 128;
     rCorrect[i].h = 128;
