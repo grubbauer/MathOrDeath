@@ -14,4 +14,3 @@
 std::string randEquation(int lvl);
 
 #endif
-
