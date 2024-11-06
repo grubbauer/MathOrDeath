@@ -19,13 +19,10 @@
 * [x] Improve music
 * [x] Add metadata to all images
 * [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
-  * [ ] Windows
+  * [x] Windows
     * [x] Own machine
     * [x] 10
       * [x] SOLVED PROBLEM: CorrectnessIndicator doesnt render correctly
       * [x] SOLVED PROBLEM: Timer is not rendered correctly
-  * [ ] Linux
-    * [ ] Debian
-    * [ ] OpenSUSE
-* [ ] Updated documentation
+* [x] Updated documentation
 
