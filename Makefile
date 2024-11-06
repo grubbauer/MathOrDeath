@@ -11,7 +11,7 @@ RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
 LIB_DIR := lib
-MINGW_LIB_DIR := C:\msys64\mingw64/lib
+MINGW_LIB_DIR := C:\msys64\mingw64\bin
 BIN_DIR := bin
 BUILD_DIR := build\windows-x64
 
@@ -49,7 +49,14 @@ copy-resources:
 	@echo Copying resource files...
 	copy "$(BIN_DIR)\*" "$(BUILD_DIR)"
 	xcopy "$(RESOURCE_DIR)" "$(BUILD_DIR)\$(BUILD_RES_DIR)" /E /I /H /C /Y
-	del "$(BUILD_DIR)\sdl2-config"
+	xcopy "$(MINGW_LIB_DIR)\libgcc_s_seh-1.dll" "$(BUILD_DIR)"
+	xcopy "$(MINGW_LIB_DIR)\libwinpthread-1.dll" "$(BUILD_DIR)"
+	xcopy "$(MINGW_LIB_DIR)\libstdc++-6.dll" "$(BUILD_DIR)"
+
+	del "$(BUILD_DIR)\res\font\GPixel\*" /q
+	del "$(BUILD_DIR)\res\font\GPixel-0001.*" /q
+	del "$(BUILD_DIR)\res\font\GPixel.sfd" /q
+	del "$(BUILD_DIR)\sdl2-config" /q
 	@echo Success.
 
 # Clean Build Directory
