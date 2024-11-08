@@ -25,4 +25,5 @@
       * [x] SOLVED PROBLEM: CorrectnessIndicator doesnt render correctly
       * [x] SOLVED PROBLEM: Timer is not rendered correctly
 * [x] Updated documentation
+* [ ] Add fullscreen option
 
