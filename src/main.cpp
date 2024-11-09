@@ -246,6 +246,21 @@ int WinMain(int argc, char *argv[]) {
               }
             }
           }
+          case SDLK_F11: {
+            SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+            SDL_DisplayMode display_mode;
+            SDL_GetCurrentDisplayMode(0, &display_mode);
+
+            SCR_WIDTH = display_mode.w;
+            SCR_HEIGHT = display_mode.h;
+
+            TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
+            TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
+
+            
+            gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
+            gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
+          }
         }
       }
     }
