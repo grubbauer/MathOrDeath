@@ -54,6 +54,7 @@
     * Notepad
   * Fixed correctnessIndicator rendering issue
   * Updated format
+  * Added option for fullscreen mode
 
 ### Removed
 
