@@ -55,6 +55,7 @@
   * Fixed correctnessIndicator rendering issue
   * Updated format
   * Added option for fullscreen mode
+  * Changed default screen proportions
 
 ### Removed
 
