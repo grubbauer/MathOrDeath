@@ -1,108 +1,13 @@
-{ "frames": {
-   "timerBar-0001 0": {
-    "frame": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 1": {
-    "frame": { "x": 0, "y": 34, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 2": {
-    "frame": { "x": 0, "y": 68, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 3": {
-    "frame": { "x": 0, "y": 102, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 4": {
-    "frame": { "x": 0, "y": 136, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 5": {
-    "frame": { "x": 0, "y": 170, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 6": {
-    "frame": { "x": 0, "y": 204, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 7": {
-    "frame": { "x": 0, "y": 238, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 8": {
-    "frame": { "x": 0, "y": 272, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 9": {
-    "frame": { "x": 0, "y": 306, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   },
-   "timerBar-0001 10": {
-    "frame": { "x": 0, "y": 340, "w": 360, "h": 30 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 360, "h": 30 },
-    "sourceSize": { "w": 360, "h": 30 },
-    "duration": 100
-   }
- },
- "meta": {
-  "app": "https://www.aseprite.org/",
-  "version": "1.3.8.1-dev",
-  "image": "timerBar-0001.png",
-  "format": "RGBA8888",
-  "size": { "w": 360, "h": 370 },
-  "scale": "1",
-  "frameTags": [
-  ],
-  "layers": [
-   { "name": "Background", "opacity": 255, "blendMode": "normal" },
-   { "name": "Red_Board", "opacity": 255, "blendMode": "normal" },
-   { "name": "Board", "opacity": 255, "blendMode": "normal" }
-  ],
-  "slices": [
-  ]
- }
+{
+  "0": {"frame": { "x": 0, "y": 0, "w": 360, "h": 30 }},
+  "1": {"frame": { "x": 0, "y": 34, "w": 360, "h": 30 }},
+  "2": {"frame": { "x": 0, "y": 68, "w": 360, "h": 30}},
+  "3": {"frame": { "x": 0, "y": 102, "w": 360, "h": 30 }},
+  "4": {"frame": { "x": 0, "y": 136, "w": 360, "h": 30 }},
+  "5": {"frame": { "x": 0, "y": 170, "w": 360, "h": 30 }},
+  "6": {"frame": { "x": 0, "y": 204, "w": 360, "h": 30 }},
+  "7": {"frame": { "x": 0, "y": 238, "w": 360, "h": 30 }},
+  "8": {"frame": { "x": 0, "y": 272, "w": 360, "h": 30 }},
+  "9": {"frame": { "x": 0, "y": 306, "w": 360, "h": 30 }},
+  "10": {"frame": { "x": 0, "y": 340, "w": 360, "h": 30 }}
 }
