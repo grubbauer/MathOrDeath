@@ -347,8 +347,8 @@ void initialize() {
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
-  SCR_WIDTH = 1080;
-  SCR_HEIGHT = 720;
+  SCR_WIDTH = 1280;
+  SCR_HEIGHT =  720;
   std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
   std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
