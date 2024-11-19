@@ -18,7 +18,7 @@
   * [x] InputWindow
 * [x] Improve music
 * [x] Add metadata to all images
-* [ ] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
+* [x] Test compability on different windows (11, 10) and linux (debian, openSUSE) machines
   * [x] Windows
     * [x] Own machine
     * [x] 10
@@ -33,3 +33,5 @@
   * [x] "src/res/img/misc/correctness_indicator.png"
   * [x] "src/res/img/misc/splash-0001.png"
   * [x] "src/res/img/window/window-0001.png"
+* [ ] Remove debug info
+* [ ] Playtest the entire game
