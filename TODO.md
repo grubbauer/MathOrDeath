@@ -33,5 +33,5 @@
   * [x] "src/res/img/misc/correctness_indicator.png"
   * [x] "src/res/img/misc/splash-0001.png"
   * [x] "src/res/img/window/window-0001.png"
-* [ ] Remove debug info
+* [x] Remove debug info
 * [ ] Playtest the entire game
