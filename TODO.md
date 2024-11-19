@@ -26,10 +26,10 @@
       * [x] SOLVED PROBLEM: Timer is not rendered correctly
 * [x] Updated documentation
 * [x] Add fullscreen option
-* [ ] Change textures
+* [x] Change textures
   * [x] "src/res/img/background/background-0001.png"
   * [x] "src/res/img/bar/time-0001.png"
   * [x] "src/res/img/character/teacher-0001.png"
   * [x] "src/res/img/misc/correctness_indicator.png"
   * [x] "src/res/img/misc/splash-0001.png"
-  * [ ] "src/res/img/window/window-0001.png"
+  * [x] "src/res/img/window/window-0001.png"
