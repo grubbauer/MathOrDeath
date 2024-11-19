@@ -58,6 +58,7 @@
   * Changed default screen proportions
   * Updated spritesheet logic to support new texture
     * "src/res/img/misc/correctnessIndicator.png"
+  * Removed debug info
 
 ### Removed
 
