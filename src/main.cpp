@@ -211,11 +211,8 @@ int WinMain(int argc, char *argv[]) {
               float roundedEquationResult =
                 std::floorf(equationResult * 100) / 100;
 
-              printf("%f", roundedEquationResult);
-              printf("%f", equationResult);
               // Compare the rounded values
               if (roundedUserAnswer == roundedEquationResult) {
-                printf("Correct!\n");
                 lvl++;
                 equation = randEquation(lvl);
                 equationResult = getEquationAnswer(equation);
@@ -225,7 +222,6 @@ int WinMain(int argc, char *argv[]) {
                 answeredCorrect = true;
                 answeredCorrectTime = SDL_GetTicks();
               } else {
-                printf("Wrong!\n");
                 answeredWrong = true;
               }
             } catch (const std::invalid_argument &e) {
@@ -273,11 +269,8 @@ int WinMain(int argc, char *argv[]) {
 
     if (displaySplashScreen) {
       gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-      std::cout << "Splash screen render logic ran!" << std::endl;
       SDL_RenderPresent(gRenderer);
-      std::cout << "Refreshed renderer!" << std::endl;
       Mix_PlayChannel(-1, sSplash, 0);
-      std::cout << "Music played" << std::endl;
       SDL_Delay(8000);
       displaySplashScreen = false;
       runTimerVar = true;
@@ -349,8 +342,6 @@ void initialize() {
 
   SCR_WIDTH = 1280;
   SCR_HEIGHT =  720;
-  std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
-  std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
@@ -388,7 +379,6 @@ void loadAssets() {
 void setupSpritesheets() {
   // Timer bar spritesheet
   for (int i = 0; i <= 10; i++) {
-    std::cout << "Timer bar: " << i << std::endl;
     rTimer[i].x = 0;
     rTimer[i].y = (i * 30) + (i * 4);
     rTimer[i].w = 360;
@@ -397,7 +387,6 @@ void setupSpritesheets() {
 
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
-    std::cout << "Correctness Indicator: " << i << std::endl;
     rCorrect[i].x = (i * 32) + (i * 4);
     rCorrect[i].y = 0;
     rCorrect[i].w = 32;
@@ -412,8 +401,6 @@ void runTimer() {
       if (remainingTime > 0) {
         remainingTime--;  // Decrement the timer
         spriteIndex.fetch_add(1);  // Update the sprite index
-        std::cout << spriteIndex << std::endl;
-        std::cout << "Timer updated: " << remainingTime << std::endl;
         // Sleep for 1 seconds
         std::this_thread::sleep_for(std::chrono::seconds(1));
       } else {
