@@ -53,6 +53,7 @@ IncludeIsMainRegex: '.*'
 IndentCaseLabels: 'true'
 IndentPPDirectives: None
 IndentWidth: '2'  # This is for indentation level
+InsertNewlineAtEOF: 'true'
 JavaScriptQuotes: Leave
 JavaScriptWrapImports: 'true'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'

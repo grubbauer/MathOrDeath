@@ -65,6 +65,9 @@ Next, download the following fonts and put them into the "src/res/font"
 directory:
 > [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)
 
+Before compiling, change the mingw32-bin directory to your mingw32-bin
+directory in the makefile.
+
 Now, just navigate to your project root and execute this command
 
 ```shell

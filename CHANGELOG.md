@@ -1,6 +1,73 @@
 # CHANGELOG
 
+## v1.0.0
+
+### Added
+
+* "src/res/img/background/backgroundMaster-0001.png"
+* "src/res/img/bar/timerBar-0001.png"
+* "src/res/img/bar/json/timerBar-0001.json"
+* "src/res/img/character/teacher-0001.png"
+* "src/res/img/misc/correctnessIndicator.png"
+* "src/res/img/misc/json/correctnessIndicator.json"
+* "src/res/font/GPixel/*"
+* "src/res/font/GPixel_v1.0.0.ttf"
+* "src/res/font/GPixel.sfd"
+* "src/res/font/GPixel-0001.png"
+* "src/res/img/splash/splashMaster-0001.png"
+* "src/res/img/notepad/notepad-0001.png"
+* "src/res/sfx/music/mainMaster-0001.ogg"
+* "src/res/sfx/splashMaster-0001.ogg"
+
+### Updated
+
+* "Makefile"
+  * Updated version number
+* "src/font/GPixel.sfd"
+  * Fixed space bar issue
+* "src/font/GPixel_v1.0.0.ttf"
+  * Fixed space bar issue
+* "*.png"
+  * Added metadata
+* "src/res/img/misc/*"
+  * Changed spacing to 4 px
+* "*.json"
+  * Changed format to unix
+* "docs/naming_definition.md"
+  * Added catergory
+* "LICENSE.md"
+  * Updated license terms
+* "*.cpp"
+  * Updated format
+* "*.h"
+  * Updated format
+* "src/main.cpp"
+  * Updated version number
+  * Fixed warning
+  * Updated paths
+  * Added debug info
+  * Fixed path errors
+  * Updated code to support new textures
+    * Timer
+    * CorrectnessIndicator
+    * Teacher
+    * Notepad
+  * Fixed correctnessIndicator rendering issue
+  * Updated format
+  * Added option for fullscreen mode
+  * Changed default screen proportions
+  * Updated spritesheet logic to support new texture
+    * "src/res/img/misc/correctnessIndicator.png"
+  * Removed debug info
+  * Changed position of the notepad
+
+### Removed
+
+* "src/res/img/*"
+
 ## v0.10.2-alpha
+
+### Updated
 
 * *Makefile*
   * Updated version number
@@ -10,6 +77,8 @@
 
 ## v0.10.1-alpha
 
+### Updated
+
 * *Makefile*
   * Updated version number
 * *src/main.cpp*
@@ -17,8 +86,9 @@
   * Updated timer logic
   * Timer now gets paused during the splash screen
 
-
 ## v0.10.0-alpha
+
+### Updated
 
 * *Makefile*
   * Updated version number
@@ -38,7 +108,6 @@
   * Added splash screen
   * Fixed issue #15
     * Added missing dll's
-
 
 ## v0.9.3-alpha
 

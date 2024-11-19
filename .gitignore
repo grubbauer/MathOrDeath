@@ -6,7 +6,5 @@ tmp.*
 *.tmp
 tmp
 *tmp*
-*.otf
-*.ttf
 *.aseprite
 *.ase

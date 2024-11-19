@@ -1,6 +1,6 @@
- /*
+/*
  * Copyright (c) Raphael Grubbauer
- * Licensed under the Grubbauer Open Source License (GOSL) v1.2.0
+ * Licensed under the Grubbauer Open Source License (GOSL) v1.3.0
  * See LICENSE.md file in the project root for full license information.
 */
 #include <SDL2/SDL_image.h>
@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v0.10.2-alpha";
+const std::string VERSION = "v1.0.0";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -32,7 +32,7 @@ std::string inputedString;
 std::string equation = randEquation(lvl);
 std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
-std::atomic<bool> runTimerVar =  false;
+std::atomic<bool> runTimerVar = false;
 bool displaySplashScreen = true;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
@@ -40,6 +40,9 @@ Uint32 answeredCorrectTime = 0;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
+
+// Colors
+SDL_Color cBlack = {0, 0, 0};
 
 // Music
 Mix_Music *sMusic = NULL;
@@ -180,20 +183,22 @@ int WinMain(int argc, char *argv[]) {
         switch (pressedKeyRaw) {
           case SDLK_0 ... SDLK_9: {
             inputedString += pressedKey;
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_MINUS: {
             inputedString += '-';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_PERIOD: {
             inputedString += '.';
-            gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                           fInput);
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
+            break;
+          }
+          case SDLK_COMMA: {
+            inputedString += '.';
+            gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
             break;
           }
           case SDLK_RETURN: {
@@ -206,22 +211,17 @@ int WinMain(int argc, char *argv[]) {
               float roundedEquationResult =
                 std::floorf(equationResult * 100) / 100;
 
-              printf("%f", roundedEquationResult);
-              printf("%f", equationResult);
               // Compare the rounded values
               if (roundedUserAnswer == roundedEquationResult) {
-                printf("Correct!\n");
                 lvl++;
                 equation = randEquation(lvl);
                 equationResult = getEquationAnswer(equation);
-                gEquationFontTexture.loadFromText(equation, {255, 255, 255},
-                                                  fEquation);
+                gEquationFontTexture.loadFromText(equation, cBlack, fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
                 answeredCorrect = true;
                 answeredCorrectTime = SDL_GetTicks();
               } else {
-                printf("Wrong!\n");
                 answeredWrong = true;
               }
             } catch (const std::invalid_argument &e) {
@@ -238,10 +238,24 @@ int WinMain(int argc, char *argv[]) {
               if (inputedString.empty()) {
                 gInputFontTexture.free();
               } else {
-                gInputFontTexture.loadFromText(inputedString, {255, 255, 255},
-                                               fInput);
+                gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
               }
             }
+          }
+          case SDLK_F11: {
+            SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+            SDL_DisplayMode display_mode;
+            SDL_GetCurrentDisplayMode(0, &display_mode);
+
+            SCR_WIDTH = display_mode.w;
+            SCR_HEIGHT = display_mode.h;
+
+            TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
+            TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
+
+            
+            gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
+            gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
           }
         }
       }
@@ -252,23 +266,20 @@ int WinMain(int argc, char *argv[]) {
     // Graphical rendering
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
-    
 
     if (displaySplashScreen) {
-      gSplashScreen.render(0,0, SCR_WIDTH, SCR_HEIGHT);
+      gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
       SDL_RenderPresent(gRenderer);
       Mix_PlayChannel(-1, sSplash, 0);
-      SDL_Delay(1500);
+      SDL_Delay(8000);
       displaySplashScreen = false;
       runTimerVar = true;
     }
     // Render graphical elements
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-    gTeacher.render(((SCR_WIDTH - (SCR_WIDTH / 4)) / 2), (SCR_HEIGHT / 30),
-                    (SCR_WIDTH / 4), (SCR_HEIGHT));
-    gInputWindow.render(((SCR_WIDTH - (SCR_WIDTH / 1.5)) / 2),
-                        ((SCR_HEIGHT - (SCR_HEIGHT / 4)) / 1.3),
-                        (SCR_WIDTH / 1.5), (SCR_HEIGHT / 4));
+    gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
+    gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 3,
+                        SCR_HEIGHT, SCR_HEIGHT / 0.75);
     gEquationFontTexture.render(
       (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
       gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
@@ -277,26 +288,26 @@ int WinMain(int argc, char *argv[]) {
                              gInputFontTexture.getHeight());
 
     // Render the timer
-    if (spriteIndex >= 0) {
-      gTimer.render(SCR_WIDTH - gTimer.getWidth(), 0, SCR_HEIGHT / 2,
+    if (spriteIndex <= 10) {
+      gTimer.render(SCR_WIDTH - (SCR_HEIGHT / 2), 0, SCR_HEIGHT / 2,
                     SCR_HEIGHT / 24, &rTimer[spriteIndex]);
     }
-    if (spriteIndex == 0) {
+    if (spriteIndex == 10) {
       answeredWrong = true;
     }
 
     if (answeredWrong == true) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
-                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
-                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
-      spriteIndex = 10;
+                      SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[0]);
+      spriteIndex = 0;
       remainingTime = 11;
     } else {
       answeredCorrect = false;
@@ -320,7 +331,6 @@ int WinMain(int argc, char *argv[]) {
 }
 
 void initialize() {
-  
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
   Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
@@ -330,10 +340,8 @@ void initialize() {
   SDL_DisplayMode display_mode;
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
-  SCR_WIDTH = display_mode.w / 2;
-  SCR_HEIGHT = display_mode.h / 2;
-  std::cout << "Screen_WIDTH:" << SCR_WIDTH << "\n";
-  std::cout << "Screen_HEIGHT:" << SCR_HEIGHT << "\n";
+  SCR_WIDTH = 1280;
+  SCR_HEIGHT =  720;
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
@@ -346,66 +354,64 @@ void initialize() {
 
 void loadAssets() {
   // Graphical elements
-  gSplashScreen.loadFromFile("res/img/misc/splash-0001.png");
-  gBackgroundMain.loadFromFile("res/img/background/background-0001.png");
-  gInputWindow.loadFromFile("res/img/window/window-0001.png");
-  gTeacher.loadFromFile("res/img/character/teacher-0001.png");
-  gTimer.loadFromFile("res/img/bar/time-0001.png");
-  gCorrect.loadFromFile("res/img/misc/correctness_indicator.png");
+  gSplashScreen.loadFromFile("res/img/splash/splashMaster-0001.png");
+  gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
+  gInputWindow.loadFromFile("res/img/notepad/notepadMaster-0001.png");
+  gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
+  gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
+  gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
 
   // Music
-  sMusic = Mix_LoadMUS("res/sfx/music/test.ogg");
+  sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
 
   // Sounds
-  sSplash = Mix_LoadWAV("res/sfx/start-0001.ogg");
+  sSplash = Mix_LoadWAV("res/sfx/splashMaster-0001.ogg");
 
   // Fonts
-  fInput = TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 30));
-  fEquation =
-    TTF_OpenFont("res/font/PressStart2P-Regular.ttf", (SCR_WIDTH / 55));
+  fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
+  fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
-  gEquationFontTexture.loadFromText(equation, {255, 255, 255}, fEquation);
+  gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
 }
 
 void setupSpritesheets() {
   // Timer bar spritesheet
   for (int i = 0; i <= 10; i++) {
-    std::cout << "Timer bar: " << i << std::endl;
     rTimer[i].x = 0;
-    rTimer[i].y = (i * 30) + i;
+    rTimer[i].y = (i * 30) + (i * 4);
     rTimer[i].w = 360;
     rTimer[i].h = 30;
   }
 
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
-    std::cout << "Correctness Indicator: " << i << std::endl;
-    rCorrect[i].x = (i * 128) + i;
+    rCorrect[i].x = (i * 32) + (i * 4);
     rCorrect[i].y = 0;
-    rCorrect[i].w = 128;
-    rCorrect[i].h = 128;
+    rCorrect[i].w = 32;
+    rCorrect[i].h = 32;
   }
 }
 
-
 void runTimer() {
-    while (!stopTimer.load()) {
-        if (!answeredCorrect.load() && runTimerVar) {
-            if (remainingTime > 0) {
-                remainingTime--;  // Decrement the timer
-                spriteIndex.store(remainingTime);  // Update the sprite index
-                std::cout << "Timer updated: " << remainingTime << std::endl;
-                std::this_thread::sleep_for(std::chrono::seconds(1));  // Sleep for 1 second
-            } else {
-                stopTimer = true;
-                answeredWrong = true;  // Time's up, mark as wrong
-            }
-        } else {
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));  // Wait a bit before checking again
-        }
+  spriteIndex.store(0);
+  while (!stopTimer.load()) {
+    if (!answeredCorrect.load() && runTimerVar) {
+      if (remainingTime > 0) {
+        remainingTime--;  // Decrement the timer
+        spriteIndex.fetch_add(1);  // Update the sprite index
+        // Sleep for 1 seconds
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+      } else {
+        stopTimer = true;
+        answeredWrong = true;  // Time's up, mark as wrong
+      }
+    } else {
+      // Wait a bit before checking again
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+  }
 }
 
 void quit() {
@@ -429,11 +435,6 @@ void quit() {
   SDL_DestroyRenderer(gRenderer);
   SDL_DestroyWindow(gWindow);
 
-  /*
-   *  Special attention: If IMG_Quit does NOT work when working with CMake,
-   * change #include "close_code.h" on line 2191 to #include <close_code.h>.
-   * This will typically resolve the issue.
-   */
   IMG_Quit();
   Mix_Quit();
   SDL_Quit();
