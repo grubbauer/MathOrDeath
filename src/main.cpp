@@ -398,10 +398,10 @@ void setupSpritesheets() {
   // Correctness Indicator spritesheet
   for (int i = 0; i <= 1; i++) {
     std::cout << "Correctness Indicator: " << i << std::endl;
-    rCorrect[i].x = (i * 128) + (i * 4);
+    rCorrect[i].x = (i * 32) + (i * 4);
     rCorrect[i].y = 0;
-    rCorrect[i].w = 128;
-    rCorrect[i].h = 128;
+    rCorrect[i].w = 32;
+    rCorrect[i].h = 32;
   }
 }
 
