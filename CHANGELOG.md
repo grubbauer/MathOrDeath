@@ -59,6 +59,7 @@
   * Updated spritesheet logic to support new texture
     * "src/res/img/misc/correctnessIndicator.png"
   * Removed debug info
+  * Changed position of the notepad
 
 ### Removed
 
