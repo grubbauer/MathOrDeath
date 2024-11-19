@@ -34,4 +34,5 @@
   * [x] "src/res/img/misc/splash-0001.png"
   * [x] "src/res/img/window/window-0001.png"
 * [x] Remove debug info
-* [ ] Playtest the entire game
+* [x] Set notepad higher
+* [x] Playtest the entire game
