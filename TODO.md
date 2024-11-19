@@ -36,3 +36,4 @@
 * [x] Remove debug info
 * [x] Set notepad higher
 * [x] Playtest the entire game
+* [ ] Add metadata to images
