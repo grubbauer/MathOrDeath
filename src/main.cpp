@@ -267,15 +267,37 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
 
-    if (displaySplashScreen) {
-      gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-      SDL_RenderPresent(gRenderer);
-      Mix_PlayChannel(-1, sSplash, 0);
-      SDL_Delay(8000);
-      displaySplashScreen = false;
-      runTimerVar = true;
+
+if (displaySplashScreen) {
+    Mix_PlayChannel(-1, sSplash, 0);
+    Uint32 splashStartTime = SDL_GetTicks();
+    bool splashRunning = true;
+
+    while (splashRunning) {
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                stop = true;
+                splashRunning = false;
+            } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
+                splashRunning = false;
+                Mix_HaltChannel(-1);
+            }
+        }
+
+        // Render the splash screen
+        gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+        SDL_RenderPresent(gRenderer);
+
+        // Exit the splash screen after a timeout (e.g., 8000 ms)
+        if (SDL_GetTicks() - splashStartTime >= 8000) {
+            splashRunning = false;
+        }
     }
-    // Render graphical elements
+    
+    displaySplashScreen = false;
+    runTimerVar = true;
+}
+
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
     gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 3,
