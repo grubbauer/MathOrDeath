@@ -60,6 +60,8 @@
     * "src/res/img/misc/correctnessIndicator.png"
   * Removed debug info
   * Changed position of the notepad
+* "src/res/*"
+  * Added metadata
 
 ### Removed
 
