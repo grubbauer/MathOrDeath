@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.1.0
+
+### Updated
+
+* "Makefile"
+  * Updated version number
+* "src/main.cpp"
+  * Updated version number
+* ".gitignore"
+  * .clangd files are now ignored
+
 ## v1.0.0-release
 
 ### Added
