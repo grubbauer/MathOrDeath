@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v1.1.0-release";
+const std::string VERSION = "v1.2.0";
 
 // Window variables
 int SCR_WIDTH = 0;
