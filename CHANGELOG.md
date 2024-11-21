@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v1.2.0
+
+### Updated
+
+* "Makefile"
+  * Updated version number
+* "src/main.cpp"
+  * Updated version number
+* ".gitignore"
+  * json library is now ignored
+
 ## v1.1.0
 
 ### Updated
