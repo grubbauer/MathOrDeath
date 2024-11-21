@@ -5,9 +5,9 @@
 ### Updated
 
 * "Makefile"
-  * Updated version number
+  * Updated version number x2
 * "src/main.cpp"
-  * Updated version number
+  * Updated version number x2
   * Added option to skip splash screen
   * Added option to disable fullscreen
 * ".gitignore"
