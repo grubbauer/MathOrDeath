@@ -3,15 +3,20 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.3.0
  * See LICENSE.md file in the project root for full license information.
 */
+#include <nlohmann/json.hpp>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
+#include <shlobj.h>
 
 #include <atomic>
 #include <cmath>
 #include <iostream>
+#include <fstream>
+#include <filesystem>
 #include <string>
 #include <thread>
 
@@ -58,6 +63,7 @@ TTF_Font *fEquation;
 void initialize();
 void loadAssets();
 void setupSpritesheets();
+void openSaveFolder();
 void runTimer();
 void quit();
 
@@ -162,10 +168,11 @@ int cTexture::getWidth() { return mWidth; }
 
 int cTexture::getHeight() { return mHeight; }
 
-int WinMain(int argc, char *argv[]) {
+ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
   initialize();
   loadAssets();
   setupSpritesheets();
+  openSaveFolder();
 
   // Start the timer thread
   std::thread timerThread(runTimer);
@@ -422,6 +429,12 @@ void setupSpritesheets() {
     rCorrect[i].w = 32;
     rCorrect[i].h = 32;
   }
+}
+
+void openSaveFolder() {
+  char appDataPath[MAX_PATH];
+  SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
+  std::cout << appDataPath << std::endl;
 }
 
 void runTimer() {
