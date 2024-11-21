@@ -18,7 +18,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
-const std::string VERSION = "v1.0.0";
+const std::string VERSION = "v1.1.0-release";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -34,6 +34,7 @@ std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
 std::atomic<bool> runTimerVar = false;
 bool displaySplashScreen = true;
+bool isFullscreen = false;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
@@ -243,12 +244,19 @@ int WinMain(int argc, char *argv[]) {
             }
           }
           case SDLK_F11: {
-            SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+            if (isFullscreen) {
+              SDL_SetWindowFullscreen(gWindow, 0); 
+              SCR_WIDTH = 1280;
+              SCR_HEIGHT = 720;
+              isFullscreen = false;
+            } else if (!isFullscreen) {
+              SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
             SDL_DisplayMode display_mode;
             SDL_GetCurrentDisplayMode(0, &display_mode);
-
             SCR_WIDTH = display_mode.w;
             SCR_HEIGHT = display_mode.h;
+            isFullscreen = true;
+            }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
             TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
@@ -267,15 +275,37 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
 
-    if (displaySplashScreen) {
-      gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
-      SDL_RenderPresent(gRenderer);
-      Mix_PlayChannel(-1, sSplash, 0);
-      SDL_Delay(8000);
-      displaySplashScreen = false;
-      runTimerVar = true;
+
+if (displaySplashScreen) {
+    Mix_PlayChannel(-1, sSplash, 0);
+    Uint32 splashStartTime = SDL_GetTicks();
+    bool splashRunning = true;
+
+    while (splashRunning) {
+        while (SDL_PollEvent(&e) != 0) {
+            if (e.type == SDL_QUIT) {
+                stop = true;
+                splashRunning = false;
+            } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
+                splashRunning = false;
+                Mix_HaltChannel(-1);
+            }
+        }
+
+        // Render the splash screen
+        gSplashScreen.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
+        SDL_RenderPresent(gRenderer);
+
+        // Exit the splash screen after a timeout (e.g., 8000 ms)
+        if (SDL_GetTicks() - splashStartTime >= 8000) {
+            splashRunning = false;
+        }
     }
-    // Render graphical elements
+    
+    displaySplashScreen = false;
+    runTimerVar = true;
+}
+
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
     gInputWindow.render((SCR_WIDTH - SCR_HEIGHT) / 2, SCR_HEIGHT / 3,

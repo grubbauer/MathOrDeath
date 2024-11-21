@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## v1.1.0
+
+### Updated
+
+* "Makefile"
+  * Updated version number x2
+* "src/main.cpp"
+  * Updated version number x2
+  * Added option to skip splash screen
+  * Added option to disable fullscreen
+* ".gitignore"
+  * .clangd files are now ignored
+
 ## v1.0.0-release
 
 ### Added
