@@ -9,6 +9,7 @@
 * "src/main.cpp"
   * Updated version number
   * Added option to skip splash screen
+  * Added option to disable fullscreen
 * ".gitignore"
   * .clangd files are now ignored
 
