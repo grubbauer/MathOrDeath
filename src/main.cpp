@@ -34,6 +34,7 @@ std::atomic<int> remainingTime(11);
 std::atomic<bool> answeredCorrect = false;
 std::atomic<bool> runTimerVar = false;
 bool displaySplashScreen = true;
+bool isFullscreen = false;
 float equationResult = getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
@@ -243,12 +244,19 @@ int WinMain(int argc, char *argv[]) {
             }
           }
           case SDLK_F11: {
-            SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
+            if (isFullscreen) {
+              SDL_SetWindowFullscreen(gWindow, 0); 
+              SCR_WIDTH = 1280;
+              SCR_HEIGHT = 720;
+              isFullscreen = false;
+            } else if (!isFullscreen) {
+              SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
             SDL_DisplayMode display_mode;
             SDL_GetCurrentDisplayMode(0, &display_mode);
-
             SCR_WIDTH = display_mode.w;
             SCR_HEIGHT = display_mode.h;
+            isFullscreen = true;
+            }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
             TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
