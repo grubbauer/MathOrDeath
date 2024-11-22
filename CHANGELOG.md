@@ -9,6 +9,7 @@
 * "src/main.cpp"
   * Updated version number
   * Save-file is now being generated
+  * Most recent score is now being saved
 * ".gitignore"
   * json library is now ignored
 
