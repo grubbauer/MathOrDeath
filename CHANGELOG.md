@@ -8,6 +8,7 @@
   * Updated version number
 * "src/main.cpp"
   * Updated version number
+  * Save-file is now being generated
 * ".gitignore"
   * json library is now ignored
 
