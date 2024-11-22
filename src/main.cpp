@@ -23,6 +23,8 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 
+using json = nlohmann::json;
+
 const std::string VERSION = "v1.2.0";
 
 // Window variables
@@ -172,7 +174,6 @@ int main(int argc, char *argv[]){
   initialize();
   loadAssets();
   setupSpritesheets();
-  openSaveFolder();
 
   // Start the timer thread
   std::thread timerThread(runTimer);
@@ -339,6 +340,7 @@ if (displaySplashScreen) {
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
+      openSaveFolder();
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
@@ -443,7 +445,11 @@ void openSaveFolder() {
   std::filesystem::create_directory(gameFolderPath);
   std::ofstream saveFile;
   saveFile.open(std::string(gameFolderPath) + "\\saveFile.json");
-  saveFile << "Hello World" << std::endl;
+  json saveFileObject = {
+    {"Level:", lvl}
+  };
+
+  saveFile << saveFileObject.dump(2) << std::endl;
 }
 
 void runTimer() {
