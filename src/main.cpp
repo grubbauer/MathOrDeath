@@ -168,7 +168,7 @@ int cTexture::getWidth() { return mWidth; }
 
 int cTexture::getHeight() { return mHeight; }
 
- int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
+int main(int argc, char *argv[]){
   initialize();
   loadAssets();
   setupSpritesheets();
@@ -367,6 +367,10 @@ if (displaySplashScreen) {
   return 0;
 }
 
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    return main(__argc, __argv);
+}
+
 void initialize() {
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
@@ -434,7 +438,12 @@ void setupSpritesheets() {
 void openSaveFolder() {
   char appDataPath[MAX_PATH];
   SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
-  std::cout << appDataPath << std::endl;
+  std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
+  std::cout << appDataPath << std::endl << gameFolderPath << std::endl;
+  std::filesystem::create_directory(gameFolderPath);
+  std::ofstream saveFile;
+  saveFile.open(std::string(gameFolderPath) + "\\saveFile.json");
+  saveFile << "Hello World" << std::endl;
 }
 
 void runTimer() {
