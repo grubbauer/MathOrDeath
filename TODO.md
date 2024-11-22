@@ -1,4 +1,4 @@
 # TODO
 
-* [ ] Add json support
+* [x] Add json support
 * [ ] Highscore system
