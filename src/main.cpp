@@ -442,14 +442,30 @@ void openSaveFolder() {
   SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
   std::cout << appDataPath << std::endl << gameFolderPath << std::endl;
+
+  // Create the directory if it doesn't already exist
   std::filesystem::create_directory(gameFolderPath);
-  std::ofstream saveFile;
-  saveFile.open(std::string(gameFolderPath) + "\\saveFile.json");
+
+  // Define the save file path
+  std::string saveFilePath = gameFolderPath + "\\saveFile.json";
+
+  // Create a JSON object to append
   json saveFileObject = {
-    {"Level:", lvl}
+    {"Level:", lvl--}
   };
 
+  // Open the file in append mode
+  std::ofstream saveFile(saveFilePath, std::ios::app);
+  
+  if (!saveFile) {
+    std::cerr << "Failed to open the save file for appending." << std::endl;
+    return;
+  }
+
+  // Append the JSON data to the file
   saveFile << saveFileObject.dump(2) << std::endl;
+
+  saveFile.close();
 }
 
 void runTimer() {
