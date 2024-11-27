@@ -10,6 +10,7 @@
   * Updated version number
   * Save-file is now being generated
   * Most recent score is now being saved
+  * More scores can now be appended to Save-file
 * ".gitignore"
   * json library is now ignored
 
