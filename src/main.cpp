@@ -65,7 +65,7 @@ TTF_Font *fEquation;
 void initialize();
 void loadAssets();
 void setupSpritesheets();
-void openSaveFolder();
+void saveSaveFile();
 void runTimer();
 void quit();
 
@@ -340,7 +340,7 @@ if (displaySplashScreen) {
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
-      openSaveFolder();
+      saveSaveFile();
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
@@ -435,37 +435,6 @@ void setupSpritesheets() {
     rCorrect[i].w = 32;
     rCorrect[i].h = 32;
   }
-}
-
-void openSaveFolder() {
-  char appDataPath[MAX_PATH];
-  SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
-  std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
-  std::cout << appDataPath << std::endl << gameFolderPath << std::endl;
-
-  // Create the directory if it doesn't already exist
-  std::filesystem::create_directory(gameFolderPath);
-
-  // Define the save file path
-  std::string saveFilePath = gameFolderPath + "\\saveFile.json";
-
-  // Create a JSON object to append
-  json saveFileObject = {
-    {"Level:", lvl--}
-  };
-
-  // Open the file in append mode
-  std::ofstream saveFile(saveFilePath, std::ios::app);
-  
-  if (!saveFile) {
-    std::cerr << "Failed to open the save file for appending." << std::endl;
-    return;
-  }
-
-  // Append the JSON data to the file
-  saveFile << saveFileObject.dump(2) << std::endl;
-
-  saveFile.close();
 }
 
 void runTimer() {
