@@ -11,6 +11,7 @@
   * Save-file is now being generated
   * Most recent score is now being saved
   * More scores can now be appended to Save-file
+  * Refactored code to have saveSaveFile function in seperate file
 * ".gitignore"
   * json library is now ignored
 
