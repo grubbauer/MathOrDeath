@@ -6,12 +6,14 @@
 
 * "Makefile"
   * Updated version number
+  * Added save function
 * "src/main.cpp"
   * Updated version number
   * Save-file is now being generated
   * Most recent score is now being saved
   * More scores can now be appended to Save-file
   * Refactored code to have saveSaveFile function in seperate file
+  * Added save function
 * ".gitignore"
   * json library is now ignored
 
