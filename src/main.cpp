@@ -15,13 +15,12 @@
 #include <atomic>
 #include <cmath>
 #include <iostream>
-#include <fstream>
-#include <filesystem>
 #include <string>
 #include <thread>
 
 #include "equation_answer.h"
 #include "generate_equation.h"
+#include "savesavefile.h"
 
 using json = nlohmann::json;
 
@@ -65,7 +64,6 @@ TTF_Font *fEquation;
 void initialize();
 void loadAssets();
 void setupSpritesheets();
-void saveSaveFile();
 void runTimer();
 void quit();
 
@@ -332,6 +330,7 @@ if (displaySplashScreen) {
     }
     if (spriteIndex == 10) {
       answeredWrong = true;
+      saveSaveFile(lvl);
     }
 
     if (answeredWrong == true) {
@@ -340,7 +339,7 @@ if (displaySplashScreen) {
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
-      saveSaveFile();
+      saveSaveFile(lvl);
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
