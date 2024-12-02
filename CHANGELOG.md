@@ -7,6 +7,7 @@
 * "Makefile"
   * Updated version number
   * Added save function
+* Renamed save_savefile function
 * "src/main.cpp"
   * Updated version number
   * Save-file is now being generated

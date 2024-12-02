@@ -4,8 +4,8 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#ifndef SAVESAVEFILE_H
-#define SAVESAVEFILE_H
+#ifndef SAVE_SAVEFILE_H
+#define SAVE_SAVEFILE_H
 
 #include <iostream>
 #include <windows.h>
