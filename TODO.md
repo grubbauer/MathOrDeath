@@ -8,3 +8,4 @@
     * [x] Add to main file
     * [x] Compile
   * [ ] Output Highscores
+    * [ ] New function: Read saveFile
