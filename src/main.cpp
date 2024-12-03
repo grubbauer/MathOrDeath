@@ -21,6 +21,7 @@
 #include "equation_answer.h"
 #include "generate_equation.h"
 #include "save_savefile.h"
+#include "open_savefile.h"
 
 using json = nlohmann::json;
 
@@ -350,9 +351,8 @@ if (displaySplashScreen) {
     } else {
       answeredCorrect = false;
     }
-
+    
     SDL_RenderPresent(gRenderer);
-
     // Sounds
     if (Mix_PlayingMusic() == 0) {
       Mix_PlayMusic(sMusic, -1);
