@@ -23,7 +23,6 @@ void saveSaveFile(int lvl) {
 
   // Create the directory if it doesn't already exist
   std::filesystem::create_directory(gameFolderPath);
-
   // Define the save file path
   std::string saveFilePath = gameFolderPath + "\\saveFile.json";
 
