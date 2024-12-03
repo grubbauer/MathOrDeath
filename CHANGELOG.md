@@ -2,11 +2,19 @@
 
 ## v1.2.0
 
+### Added
+
+* "src/open_savefile.cpp"
+* "src/save_savefile.cpp"
+* "include/open_savefile.h"
+* "include/save_savefile.h"
+
 ### Updated
 
 * "Makefile"
   * Updated version number
   * Added save function
+  * Updated path for headers
 * Renamed save_savefile function
 * "src/main.cpp"
   * Updated version number
@@ -15,8 +23,13 @@
   * More scores can now be appended to Save-file
   * Refactored code to have saveSaveFile function in seperate file
   * Added save function
+  * Included open_savefile header
 * ".gitignore"
   * json library is now ignored
+* "include/open_savefile.h"
+  * json object is now being read
+* "include/save_savefile.h"
+  * json object is now being read
 
 ## v1.1.0
 
