@@ -11,11 +11,6 @@
 
 ### Updated
 
-* "Makefile"
-  * Updated version number
-  * Added save function
-  * Updated path for headers
-* Renamed save_savefile function
 * "src/main.cpp"
   * Updated version number
   * Save-file is now being generated
@@ -24,14 +19,20 @@
   * Refactored code to have saveSaveFile function in seperate file
   * Added save function
   * Included open_savefile header
-* ".gitignore"
-  * json library is now ignored
+  * Raw json object is now being output to the console
+* "Makefile"
+  * Updated version number
+  * Added save function
+  * Updated path for headers
+* Renamed save_savefile function
 * "include/open_savefile.h"
   * json object is now being read
 * "include/save_savefile.h"
   * json object is now being read
+* "src/save_savefile.cpp"
+  * Fixed incorrect handling of json object
 
-## v1.1.0
+## v1.1.0-release
 
 ### Updated
 
