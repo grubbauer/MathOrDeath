@@ -31,6 +31,7 @@
   * json object is now being read
 * "src/save_savefile.cpp"
   * Fixed incorrect handling of json object
+* Formatted code
 
 ## v1.1.0-release
 
