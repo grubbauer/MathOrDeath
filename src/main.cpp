@@ -341,6 +341,7 @@ if (displaySplashScreen) {
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       saveSaveFile(lvl);
+      std::cout << openSaveFile() << std::endl;
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
