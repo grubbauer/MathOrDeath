@@ -1,6 +1,7 @@
 # TODO
 
 * [x] Add json support
+* [ ] Format entire codebase
 * [ ] Highscore system
   * [x] Write Highscores
   * [ ] Refactor into different source files
