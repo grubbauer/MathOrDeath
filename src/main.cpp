@@ -3,14 +3,14 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.3.0
  * See LICENSE.md file in the project root for full license information.
 */
-#include <nlohmann/json.hpp>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <nlohmann/json.hpp>
+#include <shlobj.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <shlobj.h>
 
 #include <atomic>
 #include <cmath>
@@ -20,8 +20,8 @@
 
 #include "equation_answer.h"
 #include "generate_equation.h"
-#include "save_savefile.h"
 #include "open_savefile.h"
+#include "save_savefile.h"
 
 using json = nlohmann::json;
 
@@ -169,7 +169,7 @@ int cTexture::getWidth() { return mWidth; }
 
 int cTexture::getHeight() { return mHeight; }
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   initialize();
   loadAssets();
   setupSpritesheets();
@@ -252,23 +252,22 @@ int main(int argc, char *argv[]){
           }
           case SDLK_F11: {
             if (isFullscreen) {
-              SDL_SetWindowFullscreen(gWindow, 0); 
+              SDL_SetWindowFullscreen(gWindow, 0);
               SCR_WIDTH = 1280;
               SCR_HEIGHT = 720;
               isFullscreen = false;
             } else if (!isFullscreen) {
               SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-            SDL_DisplayMode display_mode;
-            SDL_GetCurrentDisplayMode(0, &display_mode);
-            SCR_WIDTH = display_mode.w;
-            SCR_HEIGHT = display_mode.h;
-            isFullscreen = true;
+              SDL_DisplayMode display_mode;
+              SDL_GetCurrentDisplayMode(0, &display_mode);
+              SCR_WIDTH = display_mode.w;
+              SCR_HEIGHT = display_mode.h;
+              isFullscreen = true;
             }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
             TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
 
-            
             gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
             gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
           }
@@ -282,21 +281,20 @@ int main(int argc, char *argv[]){
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
 
+    if (displaySplashScreen) {
+      Mix_PlayChannel(-1, sSplash, 0);
+      Uint32 splashStartTime = SDL_GetTicks();
+      bool splashRunning = true;
 
-if (displaySplashScreen) {
-    Mix_PlayChannel(-1, sSplash, 0);
-    Uint32 splashStartTime = SDL_GetTicks();
-    bool splashRunning = true;
-
-    while (splashRunning) {
+      while (splashRunning) {
         while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                stop = true;
-                splashRunning = false;
-            } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
-                splashRunning = false;
-                Mix_HaltChannel(-1);
-            }
+          if (e.type == SDL_QUIT) {
+            stop = true;
+            splashRunning = false;
+          } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
+            splashRunning = false;
+            Mix_HaltChannel(-1);
+          }
         }
 
         // Render the splash screen
@@ -305,13 +303,13 @@ if (displaySplashScreen) {
 
         // Exit the splash screen after a timeout (e.g., 8000 ms)
         if (SDL_GetTicks() - splashStartTime >= 8000) {
-            splashRunning = false;
+          splashRunning = false;
         }
+      }
+
+      displaySplashScreen = false;
+      runTimerVar = true;
     }
-    
-    displaySplashScreen = false;
-    runTimerVar = true;
-}
 
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
@@ -352,7 +350,7 @@ if (displaySplashScreen) {
     } else {
       answeredCorrect = false;
     }
-    
+
     SDL_RenderPresent(gRenderer);
     // Sounds
     if (Mix_PlayingMusic() == 0) {
@@ -369,8 +367,9 @@ if (displaySplashScreen) {
   return 0;
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-    return main(__argc, __argv);
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow) {
+  return main(__argc, __argv);
 }
 
 void initialize() {
@@ -384,7 +383,7 @@ void initialize() {
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
   SCR_WIDTH = 1280;
-  SCR_HEIGHT =  720;
+  SCR_HEIGHT = 720;
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);

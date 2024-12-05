@@ -6,12 +6,12 @@
 
 #include <open_savefile.h>
 
-#include <iostream>
-#include <windows.h>
 #include <filesystem>
 #include <fstream>
-#include <shlobj.h>
+#include <iostream>
 #include <nlohmann/json.hpp>
+#include <shlobj.h>
+#include <windows.h>
 
 using json = nlohmann::json;
 
@@ -34,4 +34,3 @@ json openSaveFile() {
   saveFile.close();
   return saveFileObject;
 }
-
