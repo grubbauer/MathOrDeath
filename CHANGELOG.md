@@ -32,6 +32,7 @@
 * "src/save_savefile.cpp"
   * Fixed incorrect handling of json object
 * Formatted code
+* Formatted json object code 
 
 ## v1.1.0-release
 
