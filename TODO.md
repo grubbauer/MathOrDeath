@@ -2,13 +2,15 @@
 
 * [x] Add json support
 * [ ] Format entire codebase
+* [ ] TXT refactoring
 * [ ] Highscore system
   * [x] Write Highscores
-  * [ ] Refactor into different source files
+  * [x] Refactor into different source files
     * [x] Add files
     * [x] Add to main file
     * [x] Compile
-  * [ ] Output Highscores
+  * [x] Output Highscore
     * [x] New function: Read saveFile
     * [x] Format json into readable format
-    * [ ] Display highscore at game over
+    * [x] Display highscore at game over
+  * [ ] Format into prettier format
