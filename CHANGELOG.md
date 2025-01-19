@@ -33,6 +33,7 @@
   * Fixed incorrect handling of json object
 * Formatted code
 * Formatted json object code 
+* Highscore is now being displayed
 
 ## v1.1.0-release
 
