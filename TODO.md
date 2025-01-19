@@ -10,5 +10,5 @@
     * [x] Compile
   * [ ] Output Highscores
     * [x] New function: Read saveFile
-    * [ ] Format json into readable format
+    * [x] Format json into readable format
     * [ ] Display highscore at game over
