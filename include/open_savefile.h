@@ -12,7 +12,8 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <windows.h>
+#include <sstream>
 
-nlohmann::json openSaveFile();
+std::string openSaveFile();
 
 #endif

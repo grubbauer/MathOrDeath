@@ -12,10 +12,11 @@
 #include <nlohmann/json.hpp>
 #include <shlobj.h>
 #include <windows.h>
+#include <sstream>
 
 using json = nlohmann::json;
 
-json openSaveFile() {
+std::string openSaveFile() {
   char appDataPath[MAX_PATH];
   SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
@@ -26,11 +27,20 @@ json openSaveFile() {
   // Define the save file path
   std::string saveFilePath = gameFolderPath + "\\saveFile.json";
 
+  // Formatted output string
+  std::ostringstream outputString;
+ 
+
   // Create a JSON object to append
   json saveFileObject;
   std::ifstream saveFile(saveFilePath);
   saveFile >> saveFileObject;
-
   saveFile.close();
-  return saveFileObject;
+
+    for (const auto& item : saveFileObject) {
+        outputString << "Level: " << item["Level:"] << "\n";
+    }
+
+  std::string formattedOutput = outputString.str();
+  return formattedOutput;
 }
