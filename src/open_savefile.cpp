@@ -12,7 +12,6 @@
 #include <nlohmann/json.hpp>
 #include <shlobj.h>
 #include <windows.h>
-#include <sstream>
 
 using json = nlohmann::json;
 
@@ -28,19 +27,24 @@ std::string openSaveFile() {
   std::string saveFilePath = gameFolderPath + "\\saveFile.json";
 
   // Formatted output string
-  std::ostringstream outputString;
- 
 
+  int highestHighScore = 0;
+  
   // Create a JSON object to append
   json saveFileObject;
   std::ifstream saveFile(saveFilePath);
   saveFile >> saveFileObject;
   saveFile.close();
 
-    for (const auto& item : saveFileObject) {
-        outputString << "Level: " << item["Level:"] << "\n";
-    }
-
-  std::string formattedOutput = outputString.str();
-  return formattedOutput;
+  for (const auto& item : saveFileObject) {
+            if (item.contains("HighScore")) { // Check if "HighScore" exists
+                int currentScore = item["HighScore"];
+                if (currentScore > highestHighScore) {
+                    highestHighScore = currentScore;
+                }
+            }
+        }
+  
+  std::string highscore = std::to_string(highestHighScore);
+  return highscore;
 }

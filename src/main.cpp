@@ -61,6 +61,7 @@ Mix_Chunk *sSplash = NULL;
 // Fonts
 TTF_Font *fInput;
 TTF_Font *fEquation;
+TTF_Font *fHighscores;
 
 void initialize();
 void loadAssets();
@@ -103,6 +104,7 @@ SDL_Rect rCorrect[2];
 // Font Textures
 cTexture gInputFontTexture;
 cTexture gEquationFontTexture;
+cTexture gHighscoreFontTexture;
 
 cTexture::cTexture() {
   mTexture = NULL;
@@ -336,10 +338,13 @@ int main(int argc, char *argv[]) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
-      SDL_RenderPresent(gRenderer);
-      SDL_Delay(1000);
+
       saveSaveFile(lvl);
       std::cout << openSaveFile() << std::endl;
+      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255}, fInput);
+      gHighscoreFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63), gHighscoreFontTexture.getWidth(), gHighscoreFontTexture.getHeight());
+      SDL_RenderPresent(gRenderer);
+      SDL_Delay(1000);
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
@@ -367,6 +372,8 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+
+// Required to run on windows with graphics activated
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow) {
   return main(__argc, __argv);
@@ -412,10 +419,12 @@ void loadAssets() {
   // Fonts
   fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
   fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
+  fHighscores = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 10));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
   gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
+  gHighscoreFontTexture.loadFromText(" ", {255, 255, 255}, fHighscores);
 }
 
 void setupSpritesheets() {
