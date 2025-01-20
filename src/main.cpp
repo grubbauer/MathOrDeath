@@ -96,6 +96,7 @@ cTexture gInputWindow;
 cTexture gTeacher;
 cTexture gTimer;
 cTexture gCorrect;
+cTexture gBoard;
 
 // Spritesheet rect's
 SDL_Rect rTimer[11];
@@ -344,6 +345,9 @@ int main(int argc, char *argv[]) {
       gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255}, fInput);
       gHighscoreFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63), gHighscoreFontTexture.getWidth(), gHighscoreFontTexture.getHeight());
       SDL_RenderPresent(gRenderer);
+      SDL_Delay(500);
+      gBoard.render(SCR_WIDTH-(SCR_WIDTH/12),SCR_HEIGHT-(SCR_WIDTH/120),SCR_HEIGHT/12 ,SCR_WIDTH/120);
+      SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
     } else if (answeredCorrect && currentTime - answeredCorrectTime <= 1000) {
@@ -409,6 +413,7 @@ void loadAssets() {
   gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
   gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
   gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
+  gBoard.loadFromFile("res/img/board/boardMaster-0001.png");
 
   // Music
   sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
