@@ -14,3 +14,4 @@
     * [x] Format json into readable format
     * [x] Display highscore at game over
   * [ ] Format into prettier format
+    * [ ] Make box bigger
