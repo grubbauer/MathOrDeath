@@ -8,6 +8,7 @@
 * "src/save_savefile.cpp"
 * "include/open_savefile.h"
 * "include/save_savefile.h"
+* "src/img/board"
 
 ### Updated
 
