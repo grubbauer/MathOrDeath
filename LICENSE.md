@@ -1,6 +1,6 @@
 # Grubbauer Open Source License (GOSL)
 
-## Version 1.3.0
+## Version 1.4.0
 
 ## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
 
@@ -16,11 +16,11 @@ sell, and redistribute it, provided that the following conditions are met:
    that you wrote the original software. An acknowledgment in the documentation
    and at the startup of the software is required as follows:
    > Credit: Raphael Grubbauer (<raphael.grubbauer@hotmail.com>) for
-   > {original_project_name}
+   > MathOrDeath
 2. Altered source versions must be marked as such and must not be misrepresented
    as the original software.
-3. You must redistribute any version, modified or original, under the same
-   license as the original software.
+3. You may redistribute any version, modified or original, under a different
+   license from the original software.
 4. It is preferred that any changes made to the software be noted in the software
    documentation.
 5. Sharing the modified software source code is preferred, but not required.
