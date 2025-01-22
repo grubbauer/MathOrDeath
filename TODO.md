@@ -4,6 +4,7 @@
 * [ ] Format entire codebase
 * [ ] TXT refactoring
 * [ ] Update license to be less restrictive
+  * [ ] Update headers
 * [ ] Highscore system
   * [x] Write Highscores
   * [x] Refactor into different source files
