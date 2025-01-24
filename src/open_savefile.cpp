@@ -29,22 +29,22 @@ std::string openSaveFile() {
   // Formatted output string
 
   int highestHighScore = 0;
-  
+
   // Create a JSON object to append
   json saveFileObject;
   std::ifstream saveFile(saveFilePath);
   saveFile >> saveFileObject;
   saveFile.close();
 
-  for (const auto& item : saveFileObject) {
-            if (item.contains("HighScore")) { // Check if "HighScore" exists
-                int currentScore = item["HighScore"];
-                if (currentScore > highestHighScore) {
-                    highestHighScore = currentScore;
-                }
-            }
-        }
-  
+  for (const auto &item : saveFileObject) {
+    if (item.contains("HighScore")) {  // Check if "HighScore" exists
+      int currentScore = item["HighScore"];
+      if (currentScore > highestHighScore) {
+        highestHighScore = currentScore;
+      }
+    }
+  }
+
   std::string highscore = std::to_string(highestHighScore);
   return highscore;
 }
