@@ -2,7 +2,7 @@
 
 All notable changes will be documented in this file.
 
-## [1.2.0 - Unreleased]
+## [1.2.0]
 
 ### Added
 
