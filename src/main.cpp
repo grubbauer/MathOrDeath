@@ -1,13 +1,16 @@
 /*
  * Copyright (c) Raphael Grubbauer
- * Licensed under the Grubbauer Open Source License (GOSL) v1.3.0
+ * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
  * See LICENSE.md file in the project root for full license information.
 */
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+#include <nlohmann/json.hpp>
+#include <shlobj.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 #include <atomic>
 #include <cmath>
@@ -17,8 +20,12 @@
 
 #include "equation_answer.h"
 #include "generate_equation.h"
+#include "open_savefile.h"
+#include "save_savefile.h"
 
-const std::string VERSION = "v1.1.0-release";
+using json = nlohmann::json;
+
+const std::string VERSION = "v1.2.0";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -54,6 +61,7 @@ Mix_Chunk *sSplash = NULL;
 // Fonts
 TTF_Font *fInput;
 TTF_Font *fEquation;
+TTF_Font *fHighscores;
 
 void initialize();
 void loadAssets();
@@ -88,6 +96,7 @@ cTexture gInputWindow;
 cTexture gTeacher;
 cTexture gTimer;
 cTexture gCorrect;
+cTexture gBoard;
 
 // Spritesheet rect's
 SDL_Rect rTimer[11];
@@ -96,6 +105,7 @@ SDL_Rect rCorrect[2];
 // Font Textures
 cTexture gInputFontTexture;
 cTexture gEquationFontTexture;
+cTexture gHighscoreFontTexture;
 
 cTexture::cTexture() {
   mTexture = NULL;
@@ -162,7 +172,7 @@ int cTexture::getWidth() { return mWidth; }
 
 int cTexture::getHeight() { return mHeight; }
 
-int WinMain(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   initialize();
   loadAssets();
   setupSpritesheets();
@@ -245,23 +255,22 @@ int WinMain(int argc, char *argv[]) {
           }
           case SDLK_F11: {
             if (isFullscreen) {
-              SDL_SetWindowFullscreen(gWindow, 0); 
+              SDL_SetWindowFullscreen(gWindow, 0);
               SCR_WIDTH = 1280;
               SCR_HEIGHT = 720;
               isFullscreen = false;
             } else if (!isFullscreen) {
               SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-            SDL_DisplayMode display_mode;
-            SDL_GetCurrentDisplayMode(0, &display_mode);
-            SCR_WIDTH = display_mode.w;
-            SCR_HEIGHT = display_mode.h;
-            isFullscreen = true;
+              SDL_DisplayMode display_mode;
+              SDL_GetCurrentDisplayMode(0, &display_mode);
+              SCR_WIDTH = display_mode.w;
+              SCR_HEIGHT = display_mode.h;
+              isFullscreen = true;
             }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
             TTF_SetFontSize(fEquation, (SCR_WIDTH / 55));
 
-            
             gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
             gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
           }
@@ -275,21 +284,20 @@ int WinMain(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(gRenderer, 255, 255, 255, 255);
     SDL_RenderClear(gRenderer);
 
+    if (displaySplashScreen) {
+      Mix_PlayChannel(-1, sSplash, 0);
+      Uint32 splashStartTime = SDL_GetTicks();
+      bool splashRunning = true;
 
-if (displaySplashScreen) {
-    Mix_PlayChannel(-1, sSplash, 0);
-    Uint32 splashStartTime = SDL_GetTicks();
-    bool splashRunning = true;
-
-    while (splashRunning) {
+      while (splashRunning) {
         while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                stop = true;
-                splashRunning = false;
-            } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
-                splashRunning = false;
-                Mix_HaltChannel(-1);
-            }
+          if (e.type == SDL_QUIT) {
+            stop = true;
+            splashRunning = false;
+          } else if (e.type == SDL_KEYDOWN || e.type == SDL_MOUSEBUTTONDOWN) {
+            splashRunning = false;
+            Mix_HaltChannel(-1);
+          }
         }
 
         // Render the splash screen
@@ -298,13 +306,13 @@ if (displaySplashScreen) {
 
         // Exit the splash screen after a timeout (e.g., 8000 ms)
         if (SDL_GetTicks() - splashStartTime >= 8000) {
-            splashRunning = false;
+          splashRunning = false;
         }
+      }
+
+      displaySplashScreen = false;
+      runTimerVar = true;
     }
-    
-    displaySplashScreen = false;
-    runTimerVar = true;
-}
 
     gBackgroundMain.render(0, 0, SCR_WIDTH, SCR_HEIGHT);
     gTeacher.render(0, 0, SCR_HEIGHT / 1.5, SCR_HEIGHT);
@@ -316,7 +324,6 @@ if (displaySplashScreen) {
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
-
     // Render the timer
     if (spriteIndex <= 10) {
       gTimer.render(SCR_WIDTH - (SCR_HEIGHT / 2), 0, SCR_HEIGHT / 2,
@@ -324,12 +331,27 @@ if (displaySplashScreen) {
     }
     if (spriteIndex == 10) {
       answeredWrong = true;
+      saveSaveFile(lvl);
     }
 
     if (answeredWrong == true) {
       gCorrect.render((SCR_WIDTH - SCR_HEIGHT / 2.8125) / 2,
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
+
+      saveSaveFile(lvl);
+      std::cout << openSaveFile() << std::endl;
+      SDL_RenderPresent(gRenderer);
+      SDL_Delay(500);
+      gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2,
+                    (SCR_HEIGHT - SCR_WIDTH / 15) / 2, SCR_HEIGHT / 1.5,
+                    SCR_WIDTH / 15);
+      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255},
+                                         fInput);
+      gHighscoreFontTexture.render(
+        (SCR_WIDTH - gHighscoreFontTexture.getWidth()) / 2,
+        (SCR_HEIGHT - gHighscoreFontTexture.getHeight()) / 2,
+        gHighscoreFontTexture.getWidth(), gHighscoreFontTexture.getHeight());
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
@@ -344,7 +366,6 @@ if (displaySplashScreen) {
     }
 
     SDL_RenderPresent(gRenderer);
-
     // Sounds
     if (Mix_PlayingMusic() == 0) {
       Mix_PlayMusic(sMusic, -1);
@@ -360,6 +381,12 @@ if (displaySplashScreen) {
   return 0;
 }
 
+// Required to run on windows with graphics activated
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow) {
+  return main(__argc, __argv);
+}
+
 void initialize() {
   SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
   IMG_Init(IMG_INIT_PNG);  // Currently only the png format is needed
@@ -371,7 +398,7 @@ void initialize() {
   SDL_GetCurrentDisplayMode(0, &display_mode);
 
   SCR_WIDTH = 1280;
-  SCR_HEIGHT =  720;
+  SCR_HEIGHT = 720;
   gWindow = SDL_CreateWindow(("MathOrDeath " + VERSION).c_str(),
                              SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                              SCR_WIDTH, SCR_HEIGHT, SDL_WINDOW_SHOWN);
@@ -390,6 +417,7 @@ void loadAssets() {
   gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
   gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
   gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
+  gBoard.loadFromFile("res/img/board/boardMaster-0001.png");
 
   // Music
   sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
@@ -400,10 +428,12 @@ void loadAssets() {
   // Fonts
   fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
   fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
+  fHighscores = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 10));
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
   gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
+  gHighscoreFontTexture.loadFromText(" ", {255, 255, 255}, fHighscores);
 }
 
 void setupSpritesheets() {

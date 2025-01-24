@@ -1,6 +1,6 @@
 # Grubbauer Open Source Media License (GOSML)
 
-## Version 1.0.0
+## Version 1.2.0
 
 ## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
 
@@ -20,12 +20,9 @@ sell, and redistribute it, provided that the following conditions are met:
 
 2. Altered versions of this media must be marked as such and
    must not be misrepresented as the original media.
-
 3. Any version of the media, whether modified or original,
-   must be redistributed under the same license as the original media.
-
+   may be redistributed under a different license as the original media.
 4. Any changes made to the media must be stated in
    the accompanying documentation or in the media EXIF metadata.
-
 5. This notice must not be removed or altered from any
    source distribution.

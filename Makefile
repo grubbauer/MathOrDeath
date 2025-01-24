@@ -1,12 +1,12 @@
 # Copyright (c) Raphael Grubbauer
-# Licensed under the Grubbauer Open Source License (GOSL) v1.3.0
+# Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
 # See LICENSE.md file in the project root for full license information.
 
-VERSION := v1.1.0-release
+VERSION := v1.2.0
 
 # Compiler and Directories
 CC := clang++
-SOURCE := src/main.cpp src/random.cpp src/generate_equation.cpp src/equation_answer.cpp
+SOURCE := src/main.cpp src/random.cpp src/generate_equation.cpp src/equation_answer.cpp src/save_savefile.cpp src/open_savefile.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include

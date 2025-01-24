@@ -4,11 +4,15 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef SAVE_SAVEFILE_H
+#define SAVE_SAVEFILE_H
 
-#include <random>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <nlohmann/json.hpp>
+#include <windows.h>
 
-int randNum(int min, int max);
+void saveSaveFile(int lvl);
 
 #endif
