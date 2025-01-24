@@ -1,7 +1,7 @@
 # TODO
 
 * [x] Add json support
-* [ ] Format entire codebase
+* [x] Format entire codebase
 * [ ] TXT refactoring
 * [x] Update license to be less restrictive
   * [x] Update headers
