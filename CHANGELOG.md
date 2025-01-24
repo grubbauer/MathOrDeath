@@ -36,6 +36,7 @@
 * Formatted json object code 
 * Highscore is now being displayed
 * Updated license terms
+* Added highscore mechanic
 
 ## v1.1.0-release
 
