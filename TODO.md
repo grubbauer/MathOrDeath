@@ -2,7 +2,7 @@
 
 * [x] Add json support
 * [x] Format entire codebase
-* [ ] TXT refactoring
+* [x] TXT refactoring
 * [x] Update license to be less restrictive
   * [x] Update headers
 * [x] Highscore system
