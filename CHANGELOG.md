@@ -32,7 +32,7 @@
   * json object is now being read
 * "src/save_savefile.cpp"
   * Fixed incorrect handling of json object
-* Formatted code
+* Formatted code x2
 * Formatted json object code 
 * Highscore is now being displayed
 * Updated license terms
