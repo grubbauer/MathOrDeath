@@ -320,11 +320,10 @@ int main(int argc, char *argv[]) {
                         SCR_HEIGHT, SCR_HEIGHT / 0.75);
     gEquationFontTexture.render(
       (SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63),
-      gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
+    gEquationFontTexture.getWidth(), gEquationFontTexture.getHeight());
     gInputFontTexture.render((SCR_WIDTH - gInputFontTexture.getWidth()) / 2,
                              (SCR_HEIGHT / 1.4), gInputFontTexture.getWidth(),
                              gInputFontTexture.getHeight());
-
     // Render the timer
     if (spriteIndex <= 10) {
       gTimer.render(SCR_WIDTH - (SCR_HEIGHT / 2), 0, SCR_HEIGHT / 2,
@@ -342,11 +341,11 @@ int main(int argc, char *argv[]) {
 
       saveSaveFile(lvl);
       std::cout << openSaveFile() << std::endl;
-      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255}, fInput);
-      gHighscoreFontTexture.render((SCR_WIDTH - gEquationFontTexture.getWidth()) / 2, (SCR_HEIGHT / 1.63), gHighscoreFontTexture.getWidth(), gHighscoreFontTexture.getHeight());
       SDL_RenderPresent(gRenderer);
       SDL_Delay(500);
-      gBoard.render(SCR_WIDTH-(SCR_WIDTH/12),SCR_HEIGHT-(SCR_WIDTH/120),SCR_HEIGHT/12 ,SCR_WIDTH/120);
+      gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2, (SCR_HEIGHT - SCR_WIDTH / 15) / 2, SCR_HEIGHT / 1.5, SCR_WIDTH / 15);
+      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255}, fInput);
+      gHighscoreFontTexture.render((SCR_WIDTH - gHighscoreFontTexture.getWidth()) / 2, (SCR_HEIGHT - gHighscoreFontTexture.getHeight()) / 2, gHighscoreFontTexture.getWidth(), gHighscoreFontTexture.getHeight());
       SDL_RenderPresent(gRenderer);
       SDL_Delay(1000);
       stop = true;
