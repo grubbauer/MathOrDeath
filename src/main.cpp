@@ -34,13 +34,13 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-std::atomic<int> spriteIndex(10);
-std::atomic<bool> stopTimer(false);
+std::atomic<int> spriteIndex= {10};
+std::atomic<bool> stopTimer = {false};
 std::string inputedString;
 std::string equation = randEquation(lvl);
-std::atomic<int> remainingTime(11);
-std::atomic<bool> answeredCorrect = false;
-std::atomic<bool> runTimerVar = false;
+std::atomic<int> remainingTime = {11};
+std::atomic<bool> answeredCorrect = {false};
+std::atomic<bool> runTimerVar = {false};
 bool displaySplashScreen = true;
 bool isFullscreen = false;
 float equationResult = getEquationAnswer(equation);
@@ -374,7 +374,6 @@ int main(int argc, char *argv[]) {
   }
 
   // Wait for the timer thread to finish
-  stopTimer.load();
   stopTimer = true;
 
   quit();
