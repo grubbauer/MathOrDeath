@@ -7,6 +7,7 @@ All notable changes will be documented in this file.
 ### Fixed
 
 * Fixed std::atomic copy issue (#28)
+* Fixed fullscreen being toggled when pressing RETURN (#26)
 
 ## [1.2.0] - 24.01.2025
 
