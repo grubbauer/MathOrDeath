@@ -253,6 +253,7 @@ int main(int argc, char *argv[]) {
                 gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
               }
             }
+            break;
           }
           case SDLK_F11: {
             if (isFullscreen) {
@@ -267,6 +268,7 @@ int main(int argc, char *argv[]) {
               SCR_WIDTH = display_mode.w;
               SCR_HEIGHT = display_mode.h;
               isFullscreen = true;
+              break;
             }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
