@@ -3,10 +3,10 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
  * See LICENSE.md file in the project root for full license information.
 */
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 #include <shlobj.h>
 #include <stdio.h>
@@ -34,7 +34,7 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-std::atomic<int> spriteIndex= {10};
+std::atomic<int> spriteIndex = {10};
 std::atomic<bool> stopTimer = {false};
 std::string inputedString;
 std::string equation = randEquation(lvl);
