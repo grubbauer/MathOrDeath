@@ -40,7 +40,7 @@ void saveSaveFile(int lvl) {
   }
 
   // Add the new level to the array
-  saveFileObject.push_back({{"Level:", lvl--}});
+  saveFileObject.push_back({{"Level", lvl--}});
 
   // Write the updated array back to the file
   std::ofstream saveFileOut(saveFilePath,
