@@ -10,3 +10,4 @@ tmp
 *.aseprite
 *.ase
 .clangd
+.vscode/
