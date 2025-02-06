@@ -343,7 +343,6 @@ int main(int argc, char *argv[]) {
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
 
       saveSaveFile(lvl);
-      std::cout << openSaveFile() << std::endl;
       SDL_RenderPresent(gRenderer);
       SDL_Delay(500);
       gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2,

@@ -17,10 +17,9 @@ using json = nlohmann::json;
 
 void saveSaveFile(int lvl) {
   char appDataPath[MAX_PATH];
-  SHGetFolderPath(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
+  SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
-  std::cout << appDataPath << std::endl << gameFolderPath << std::endl;
-
+  
   // Create the directory if it doesn't already exist
   std::filesystem::create_directory(gameFolderPath);
   // Define the save file path
