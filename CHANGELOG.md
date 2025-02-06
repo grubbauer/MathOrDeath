@@ -8,6 +8,7 @@ All notable changes will be documented in this file.
 
 * Fixed std::atomic copy issue (#28)
 * Fixed fullscreen being toggled when pressing RETURN (#26)
+* Fixed highscore not being displayed (#29)
 
 ## [1.2.0] - 24.01.2025
 
@@ -18,4 +19,3 @@ All notable changes will be documented in this file.
 ### Updated
 
 * License terms updated
-
