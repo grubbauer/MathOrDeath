@@ -6,6 +6,7 @@
 * [x] Update documentation
 * [x] Remove debug print
 * [x] Fix highscore mechanic not being displayed (#29)
+* [x] Rename json highscore name
 * [ ] Add support for 1 texture pack
   * [ ] Add function to check for texturepack directory
   * [ ] Add function to load texture pack
