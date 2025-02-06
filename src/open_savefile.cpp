@@ -35,12 +35,18 @@ std::string openSaveFile() {
   saveFile >> saveFileObject;
   saveFile.close();
 
+  std::cout << saveFileObject;
+
+  // Needs to be reworked
   for (const auto &item : saveFileObject) {
-    if (item.contains("HighScore")) {  // Check if "HighScore" exists
-      int currentScore = item["HighScore"];
+    if (item.contains("Level:")) {  // Check if "HighScore" exists
+      int currentScore = item["Level:"];
       if (currentScore > highestHighScore) {
         highestHighScore = currentScore;
       }
+    }
+    else {
+      std::cout << "Wrong!";
     }
   }
 
