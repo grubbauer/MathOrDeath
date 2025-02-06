@@ -1,77 +1,39 @@
 # How to compile
 
-## Necessities
+## Windows
 
-### Windows
+### Software
 
-#### Compiler
+1. Download MSYS2 Mingw from [this link][msys2-link]
+2. Download following packages:
+    * `mingw-w64-x86_64-clang`
+    * `mingw-w64-x86_64-gcc`
+    * `mingw-w64-x86_64-make`
+3. Add your `mingw64/bin` directory to the system PATH
 
-First of all, you need to download MinGW. You can download the installer [here](https://github.com/msys2/msys2-installer/releases/download/2024-07-27/msys2-x86_64-20240727.exe).
-Run the installer and let the program install. Once it finishes installing, run a
-program titled "MYSYS2 MINGW64". Run the following commands:
+### Libaries
 
-```shell
-pacman -Syu --noconfirm
-pacman -Su
-pacman -S mingw-w64-x86_64-clang --noconfirm
-pacman -S mingw-w64-x86_64-gcc --noconfirm
-pacman -S mingw-w64-x86_64-make --noconfirm
-```
+1. Download following librarys:
+    * [SDL2][sdl2-link]
+    * [SDL2_image][sdl2_image-link]
+    * [SDL2_mixer][sdl2_mixer-link]
+    * [SDL2_ttf][sdl2_ttf-link]
+2. Move the contents of the `include`, `bin` and `lib` directories of each
+library to the project's `include`, `bin` and `lib` directories.
 
-Now, after you have finished installing Clang, GCC, and Make, add your "bin" directory
-to the system path. The bin directory is typically located at
-"C:\msys64\mingw64\bin".
+[msys2-link]: https://github.com/msys2/msys2-installer/releases/download/2024-12-08/msys2-x86_64-20241208.exe
+[sdl2-link]: https://github.com/libsdl-org/SDL/releases/download/release-2.30.6/SDL2-devel-2.30.6-mingw.tar.gz
+[sdl2_image-link]: https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.2/SDL2_image-devel-2.8.2-mingw.tar.gz
+[sdl2_mixer-link]: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.0/SDL2_mixer-devel-2.8.0-mingw.tar.gz
+[sdl2_ttf-link]: https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.22.0/SDL2_ttf-devel-2.22.0-mingw.tar.gz
 
-Restart your computer and verify your installation of Clang, GCC and Make by
-typing these commands:
+### Compiling
 
-```shell
-clang --version
-gcc --version
-mingw32-make --version
-```
+1. Change the `MINGW_LIB_DIR` in the Makefile to your mingw32-bin.
+2. Run the following command:
 
-#### Libraries
+    ```shell
+    mingw32-make
+    ```
 
-This project requires the SDL2, SDL2_image and the SDL2_mixer library. First,
-create a directory titled "lib" inside your project directory. Create another
-directory inside the "include" directory of your project titled "SDL2". Inside
-your "lib" directory, create another directory titled "x64". The last step is
-to create a directory called "bin" inside your root directory.
-
-Now, download the SDL2 files from [here](https://github.com/libsdl-org/SDL/releases/download/release-2.30.6/SDL2-devel-2.30.6-mingw.tar.gz),
-the SDL2_image files from [here](https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.2/SDL2_image-devel-2.8.2-mingw.tar.gz),
-the SDL2_mixer files from [here](https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.0/SDL2_mixer-devel-2.8.0-mingw.tar.gz)
-and the SDL_ttf files from [here](https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.22.0/SDL2_ttf-devel-2.22.0-mingw.tar.gz)
-
-Unpack all archives and run the following commands:
-
-```shell
-mv SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2/* MathOrDeath/SDL2/include/
-mv SDL2-2.30.6/x86_64-w64-mingw32/lib/* MathOrDeath/lib/
-mv SDL2-2.30.6/x86_64-w64-mingw32/bin/* MathOrDeath/bin/
-mv SDL2_image-2.8.2/x86_64-w64-mingw32/include/SDL2 MathOrDeath/SDL2/include/
-mv SDL2_image-2.8.2/x86_64-w64-mingw32/lib/* MathOrDeath/lib/
-mv SDL2_image-2.8.2/x86_64-w64-mingw32/bin/* MathOrDeath/bin/
-mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/include/SDL2/* MathOrDeath/SDL2/include/
-mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/lib/* MathOrDeath
-mv SDL2_mixer-2.8.0/x86_64-w64-mingw32/bin/* MathOrDeath
-mv SDL2_ttf-2.22.0/x86_64-w64-mingw32/include/SDL2/* MathOrDeath/SDL2/include/
-mv SDL2_ttf-2.22.0/x86_64-w64-mingw32/bin/* MathOrDeath/SDL2/bin/
-mv SDL2_ttf-2.22.0/x86_64-w64-mingw32/lib/* MathOrDeath/SDL2/lib/
-```
-
-Next, download the following fonts and put them into the "src/res/font"
-directory:
-> [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P)
-
-Before compiling, change the mingw32-bin directory to your mingw32-bin
-directory in the makefile.
-
-Now, just navigate to your project root and execute this command
-
-```shell
-mingw32-make
-```
-
-The program can now be executed.
+3. The file `build/windows-x64/MathOrDeath_v1.3.0.exe` can now be executed.
