@@ -19,7 +19,7 @@ void saveSaveFile(int lvl) {
   char appDataPath[MAX_PATH];
   SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
-  
+
   // Create the directory if it doesn't already exist
   std::filesystem::create_directory(gameFolderPath);
   // Define the save file path

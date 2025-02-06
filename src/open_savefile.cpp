@@ -44,8 +44,7 @@ std::string openSaveFile() {
       if (currentScore > highestHighScore) {
         highestHighScore = currentScore;
       }
-    }
-    else {
+    } else {
       std::cout << "Wrong!";
     }
   }

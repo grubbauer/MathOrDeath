@@ -3,6 +3,7 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
  * See LICENSE.md file in the project root for full license information.
 */
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
