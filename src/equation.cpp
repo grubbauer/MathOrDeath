@@ -4,11 +4,11 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#include "grubbauer/equation.h"
-#include "grubbauer/random.h"
-
 #include <sstream>
 #include <string>
+
+#include "grubbauer/equation.h"
+#include "grubbauer/random.h"
 
 namespace grubbauer {
 std::string getRandomEquation(int range) {

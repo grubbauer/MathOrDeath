@@ -4,10 +4,22 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
+#include <shlobj.h>
+
+#include <string>
+
 #include "grubbauer/assetpacks.h"
 
 namespace grubbauer {
 bool checkForAssetpacks() {
-  // TODO
+  char appDataPath[MAX_PATH];
+
+  // Get %APPDATA%
+  SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
+  std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
+
+  std::string assetpackFolder = gameFolderPath + "\\AssetPack";
+  
+
 }
 }

@@ -4,14 +4,15 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <nlohmann/json.hpp>
 #include <shlobj.h>
 #include <windows.h>
 
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
 #include "grubbauer/savefile.h"
+#include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
 

@@ -4,11 +4,6 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
-#include <nlohmann/json.hpp>
 #include <shlobj.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,6 +18,11 @@
 #include "grubbauer/equation.h"
 #include "grubbauer/random.h"
 #include "grubbauer/savefile.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_ttf.h"
+#include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
 

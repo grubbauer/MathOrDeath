@@ -4,9 +4,9 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#include "grubbauer/random.h"
-
 #include <random>
+
+#include "grubbauer/random.h"
 
 namespace grubbauer {
 int randomNum(int min, int max) {
