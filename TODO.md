@@ -9,6 +9,7 @@
 * [x] Rename json highscore name
 * [x] Restructure files
 * [x] Update include statements
+* [ ] Add tests
 * [ ] Add support for 1 texture pack
   * [ ] Add function to check for texturepack directory
   * [ ] Add function to load texture pack
