@@ -2,7 +2,7 @@
 
 ## Version 1.4.0
 
-## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
+## Copyright (C) 2024-2025 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
 
 This piece of software is provided "as-is", without any kind of implied or
 express warranty. In no event shall the author(s) of this software be
@@ -21,8 +21,8 @@ sell, and redistribute it, provided that the following conditions are met:
    as the original software.
 3. You may redistribute any version, modified or original, under a different
    license from the original software.
-4. It is preferred that any changes made to the software be noted in the software
-   documentation.
+4. It is preferred that any changes made to the software be noted in the
+   software documentation.
 5. Sharing the modified software source code is preferred, but not required.
 6. This notice must not be removed or altered from any source distribution.
 

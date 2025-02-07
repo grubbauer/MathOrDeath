@@ -2,7 +2,7 @@
 
 ## Version 1.2.0
 
-## Copyright (C) 2024 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
+## Copyright (C) 2024 - 2025 Raphael Grubbauer [<raphael.grubbauer@hotmail.com>](mailto:raphael.grubbauer@hotmail.com)
 
 This media is provided "as-is", without any implied or express warranty. In no
 event shall the author(s) of this media be held liable for any direct, indirect,
