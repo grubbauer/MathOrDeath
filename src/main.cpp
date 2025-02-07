@@ -20,10 +20,10 @@
 #include <string>
 #include <thread>
 
-#include "equation_answer.h"
-#include "generate_equation.h"
-#include "open_savefile.h"
-#include "save_savefile.h"
+#include "grubbauer/equation.h"
+#include "grubbauer/random.h"
+#include "grubbauer/savefile.h"
+
 
 using json = nlohmann::json;
 
@@ -38,13 +38,13 @@ int lvl = 1;
 std::atomic<int> spriteIndex = {10};
 std::atomic<bool> stopTimer = {false};
 std::string inputedString;
-std::string equation = randEquation(lvl);
+std::string equation = grubbauer::getRandomEquation(lvl);
 std::atomic<int> remainingTime = {11};
 std::atomic<bool> answeredCorrect = {false};
 std::atomic<bool> runTimerVar = {false};
 bool displaySplashScreen = true;
 bool isFullscreen = false;
-float equationResult = getEquationAnswer(equation);
+float equationResult = grubbauer::getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
 
@@ -227,8 +227,8 @@ int main(int argc, char *argv[]) {
               // Compare the rounded values
               if (roundedUserAnswer == roundedEquationResult) {
                 lvl++;
-                equation = randEquation(lvl);
-                equationResult = getEquationAnswer(equation);
+                equation = grubbauer::getRandomEquation(lvl);
+                equationResult = grubbauer::getEquationAnswer(equation);
                 gEquationFontTexture.loadFromText(equation, cBlack, fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
@@ -335,7 +335,7 @@ int main(int argc, char *argv[]) {
     }
     if (spriteIndex == 10) {
       answeredWrong = true;
-      saveSaveFile(lvl);
+      grubbauer::saveSaveFile(lvl);
     }
 
     if (answeredWrong == true) {
@@ -343,13 +343,13 @@ int main(int argc, char *argv[]) {
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
 
-      saveSaveFile(lvl);
+      grubbauer::saveSaveFile(lvl);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(500);
       gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2,
                     (SCR_HEIGHT - SCR_WIDTH / 15) / 2, SCR_HEIGHT / 1.5,
                     SCR_WIDTH / 15);
-      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255},
+      gHighscoreFontTexture.loadFromText(grubbauer::readSaveFile(), {255, 255, 255},
                                          fInput);
       gHighscoreFontTexture.render(
         (SCR_WIDTH - gHighscoreFontTexture.getWidth()) / 2,
