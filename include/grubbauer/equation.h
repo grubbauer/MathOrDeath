@@ -10,8 +10,8 @@
 #include <string>
 
 namespace grubbauer {
-  std::string getRandomEquation(int range);
-  float getEquationAnswer(std::string equation);
+std::string getRandomEquation(int range);
+float getEquationAnswer(std::string equation);
 }
 
 #endif

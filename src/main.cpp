@@ -24,7 +24,6 @@
 #include "grubbauer/random.h"
 #include "grubbauer/savefile.h"
 
-
 using json = nlohmann::json;
 
 const std::string VERSION = "v1.3.0";
@@ -349,8 +348,8 @@ int main(int argc, char *argv[]) {
       gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2,
                     (SCR_HEIGHT - SCR_WIDTH / 15) / 2, SCR_HEIGHT / 1.5,
                     SCR_WIDTH / 15);
-      gHighscoreFontTexture.loadFromText(grubbauer::readSaveFile(), {255, 255, 255},
-                                         fInput);
+      gHighscoreFontTexture.loadFromText(grubbauer::readSaveFile(),
+                                         {255, 255, 255}, fInput);
       gHighscoreFontTexture.render(
         (SCR_WIDTH - gHighscoreFontTexture.getWidth()) / 2,
         (SCR_HEIGHT - gHighscoreFontTexture.getHeight()) / 2,

@@ -8,7 +8,7 @@
 #define GRUBBAUER_ASSETSPACK_H
 
 namespace grubbauer {
-  bool checkForAssetpack();
+bool checkForAssetpack();
 }
 
 #endif

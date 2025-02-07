@@ -6,9 +6,8 @@
 
 #include "grubbauer/assetpacks.h"
 
-namespace grubbauer
-{
-  bool checkForAssetpacks() {
-    // TODO
-  }
-} 
+namespace grubbauer {
+bool checkForAssetpacks() {
+  // TODO
+}
+}

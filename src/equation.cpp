@@ -7,63 +7,63 @@
 #include "grubbauer/equation.h"
 #include "grubbauer/random.h"
 
-#include <string>
 #include <sstream>
+#include <string>
 
 namespace grubbauer {
-  std::string getRandomEquation(int range) {
-    char op;
-    int rawOp = randomNum(1, 4);
-    int num1 = randomNum(range, (range * 2));
-    int num2 = randomNum(range, (range * 2));
+std::string getRandomEquation(int range) {
+  char op;
+  int rawOp = randomNum(1, 4);
+  int num1 = randomNum(range, (range * 2));
+  int num2 = randomNum(range, (range * 2));
 
-    switch(rawOp) {
-      case 1:
-        op = '+';
-        break;
-      case 2:
-        op = '-';
-        break;
-      case 3:
-        op = '*';
-        break;
-      case 4:
-        op = '/';
-        break;
-    }
-
-    std::string equation = std::to_string(num1) + " " + op + " " + std::to_string(num2);
-
-    return equation;
-
+  switch (rawOp) {
+    case 1:
+      op = '+';
+      break;
+    case 2:
+      op = '-';
+      break;
+    case 3:
+      op = '*';
+      break;
+    case 4:
+      op = '/';
+      break;
   }
 
-  float getEquationAnswer(std::string equation) {
-    int num1, num2;
-    float answer = 0.0f;
-    char op;
+  std::string equation =
+    std::to_string(num1) + " " + op + " " + std::to_string(num2);
 
-    std::stringstream ss(equation);
+  return equation;
+}
 
-    ss >> num1;
-    ss >> op;
-    ss >> num2;
+float getEquationAnswer(std::string equation) {
+  int num1, num2;
+  float answer = 0.0f;
+  char op;
 
-    switch (op) {
-      case '+':
-        answer = num1 + num2;
-        break;
-      case '-':
-        answer = num1 - num2;
-        break;
-      case '*':
-        answer = num1 * num2;
-        break;
-      case '/':
-        answer = static_cast<float>(num1) / num2;
-        break;
-    }
+  std::stringstream ss(equation);
 
-    return answer;
+  ss >> num1;
+  ss >> op;
+  ss >> num2;
+
+  switch (op) {
+    case '+':
+      answer = num1 + num2;
+      break;
+    case '-':
+      answer = num1 - num2;
+      break;
+    case '*':
+      answer = num1 * num2;
+      break;
+    case '/':
+      answer = static_cast<float>(num1) / num2;
+      break;
   }
+
+  return answer;
+}
 }

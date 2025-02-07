@@ -8,7 +8,7 @@
 #define GRUBBAUER_RANDOM_H
 
 namespace grubbauer {
-  int randomNum(int min, int max);
+int randomNum(int min, int max);
 }
 
 #endif

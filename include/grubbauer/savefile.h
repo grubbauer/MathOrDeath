@@ -10,8 +10,8 @@
 #include <string>
 
 namespace grubbauer {
-  std::string readSaveFile();
-  void saveSaveFile(int lvl);
+std::string readSaveFile();
+void saveSaveFile(int lvl);
 }
 
 #endif
