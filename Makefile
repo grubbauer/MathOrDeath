@@ -6,7 +6,7 @@ VERSION := v1.3.0
 
 # Compiler and Directories
 CC := clang++
-SOURCE := src/main.cpp src/random.cpp src/generate_equation.cpp src/equation_answer.cpp src/save_savefile.cpp src/open_savefile.cpp
+SOURCE := src/main.cpp src/random.cpp src/equation.cpp src/savefile.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
