@@ -7,6 +7,8 @@
 * [x] Remove debug print
 * [x] Fix highscore mechanic not being displayed (#29)
 * [x] Rename json highscore name
+* [x] Restructure files
+* [ ] Update include statements
 * [ ] Add support for 1 texture pack
   * [ ] Add function to check for texturepack directory
   * [ ] Add function to load texture pack
