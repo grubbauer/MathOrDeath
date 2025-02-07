@@ -6,6 +6,7 @@
 
 #include <shlobj.h>
 
+#include <fstream>
 #include <string>
 
 #include "grubbauer/assetpacks.h"
@@ -18,8 +19,13 @@ bool checkForAssetpacks() {
   SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
 
-  std::string assetpackFolder = gameFolderPath + "\\AssetPack";
-  
-
+  // Checks if assetpack exists
+  std::string assetpackFolder = gameFolderPath + "\\assetpack";
+  std::ifstream file(assetpackFolder + "properties.json");
+  if(file) {
+    return true;
+  } else {
+    return false;
+  }
 }
 }
