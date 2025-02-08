@@ -8,6 +8,10 @@ All notable changes will be documented in this file.
 
 * Added Unit testing
 
+### Changed
+
+* Chagend equation range
+
 ### Fixed
 
 * Fixed std::atomic copy issue (#28)
