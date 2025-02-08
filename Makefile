@@ -6,7 +6,9 @@ VERSION := v1.3.0
 
 # Compiler and Directories
 CC := clang++
-SOURCE := src/main.cpp src/random.cpp src/equation.cpp src/savefile.cpp src/assetpacks.cpp
+SOURCE := src/main.cpp
+MODULES := src/random.cpp src/equation.cpp src/savefile.cpp src/assetpacks.cpp
+TEST_SOURCE := tests/tests.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
@@ -26,14 +28,14 @@ test: clean test-build
 # Windows x64 Build
 windows-x64: setup-build-dir
 	@echo Building main executable...
-	$(CC) -mwindows $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
+	$(CC) -mwindows $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
 	@echo Success.
 	$(MAKE) copy-resources
 
 # Debug Build
 debug-build: setup-build-dir
 	@echo Building main executable with debug information...
-	$(CC) $(SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
+	$(CC) $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
 	@echo Success.
 	$(MAKE) copy-resources
 	@echo Launching executable...
@@ -43,7 +45,7 @@ debug-build: setup-build-dir
 
 test-build:
 	@echo "Building main executable"
-	$(CC) tests/tests.cpp src/assetpacks.cpp src/random.cpp src/equation.cpp src/savefile.cpp -o "tests\MathOrDeath_TESTS_$(VERSION).exe" -I$(INCLUDE_DIR)  -v
+	$(CC) $(TEST_SOURCE) $(MODULES) -o "tests\MathOrDeath_TESTS_$(VERSION).exe" -I$(INCLUDE_DIR)  -v
 
 # Setup Build Directory
 setup-build-dir:
