@@ -4,6 +4,10 @@ All notable changes will be documented in this file.
 
 ## [1.3.0] - Unreleased
 
+### Added
+
+* Added Unit testing
+
 ### Fixed
 
 * Fixed std::atomic copy issue (#28)
