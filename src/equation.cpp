@@ -11,11 +11,11 @@
 #include "grubbauer/random.h"
 
 namespace grubbauer {
-std::string getRandomEquation(int range) {
+std::string getRandomEquation(int max) {
   char op;
   int rawOp = randomNum(1, 4);
-  int num1 = randomNum(1, (range * 2));
-  int num2 = randomNum(1, (range * 2));
+  int num1 = randomNum(1, (max * 2));
+  int num2 = randomNum(1, (max * 2));
 
   switch (rawOp) {
     case 1:

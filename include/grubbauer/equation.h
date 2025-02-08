@@ -10,7 +10,7 @@
 #include <string>
 
 namespace grubbauer {
-std::string getRandomEquation(int range);
+std::string getRandomEquation(int max);
 float getEquationAnswer(std::string equation);
 }
 
