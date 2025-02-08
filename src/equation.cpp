@@ -14,8 +14,8 @@ namespace grubbauer {
 std::string getRandomEquation(int range) {
   char op;
   int rawOp = randomNum(1, 4);
-  int num1 = randomNum(range, (range * 2));
-  int num2 = randomNum(range, (range * 2));
+  int num1 = randomNum(1, (range * 2));
+  int num2 = randomNum(1, (range * 2));
 
   switch (rawOp) {
     case 1:
