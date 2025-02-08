@@ -6,7 +6,7 @@ VERSION := v1.3.0
 
 # Compiler and Directories
 CC := clang++
-SOURCE := src/main.cpp src/random.cpp src/equation.cpp src/savefile.cpp
+SOURCE := src/main.cpp src/random.cpp src/equation.cpp src/savefile.cpp src/assetpacks.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
@@ -20,7 +20,8 @@ LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Targets
 all: clean windows-x64
-d: clean debug-build
+debug: clean debug-build
+test: clean test-build
 
 # Windows x64 Build
 windows-x64: setup-build-dir
@@ -37,6 +38,12 @@ debug-build: setup-build-dir
 	$(MAKE) copy-resources
 	@echo Launching executable...
 	cd $(BUILD_DIR) && .\MathOrDeath_$(VERSION).exe
+
+# Test build
+
+test-build:
+	@echo "Building main executable"
+	$(CC) tests/tests.cpp src/assetpacks.cpp src/random.cpp src/equation.cpp src/savefile.cpp -o "tests\MathOrDeath_TESTS_$(VERSION).exe" -I$(INCLUDE_DIR)  -v
 
 # Setup Build Directory
 setup-build-dir:

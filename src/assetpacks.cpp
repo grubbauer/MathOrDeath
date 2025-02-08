@@ -12,7 +12,7 @@
 #include "grubbauer/assetpacks.h"
 
 namespace grubbauer {
-bool checkForAssetpacks() {
+bool checkForAssetpack() {
   char appDataPath[MAX_PATH];
 
   // Get %APPDATA%
@@ -21,7 +21,7 @@ bool checkForAssetpacks() {
 
   // Checks if assetpack exists
   std::string assetpackFolder = gameFolderPath + "\\assetpack";
-  std::ifstream file(assetpackFolder + "properties.json");
+  std::ifstream file(assetpackFolder + "\\properties.json");
   if(file) {
     return true;
   } else {
