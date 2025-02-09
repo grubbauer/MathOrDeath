@@ -1,3 +1,4 @@
 # TODO
 
-* [ ] Update version number
+* [x] Update version number
+* [ ] Update splash screen
