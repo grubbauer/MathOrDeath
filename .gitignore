@@ -12,3 +12,5 @@ tmp
 .clangd
 .vscode/
 *.exe
+*.pdf
+*.docx
