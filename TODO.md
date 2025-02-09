@@ -10,7 +10,7 @@
 * [x] Restructure files
 * [x] Update include statements
 * [x] Add tests
-* [ ] Update Makefile
+* [x] Update Makefile
 * [ ] Add support for 1 texture pack
   * [x] Add function to check for texturepack directory
   * [ ] Add function to read texturepack metadata
