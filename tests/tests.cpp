@@ -64,8 +64,12 @@ int main(int argc, char* argv[]) {
 }
 
 void testAssetpacks() {
-  std::cout << "Testing function \"checkForAssetpack\".\n";
-  std::cout << grubbauer::checkForAssetpack() << "\n\n";
+  std::cout << "Testing function \"checkForAssetPack\".\n";
+  std::cout << grubbauer::checkForAssetPack() << "\n";
+
+  std::cout << "Testing function \"readAssetPackMetadata\"\n";
+  std::cout << grubbauer::readAssetPackMetadata() << "\n\n";
+
 }
 
 void testRandom() {
