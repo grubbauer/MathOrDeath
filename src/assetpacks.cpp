@@ -16,33 +16,23 @@
 using json = nlohmann::json;
 
 namespace grubbauer {
-bool checkForAssetPack() {
+
+std::string getAssetPackDirectory() {
   // Get %APPDATA%
   char appDataPath[MAX_PATH];
   SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
   std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
+  std::string assetPackFolder = gameFolderPath + "\\assetpack";
 
-  // Checks if assetpack exists
-  std::string assetpackFolder = gameFolderPath + "\\assetpack";
-  std::ifstream file(assetpackFolder + "\\properties.json");
-  if (file) {
-    return true;
-  } else {
-    return false;
-  }
+  return assetPackFolder;
 }
 
 std::string readAssetPackMetadata() {
-  // Get %APPDATA%
-  char appDataPath[MAX_PATH];
-  SHGetFolderPathA(NULL, CSIDL_APPDATA, NULL, 0, appDataPath);
-  std::string gameFolderPath = std::string(appDataPath) + "\\MathOrDeath";
-
-  std::string assetpackFolder = gameFolderPath + "\\assetpack";
+  std::string assetPackFolder = getAssetPackDirectory();
 
   // Create a JSON object
   json propertiesObject;
-  std::ifstream propertiesFile(assetpackFolder + "\\properties.json");
+  std::ifstream propertiesFile(assetPackFolder + "\\properties.json");
   propertiesFile >> propertiesObject;
   propertiesFile.close();
 
@@ -58,6 +48,16 @@ std::string readAssetPackMetadata() {
   } else {
     std::cerr << "Invalid JSON format!" << std::endl;
     return "Unkown";
+  }
+}
+bool checkForAssetPack() {
+  std::string assetPackFolder = getAssetPackDirectory();
+
+  std::ifstream file(assetPackFolder + "\\properties.json");
+  if (file) {
+    return true;
+  } else {
+    return false;
   }
 }
 }

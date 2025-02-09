@@ -10,8 +10,9 @@
 #include <string>
 
 namespace grubbauer {
-bool checkForAssetPack();
+std::string getAssetPackDirectory();
 std::string readAssetPackMetadata();
+bool checkForAssetPack();
 }
 
 #endif
