@@ -4,11 +4,14 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef GRUBBAUER_SAVEFILE_H
+#define GRUBBAUER_SAVEFILE_H
 
-#include <random>
+#include <string>
 
-int randNum(int min, int max);
+namespace grubbauer {
+std::string readSaveFile();
+void saveSaveFile(int lvl);
+}
 
 #endif

@@ -3,11 +3,7 @@
  * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
  * See LICENSE.md file in the project root for full license information.
 */
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL.h>
-#include <nlohmann/json.hpp>
+
 #include <shlobj.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,14 +15,19 @@
 #include <string>
 #include <thread>
 
-#include "equation_answer.h"
-#include "generate_equation.h"
-#include "open_savefile.h"
-#include "save_savefile.h"
+#include "grubbauer/equation.h"
+#include "grubbauer/random.h"
+#include "grubbauer/savefile.h"
+#include "grubbauer/assetpacks.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_ttf.h"
+#include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
 
-const std::string VERSION = "v1.2.0";
+const std::string VERSION = "v1.3.0";
 
 // Window variables
 int SCR_WIDTH = 0;
@@ -34,16 +35,16 @@ int SCR_HEIGHT = 0;
 
 // General global variables
 int lvl = 1;
-std::atomic<int> spriteIndex(10);
-std::atomic<bool> stopTimer(false);
+std::atomic<int> spriteIndex = {10};
+std::atomic<bool> stopTimer = {false};
 std::string inputedString;
-std::string equation = randEquation(lvl);
-std::atomic<int> remainingTime(11);
-std::atomic<bool> answeredCorrect = false;
-std::atomic<bool> runTimerVar = false;
+std::string equation = grubbauer::getRandomEquation(lvl);
+std::atomic<int> remainingTime = {11};
+std::atomic<bool> answeredCorrect = {false};
+std::atomic<bool> runTimerVar = {false};
 bool displaySplashScreen = true;
 bool isFullscreen = false;
-float equationResult = getEquationAnswer(equation);
+float equationResult = grubbauer::getEquationAnswer(equation);
 bool answeredWrong = false;
 Uint32 answeredCorrectTime = 0;
 
@@ -226,8 +227,8 @@ int main(int argc, char *argv[]) {
               // Compare the rounded values
               if (roundedUserAnswer == roundedEquationResult) {
                 lvl++;
-                equation = randEquation(lvl);
-                equationResult = getEquationAnswer(equation);
+                equation = grubbauer::getRandomEquation(lvl);
+                equationResult = grubbauer::getEquationAnswer(equation);
                 gEquationFontTexture.loadFromText(equation, cBlack, fEquation);
                 inputedString.clear();  // Clear the string after correct input
                 gInputFontTexture.free();  // Optionally clear the texture
@@ -253,6 +254,7 @@ int main(int argc, char *argv[]) {
                 gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
               }
             }
+            break;
           }
           case SDLK_F11: {
             if (isFullscreen) {
@@ -267,6 +269,7 @@ int main(int argc, char *argv[]) {
               SCR_WIDTH = display_mode.w;
               SCR_HEIGHT = display_mode.h;
               isFullscreen = true;
+              break;
             }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
@@ -332,7 +335,7 @@ int main(int argc, char *argv[]) {
     }
     if (spriteIndex == 10) {
       answeredWrong = true;
-      saveSaveFile(lvl);
+      grubbauer::saveSaveFile(lvl);
     }
 
     if (answeredWrong == true) {
@@ -340,15 +343,14 @@ int main(int argc, char *argv[]) {
                       (SCR_HEIGHT - SCR_HEIGHT / 2.8125) / 2,
                       SCR_HEIGHT / 2.8125, SCR_HEIGHT / 2.8125, &rCorrect[1]);
 
-      saveSaveFile(lvl);
-      std::cout << openSaveFile() << std::endl;
+      grubbauer::saveSaveFile(lvl);
       SDL_RenderPresent(gRenderer);
       SDL_Delay(500);
       gBoard.render((SCR_WIDTH - SCR_HEIGHT / 1.5) / 2,
                     (SCR_HEIGHT - SCR_WIDTH / 15) / 2, SCR_HEIGHT / 1.5,
                     SCR_WIDTH / 15);
-      gHighscoreFontTexture.loadFromText(openSaveFile(), {255, 255, 255},
-                                         fInput);
+      gHighscoreFontTexture.loadFromText(grubbauer::readSaveFile(),
+                                         {255, 255, 255}, fInput);
       gHighscoreFontTexture.render(
         (SCR_WIDTH - gHighscoreFontTexture.getWidth()) / 2,
         (SCR_HEIGHT - gHighscoreFontTexture.getHeight()) / 2,
@@ -374,7 +376,6 @@ int main(int argc, char *argv[]) {
   }
 
   // Wait for the timer thread to finish
-  stopTimer.load();
   stopTimer = true;
 
   quit();
@@ -411,25 +412,46 @@ void initialize() {
 }
 
 void loadAssets() {
-  // Graphical elements
-  gSplashScreen.loadFromFile("res/img/splash/splashMaster-0001.png");
-  gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
-  gInputWindow.loadFromFile("res/img/notepad/notepadMaster-0001.png");
-  gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
-  gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
-  gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
-  gBoard.loadFromFile("res/img/board/boardMaster-0001.png");
 
-  // Music
-  sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
+  if (grubbauer::checkForAssetPack()) { // If AssetPack was detected
+    // Graphics
+    std::string assetPackDir = grubbauer::getAssetPackDirectory();
+    gSplashScreen.loadFromFile(assetPackDir + "/res/img/splash/splashMaster-0001.png");
+    gBackgroundMain.loadFromFile(assetPackDir + "/res/img/background/backgroundMaster-0001.png");
+    gInputWindow.loadFromFile(assetPackDir + "/res/img/notepad/notepadMaster-0001.png");
+    gTeacher.loadFromFile(assetPackDir + "/res/img/character/teacherMaster-0001.png");
+    gTimer.loadFromFile(assetPackDir + "/res/img/bar/timerBar-0001.png");
+    gCorrect.loadFromFile(assetPackDir + "/res/img/misc/correctnessIndicator-0001.png");
+    gBoard.loadFromFile(assetPackDir + "/res/img/board/boardMaster-0001.png");
 
-  // Sounds
-  sSplash = Mix_LoadWAV("res/sfx/splashMaster-0001.ogg");
+    // Audio
+    sMusic = Mix_LoadMUS((assetPackDir + "/res/sfx/music/mainMaster-0001.ogg").c_str());
+    sSplash = Mix_LoadWAV((assetPackDir + "/res/sfx/splashMaster-0001.ogg").c_str());
 
-  // Fonts
-  fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
-  fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
-  fHighscores = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 10));
+    // Fonts
+    fInput = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 30));
+    fEquation = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 55));
+    fHighscores = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 10));
+    
+  } else {
+    // Graphics
+    gSplashScreen.loadFromFile("res/img/splash/splashMaster-0001.png");
+    gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
+    gInputWindow.loadFromFile("res/img/notepad/notepadMaster-0001.png");
+    gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
+    gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
+    gCorrect.loadFromFile("res/img/misc/correctnessIndicator-0001.png");
+    gBoard.loadFromFile("res/img/board/boardMaster-0001.png");
+
+    // Audio
+    sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
+    sSplash = Mix_LoadWAV("res/sfx/splashMaster-0001.ogg");
+
+    // Fonts
+    fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
+    fEquation = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 55));
+    fHighscores = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 10));
+  }
 
   // Font textures
   gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);

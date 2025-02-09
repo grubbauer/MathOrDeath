@@ -4,15 +4,11 @@
  * See LICENSE.md file in the project root for full license information.
 */
 
-#ifndef SAVE_SAVEFILE_H
-#define SAVE_SAVEFILE_H
+#ifndef GRUBBAUER_RANDOM_H
+#define GRUBBAUER_RANDOM_H
 
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <nlohmann/json.hpp>
-#include <windows.h>
-
-void saveSaveFile(int lvl);
+namespace grubbauer {
+int randomNum(int min, int max);
+}
 
 #endif

@@ -2,6 +2,23 @@
 
 All notable changes will be documented in this file.
 
+## [1.3.0] - 09.02.2025
+
+### Added
+
+* Added AssetPack support
+* Added Unit testing
+
+### Changed
+
+* Chagend equation range
+
+### Fixed
+
+* Fixed std::atomic copy issue (#28)
+* Fixed fullscreen being toggled when pressing RETURN (#26)
+* Fixed highscore not being displayed (#29)
+
 ## [1.2.0] - 24.01.2025
 
 ### Added
@@ -11,4 +28,3 @@ All notable changes will be documented in this file.
 ### Updated
 
 * License terms updated
-

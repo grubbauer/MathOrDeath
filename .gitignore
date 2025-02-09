@@ -10,3 +10,5 @@ tmp
 *.aseprite
 *.ase
 .clangd
+.vscode/
+*.exe
