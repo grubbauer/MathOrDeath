@@ -27,7 +27,7 @@
 
 using json = nlohmann::json;
 
-const std::string VERSION = "v1.3.0";
+const std::string VERSION = "v1.3.1";
 
 // Window variables
 int SCR_WIDTH = 0;
