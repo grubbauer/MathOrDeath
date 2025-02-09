@@ -13,7 +13,28 @@ present and `true` (`1`) if file exists.
 USAGE:
 
 ```cpp
-grubbauer::checkForAssetpack()
+grubbauer::checkForAssetPack()
+```
+
+#### readAssetPackMetadata
+
+Reads the `properties.json` file located at `%APPDATA%/MathOrDeath/assetpack`
+and returns the content.
+
+USAGE:
+
+```cpp
+grubbauer::readAssetPackMetadata()
+```
+
+#### getAssetPackDirectory
+
+Returns the absolute path or `%APPDATA%/MathOrDeath/assetpack`
+
+USAGE:
+
+```cpp
+grubbauer::getAssetPackDirectory()
 ```
 
 ## Equation (equation.h)
