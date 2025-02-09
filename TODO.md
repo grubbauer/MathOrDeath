@@ -11,9 +11,9 @@
 * [x] Update include statements
 * [x] Add tests
 * [x] Update Makefile
-* [ ] Add support for 1 texture pack
-  * [x] Add function to check for texturepack directory
-  * [x] Add function to read texturepack metadata
-  * [x] Add function to get assetpack directory
-  * [ ] Add function to load texture pack
-  * [ ] Add function to use texture pack
+* [x] Add support for 1 AssetPack
+  * [x] Add function to check for AssetPack directory
+  * [x] Add function to read AssetPack metadata
+  * [x] Add function to get AssetPack directory
+  * [x] Use AssetPack assets
+* [ ] Write documentation
