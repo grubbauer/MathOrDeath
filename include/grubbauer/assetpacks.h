@@ -7,8 +7,11 @@
 #ifndef GRUBBAUER_ASSETSPACK_H
 #define GRUBBAUER_ASSETSPACK_H
 
+#include <string>
+
 namespace grubbauer {
-bool checkForAssetpack();
+bool checkForAssetPack();
+std::string readAssetPackMetadata();
 }
 
 #endif
