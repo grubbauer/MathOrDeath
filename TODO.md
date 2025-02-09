@@ -16,4 +16,4 @@
   * [x] Add function to read AssetPack metadata
   * [x] Add function to get AssetPack directory
   * [x] Use AssetPack assets
-* [ ] Write documentation
+* [x] Write documentation
