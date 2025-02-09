@@ -426,7 +426,7 @@ void loadAssets() {
 
     // Audio
     sMusic = Mix_LoadMUS((assetPackDir + "/res/sfx/music/mainMaster-0001.ogg").c_str());
-    sSplash = Mix_LoadWAV((assetPackDir + "res/sfx/splashMaster-0001.ogg").c_str());
+    sSplash = Mix_LoadWAV((assetPackDir + "/res/sfx/splashMaster-0001.ogg").c_str());
 
     // Fonts
     fInput = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 30));
