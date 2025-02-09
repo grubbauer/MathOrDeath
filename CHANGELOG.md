@@ -6,6 +6,7 @@ All notable changes will be documented in this file.
 
 ### Added
 
+* Added AssetPack support
 * Added Unit testing
 
 ### Changed
