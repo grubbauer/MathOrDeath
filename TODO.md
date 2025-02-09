@@ -17,7 +17,7 @@
   * [x] Add function to get AssetPack directory
   * [x] Use AssetPack assets
 * [x] Write documentation
-* [ ] Update preperations
-  * [ ] Complete unit testing
-  * [ ] Fresh game testing
-  * [ ] Build
+* [x] Update preperations
+  * [x] Complete unit testing
+  * [x] Fresh game testing
+  * [x] Build
