@@ -68,8 +68,10 @@ void testAssetpacks() {
   std::cout << grubbauer::checkForAssetPack() << "\n";
 
   std::cout << "Testing function \"readAssetPackMetadata\"\n";
-  std::cout << grubbauer::readAssetPackMetadata() << "\n\n";
+  std::cout << grubbauer::readAssetPackMetadata() << "\n";
 
+  std::cout << "Testing function \"getAssetPackDirectory\"\n";
+  std::cout << grubbauer::getAssetPackDirectory() << "\n\n";
 }
 
 void testRandom() {
