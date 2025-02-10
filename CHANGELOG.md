@@ -4,6 +4,10 @@ All notable changes will be documented in this file.
 
 ## [1.3.1] - Unreleased
 
+### Changed
+
+* Changed splashMaster texture
+
 ## [1.3.0] - 09.02.2025
 
 ### Added
