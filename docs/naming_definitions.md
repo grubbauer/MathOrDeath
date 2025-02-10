@@ -1,25 +1,25 @@
 # Naming Definitions
 
-## gXXXXX
+## *g*XXXXX
 
 Graphical Objects
 
-## mXXXXX
+## *m*XXXXX
 
 Members
 
-## sXXXXX
+## *s*XXXXX
 
 Soundeffects and musical objects
 
-## fXXXXX
+## *f*XXXXX
 
 Fonts
 
-## rXXXXX
+## *r*XXXXX
 
 Rects
 
-## cXXXXX
+## *c*XXXXX
 
 Colors

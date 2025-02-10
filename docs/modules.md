@@ -29,7 +29,7 @@ grubbauer::readAssetPackMetadata()
 
 #### getAssetPackDirectory
 
-Returns the absolute path or `%APPDATA%/MathOrDeath/assetpack`
+Returns the absolute path of `%APPDATA%/MathOrDeath/assetpack`
 
 USAGE:
 
@@ -123,7 +123,7 @@ grubbauer::readSaveFile()
 ### saveSaveFile
 
 Creates a SaveFile if none exists at `%APPDATA%/MathOrDeath/saveFile.json` and
-writes a provided value as a JSON value to the SaveFile.
+writes a provided value as a JSON object to the SaveFile.
 
 USAGE:
 

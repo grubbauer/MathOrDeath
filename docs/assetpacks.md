@@ -1,6 +1,6 @@
 # AssetPacks
 
-AssetPacks have a set structure that needs to be strictly followed:
+AssetPacks have a set structure that must be strictly followed:
 
 ```tree
 .
