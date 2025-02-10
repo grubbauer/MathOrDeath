@@ -1,4 +1,5 @@
 # TODO
 
 * [x] Update version number
-* [ ] Update splash screen
+* [x] Update splash screen
+* [x] Add metadata
