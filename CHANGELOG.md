@@ -2,7 +2,7 @@
 
 All notable changes will be documented in this file.
 
-## [1.3.1] - Unreleased
+## [1.3.1] - 10.02.2025
 
 ### Changed
 
