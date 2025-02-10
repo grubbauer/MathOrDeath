@@ -9,7 +9,7 @@
     * `mingw-w64-x86_64-clang`
     * `mingw-w64-x86_64-gcc`
     * `mingw-w64-x86_64-make`
-3. Add your `mingw64/bin` directory to the system PATH
+3. Add your `mingw64/bin` directory to the system `PATH`
 
 ### Libaries
 
