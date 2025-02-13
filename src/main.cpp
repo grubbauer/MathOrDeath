@@ -59,6 +59,9 @@ Mix_Music *sMusic = NULL;
 
 // Soundeffect
 Mix_Chunk *sSplash = NULL;
+Mix_Chunk *sFailedInput = NULL;
+Mix_Chunk *sSubmitAnswer = NULL;
+Mix_Chunk *sInput = NULL;
 
 // Fonts
 TTF_Font *fInput;
@@ -197,21 +200,25 @@ int main(int argc, char *argv[]) {
           case SDLK_0 ... SDLK_9: {
             inputedString += pressedKey;
             gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
+            Mix_PlayChannel(-1, sInput, 0);
             break;
           }
           case SDLK_MINUS: {
             inputedString += '-';
             gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
+            Mix_PlayChannel(-1, sInput, 0);
             break;
           }
           case SDLK_PERIOD: {
             inputedString += '.';
             gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
+            Mix_PlayChannel(-1, sInput, 0);
             break;
           }
           case SDLK_COMMA: {
             inputedString += '.';
             gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
+            Mix_PlayChannel(-1, sInput, 0);
             break;
           }
           case SDLK_RETURN: {
@@ -241,6 +248,7 @@ int main(int argc, char *argv[]) {
               std::cerr << "Invalid input for checking equation: "
                         << inputedString << std::endl;
             }
+            Mix_PlayChannel(-1, sSubmitAnswer, 0);
             break;
           }
           case SDLK_BACKSPACE: {
@@ -254,6 +262,7 @@ int main(int argc, char *argv[]) {
                 gInputFontTexture.loadFromText(inputedString, cBlack, fInput);
               }
             }
+            Mix_PlayChannel(-1, sInput, 0);
             break;
           }
           case SDLK_F11: {
@@ -269,7 +278,6 @@ int main(int argc, char *argv[]) {
               SCR_WIDTH = display_mode.w;
               SCR_HEIGHT = display_mode.h;
               isFullscreen = true;
-              break;
             }
 
             TTF_SetFontSize(fInput, (SCR_WIDTH / 30));
@@ -277,6 +285,13 @@ int main(int argc, char *argv[]) {
 
             gInputFontTexture.loadFromText(" ", {0, 0, 0}, fInput);
             gEquationFontTexture.loadFromText(equation, {0, 0, 0}, fEquation);
+
+            Mix_PlayChannel(-1, sInput, 0);
+            break;
+          }
+          default: {
+            Mix_PlayChannel(-1, sFailedInput, 0);
+            break;
           }
         }
       }
@@ -426,7 +441,9 @@ void loadAssets() {
 
     // Audio
     sMusic = Mix_LoadMUS((assetPackDir + "/res/sfx/music/mainMaster-0001.ogg").c_str());
-    sSplash = Mix_LoadWAV((assetPackDir + "/res/sfx/splashMaster-0001.ogg").c_str());
+    sSplash = Mix_LoadWAV((assetPackDir + "/res/sfx/splashMaster-0001-0001.ogg").c_str());
+    sFailedInput = Mix_LoadWAV((assetPackDir + "/res/sfx/failedInputMaster-0001.ogg").c_str());
+    sInput = Mix_LoadWAV((assetPackDir + "/res/sfx/inputMaster-0001.ogg").c_str());
 
     // Fonts
     fInput = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 30));
@@ -446,6 +463,9 @@ void loadAssets() {
     // Audio
     sMusic = Mix_LoadMUS("res/sfx/music/mainMaster-0001.ogg");
     sSplash = Mix_LoadWAV("res/sfx/splashMaster-0001.ogg");
+    sFailedInput = Mix_LoadWAV("res/sfx/failedInputMaster-0001.ogg");
+    sSubmitAnswer = Mix_LoadWAV("res/sfx/submitAnswerMaster-0001.ogg");
+    sInput = Mix_LoadWAV("res/sfx/inputMaster-0001.ogg");
 
     // Fonts
     fInput = TTF_OpenFont("res/font/GPixel_v1.0.0.ttf", (SCR_WIDTH / 30));
