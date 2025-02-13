@@ -42,7 +42,6 @@ debug-build: setup-build-dir
 	cd $(BUILD_DIR) && .\MathOrDeath_$(VERSION).exe
 
 # Test build
-
 test-build:
 	@echo "Building main executable"
 	$(CC) $(TEST_SOURCE) $(MODULES) -o "tests\MathOrDeath_TESTS_$(VERSION).exe" -I$(INCLUDE_DIR)  -v
