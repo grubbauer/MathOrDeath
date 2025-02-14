@@ -2,7 +2,7 @@
 !define APPDIR "$APPDATA\${APPNAME}"
 !define EXE_NAME "MathOrDeath_v1.3.2.exe"
 
-Outfile "MathOrDeath_INSTALLER.exe"
+Outfile "D:\dev\MathOrDeath\build\MathOrDeath_INSTALLER.exe"
 InstallDir "${APPDIR}"
 
 Section "Install"

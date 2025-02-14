@@ -21,7 +21,7 @@ BUILD_DIR := build\windows-x64
 LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Targets
-all: clean windows-x64
+all: clean windows-x64 test
 debug: clean debug-build
 test: clean test-build
 
