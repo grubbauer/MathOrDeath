@@ -24,6 +24,7 @@ LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 all: clean windows-x64 test
 debug: clean debug-build
 test: clean test-build
+installer: clean installer-build
 
 # Windows x64 Build
 windows-x64: setup-build-dir
@@ -72,3 +73,7 @@ clean:
 	@echo Starting clean process...
 	@if exist "$(BUILD_DIR)" rmdir /s /q "$(BUILD_DIR)"
 	@echo Success.
+
+installer-build:
+	@echo Starting installer build
+  clang++ -std=c++17 -Wall -v -Iinclude -LD:/dev/lib/gcc_lib -o build/windowsx64/ief.exe \src/installer.cpp -lwxmsw32u -lwxbase32u -lwxpng -lwxjpeg -lwxzlib \-lkernel32 -lgdi32 -lcomdlg32 -lcomctl32 -lole32 -luuid -lwinspool
