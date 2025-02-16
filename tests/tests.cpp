@@ -1,7 +1,10 @@
 /*
- * Copyright (c) Raphael Grubbauer
- * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
- * See LICENSE.md file in the project root for full license information.
+ * Name:        tests/tests.cpp
+ * Purpose:     Unit testing source file
+ * Author:      Raphael G. Grubbauer
+ * Created:     08.02.2025
+ * Copyright:   (c) 2025 Raphael G. Grubbauer / GSP
+ * License:     MathOrDeath EULA
 */
 
 #include <iostream>

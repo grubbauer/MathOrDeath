@@ -2,7 +2,7 @@
 # Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
 # See LICENSE.md file in the project root for full license information.
 
-VERSION := v1.3.1
+VERSION := v1.3.2
 
 # Compiler and Directories
 CC := clang++
@@ -21,7 +21,7 @@ BUILD_DIR := build\windows-x64
 LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 # Targets
-all: clean windows-x64
+all: clean windows-x64 test
 debug: clean debug-build
 test: clean test-build
 
@@ -42,7 +42,6 @@ debug-build: setup-build-dir
 	cd $(BUILD_DIR) && .\MathOrDeath_$(VERSION).exe
 
 # Test build
-
 test-build:
 	@echo "Building main executable"
 	$(CC) $(TEST_SOURCE) $(MODULES) -o "tests\MathOrDeath_TESTS_$(VERSION).exe" -I$(INCLUDE_DIR)  -v

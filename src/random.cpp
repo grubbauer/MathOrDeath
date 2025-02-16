@@ -1,7 +1,10 @@
 /*
- * Copyright (c) Raphael Grubbauer 2024-2025
- * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
- * See LICENSE.md file in the project root for full license information.
+ * Name:        src/random.cpp
+ * Purpose:     Random number generation logic
+ * Author:      Raphael G. Grubbauer
+ * Created:     13.08.2024
+ * Copyright:   (c) 2024 Raphael G. Grubbauer / GSP
+ * License:     MathOrDeath EULA
 */
 
 #include <random>

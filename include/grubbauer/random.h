@@ -1,7 +1,10 @@
 /*
- * Copyright (c) Raphael Grubbauer
- * Licensed under the Grubbauer Open Source License (GOSL) v1.4.0
- * See LICENSE.md file in the project root for full license information.
+ * Name:        include/grubbauer/random.h
+ * Purpose:     Random number generation header
+ * Author:      Raphael G. Grubbauer
+ * Created:     13.08.2024
+ * Copyright:   (c) 2024 Raphael G. Grubbauer / GSP
+ * License:     MathOrDeath EULA
 */
 
 #ifndef GRUBBAUER_RANDOM_H

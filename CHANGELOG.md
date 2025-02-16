@@ -2,6 +2,17 @@
 
 All notable changes will be documented in this file.
 
+## [1.3.2] - 16.02.2025
+
+### Added
+
+* Added EULA
+* Added sound effects
+
+### Removed
+
+* Removed LICENSE
+
 ## [1.3.1] - 10.02.2025
 
 ### Changed
