@@ -22,45 +22,58 @@ void testEquation();
 void testSavefile();
 
 int main(int argc, char* argv[]) {
-    std::string modules[5] = {"AssetPacks", "Random", "Equation", "SaveFile", "All"};
+    std::string modules[5] = {"ASSETPACKS", "RANDOM", "EQUATION", "SAVEFILE", "ALL"};
     std::string selectedModule;
 
     std::cout << "\n\n\n\n";
-    std::cout << "Unit test\n";
-    std::cout << "=========\n\n";
-    std::cout << "Available modules: ";
+    std::cout << "UNIT TESTING\n";
+    std::cout << "============\n";
+    std::cout << "\n\n\n";
+
+    std::cout << "Available Modules: \n";
     for (const auto& module : modules) {
         std::cout << module << " ";
     }
+    std::cout << "\n-------------------\n";
     std::cout << "\n\n";
 
-    std::cout << "What test should be executed?: ";
+    std::cout << "What test shall be executed?: ";
     std::cin >> selectedModule;
-    std::transform(selectedModule.begin(), selectedModule.end(), selectedModule.begin(), ::tolower); 
+    std::transform(selectedModule.begin(), selectedModule.end(), selectedModule.begin(), ::toupper); 
 
-    if (selectedModule == "assetpacks") {
-      std::cout << "Selected AssetPacks.\n\n";
+    if (selectedModule == "ASSETPACKS") {
+      std::cout << "-------------------\n";
+      std::cout << "Selected ASSETPACKS.\n\n";
       testAssetpacks();
-    } else if(selectedModule == "random") {
-      std::cout << "Selected Random.\n\n";
+    } else if(selectedModule == "RANDOM") {
+      std::cout << "----------------\n";
+      std::cout << "Selected RANDOM.\n\n";
       testRandom();
-    } else if(selectedModule == "equation") {
-      std::cout << "Selected Equation.\n\n";
+    } else if(selectedModule == "EQUATION") {
+      std::cout << "------------------\n";
+      std::cout << "Selected EQUATION.\n\n";
       testEquation();
-    } else if(selectedModule == "equation") {
-      std::cout << "Selected Equation.\n\n";
-      testEquation();
-    } else if(selectedModule == "savefile") {
-      std::cout << "Selected SaveFile.\n\n";
+    } else if(selectedModule == "SAVEFILE") {
+      std::cout << "------------------\n";
+      std::cout << "Selected SAVEFILE.\n\n";
       testSavefile();
-    } else if(selectedModule == "all") {
-      std::cout << "Selected All.\n\n";
+    } else if(selectedModule == "ALL") {
+      std::cout << "-------------\n";
+      std::cout << "Selected ALL.\n\n";
+      std::cout << "-------------------\n";
+      std::cout << "Selected ASSETPACKS.\n\n";
       testAssetpacks();
+      std::cout << "----------------\n";
+      std::cout << "Selected RANDOM.\n\n";
       testRandom();
+      std::cout << "------------------\n";
+      std::cout << "Selected EQUATION.\n\n";
       testEquation();
+      std::cout << "------------------\n";
+      std::cout << "Selected SAVEFILE.\n\n";
       testSavefile();
     } else {
-      std::cout << "No module called \"" << selectedModule <<"\"\n";
+      std::cout << "No module with the name \"" << selectedModule <<"\"\n";
     }
 
     return 0;
@@ -70,11 +83,15 @@ void testAssetpacks() {
   std::cout << "Testing function \"checkForAssetPack\".\n";
   std::cout << grubbauer::checkForAssetPack() << "\n";
 
-  std::cout << "Testing function \"readAssetPackMetadata\"\n";
-  std::cout << grubbauer::readAssetPackMetadata() << "\n";
-
   std::cout << "Testing function \"getAssetPackDirectory\"\n";
-  std::cout << grubbauer::getAssetPackDirectory() << "\n\n";
+  std::cout << grubbauer::getAssetPackDirectory() << "\n";
+
+  std::cout << "Testing function \"readAssetPackMetadata\"\n";
+  if (grubbauer::checkForAssetPack()) {
+    std::cout << grubbauer::readAssetPackMetadata() << "\n";
+  } else {
+    std::cout << "0\n\n"; 
+  }
 }
 
 void testRandom() {
