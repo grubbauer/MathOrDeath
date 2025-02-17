@@ -47,7 +47,8 @@ std::string readAssetPackMetadata() {
     std::string description = assetPack.value("Description", "Unknown");
     std::string version = assetPack.value("Version", "Unknown");
 
-    return "Name: " + name + "\n" + "Description: " + description + "\n" + "Version: " + version + "\n";
+    return "Name: " + name + "\n" + "Description: " + description + "\n" +
+           "Version: " + version + "\n";
   } else {
     std::cerr << "Invalid JSON format!" << std::endl;
     return "Unkown";

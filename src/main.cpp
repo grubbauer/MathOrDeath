@@ -18,14 +18,14 @@
 #include <string>
 #include <thread>
 
-#include "grubbauer/equation.h"
-#include "grubbauer/random.h"
-#include "grubbauer/savefile.h"
-#include "grubbauer/assetpacks.h"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "SDL2/SDL_mixer.h"
 #include "SDL2/SDL_ttf.h"
+#include "grubbauer/assetpacks.h"
+#include "grubbauer/equation.h"
+#include "grubbauer/random.h"
+#include "grubbauer/savefile.h"
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
@@ -430,33 +430,45 @@ void initialize() {
 }
 
 void loadAssets() {
-
-  if (grubbauer::checkForAssetPack()) { // If AssetPack was detected
+  if (grubbauer::checkForAssetPack()) {  // If AssetPack was detected
     // Graphics
     std::string assetPackDir = grubbauer::getAssetPackDirectory();
-    gSplashScreen.loadFromFile(assetPackDir + "/res/img/splash/splashMaster-0001.png");
-    gBackgroundMain.loadFromFile(assetPackDir + "/res/img/background/backgroundMaster-0001.png");
-    gInputWindow.loadFromFile(assetPackDir + "/res/img/notepad/notepadMaster-0001.png");
-    gTeacher.loadFromFile(assetPackDir + "/res/img/character/teacherMaster-0001.png");
+    gSplashScreen.loadFromFile(assetPackDir +
+                               "/res/img/splash/splashMaster-0001.png");
+    gBackgroundMain.loadFromFile(
+      assetPackDir + "/res/img/background/backgroundMaster-0001.png");
+    gInputWindow.loadFromFile(assetPackDir +
+                              "/res/img/notepad/notepadMaster-0001.png");
+    gTeacher.loadFromFile(assetPackDir +
+                          "/res/img/character/teacherMaster-0001.png");
     gTimer.loadFromFile(assetPackDir + "/res/img/bar/timerBar-0001.png");
-    gCorrect.loadFromFile(assetPackDir + "/res/img/misc/correctnessIndicator-0001.png");
+    gCorrect.loadFromFile(assetPackDir +
+                          "/res/img/misc/correctnessIndicator-0001.png");
     gBoard.loadFromFile(assetPackDir + "/res/img/board/boardMaster-0001.png");
 
     // Audio
-    sMusic = Mix_LoadMUS((assetPackDir + "/res/sfx/music/mainMaster-0001.ogg").c_str());
-    sSplash = Mix_LoadWAV((assetPackDir + "/res/sfx/splashMaster-0001-0001.ogg").c_str());
-    sFailedInput = Mix_LoadWAV((assetPackDir + "/res/sfx/failedInputMaster-0001.ogg").c_str());
-    sInput = Mix_LoadWAV((assetPackDir + "/res/sfx/inputMaster-0001.ogg").c_str());
+    sMusic = Mix_LoadMUS(
+      (assetPackDir + "/res/sfx/music/mainMaster-0001.ogg").c_str());
+    sSplash = Mix_LoadWAV(
+      (assetPackDir + "/res/sfx/splashMaster-0001-0001.ogg").c_str());
+    sFailedInput = Mix_LoadWAV(
+      (assetPackDir + "/res/sfx/failedInputMaster-0001.ogg").c_str());
+    sInput =
+      Mix_LoadWAV((assetPackDir + "/res/sfx/inputMaster-0001.ogg").c_str());
 
     // Fonts
-    fInput = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 30));
-    fEquation = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 55));
-    fHighscores = TTF_OpenFont((assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 10));
-    
+    fInput = TTF_OpenFont(
+      (assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 30));
+    fEquation = TTF_OpenFont(
+      (assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 55));
+    fHighscores = TTF_OpenFont(
+      (assetPackDir + "/res/font/GPixel_v1.0.0.ttf").c_str(), (SCR_WIDTH / 10));
+
   } else {
     // Graphics
     gSplashScreen.loadFromFile("res/img/splash/splashMaster-0001.png");
-    gBackgroundMain.loadFromFile("res/img/background/backgroundMaster-0001.png");
+    gBackgroundMain.loadFromFile(
+      "res/img/background/backgroundMaster-0001.png");
     gInputWindow.loadFromFile("res/img/notepad/notepadMaster-0001.png");
     gTeacher.loadFromFile("res/img/character/teacherMaster-0001.png");
     gTimer.loadFromFile("res/img/bar/timerBar-0001.png");
