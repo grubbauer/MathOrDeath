@@ -6,9 +6,11 @@ VERSION := v1.3.3
 
 # Compiler and Directories
 CC := clang++
+STD := c++17
 SOURCE := src/main.cpp
 MODULES := src/random.cpp src/equation.cpp src/savefile.cpp src/assetpacks.cpp
 TEST_SOURCE := tests/tests.cpp
+INSTALLER_SOURCE := src/installer.cpp
 RESOURCE_DIR := src\res
 BUILD_RES_DIR := res
 INCLUDE_DIR := include
@@ -16,27 +18,26 @@ LIB_DIR := lib
 MINGW_BIN_DIR := C:\msys64\mingw64\bin
 BIN_DIR := bin
 BUILD_DIR := build\windows-x64
-
-# Libraries
 LIBS := -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+WXLIBS := -mwindows -lwxmsw32u -lwxmsw32u_gl -lwxscintilla -lwxregexu -lwxjpeg -lwxpng -lwxexpat -lwxtiff -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lole32 -loleaut32 -luuid -lcomctl32 -ladvapi32 -lcomctl32 -lshlwapi -luxtheme -lversion -lwxzlib -loleacc
 
 # Targets
 all: clean windows-x64 test
 debug: clean debug-build
 test: clean test-build
-installer: clean installer-build
+installer: installer-build
 
 # Windows x64 Build
 windows-x64: setup-build-dir
 	@echo Building main executable...
-	$(CC) -mwindows $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
+	$(CC) -std=$(STD) -mwindows $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS)
 	@echo Success.
 	$(MAKE) copy-resources
 
 # Debug Build
 debug-build: setup-build-dir
 	@echo Building main executable with debug information...
-	$(CC) $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
+	$(CC) -std=$(STD) $(SOURCE) $(MODULES) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION).exe" -I$(INCLUDE_DIR) -L$(LIB_DIR) $(LIBS) -v
 	@echo Success.
 	$(MAKE) copy-resources
 	@echo Launching executable...
@@ -76,4 +77,5 @@ clean:
 
 installer-build:
 	@echo Starting installer build
-  clang++ -std=c++17 -Wall -v -Iinclude -LD:/dev/lib/gcc_lib -o build/windowsx64/ief.exe \src/installer.cpp -lwxmsw32u -lwxbase32u -lwxpng -lwxjpeg -lwxzlib \-lkernel32 -lgdi32 -lcomdlg32 -lcomctl32 -lole32 -luuid -lwinspool
+	$(CC) -std=$(STD) -v -Wall $(INSTALLER_SOURCE) -o "$(BUILD_DIR)\MathOrDeath_$(VERSION)_INSTALLER.exe" -I$(INCLUDE_DIR) -L"D:\dev\lib\gcc_lib" $(WXLIBS)
+	
